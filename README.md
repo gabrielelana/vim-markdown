@@ -1,4 +1,1 @@
-vim-markdown
-============
-
-Vim Markdown Support
+# Vim Markdown Support
