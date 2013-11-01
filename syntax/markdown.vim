@@ -22,6 +22,9 @@ syn match markdownHeadingUnderline "^[=-]\+$" contained
 syn match markdownH1 "^.\+\n=\+$" contains=markdownHeadingUnderline
 syn match markdownH2 "^.\+\n-\+$" contains=markdownHeadingUnderline
 
+syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n"
+
+hi link markdownBlockquote              Comment
 hi link markdownHeadingDelimiter        Delimiter
 hi link markdownHeadingUnderline        Delimiter
 hi link markdownH1                      Title
