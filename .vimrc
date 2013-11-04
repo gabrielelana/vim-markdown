@@ -8,6 +8,9 @@ source ftdetect/markdown.vim
 " clean and reload the markdown syntax in the current buffer
 nnoremap <silent> <Leader>r :unlet! b:current_syntax <BAR> syn clear <BAR> source syntax/markdown.vim<CR>
 
+" display all the highgligh groups with relative colors
+nnoremap <silent> <Leader>g :source $VIMRUNTIME/syntax/hitest.vim<CR>
+
 " tells you just what syntax highlighting groups the item under the cursor actually is
 nnoremap <silent> <Leader>h :echo 
       \ "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> " .
