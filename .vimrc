@@ -2,6 +2,9 @@
 " https://github.com/MarcWeber/vim-addon-local-vimrc
 " plugin installed
 
+source syntax/markdown.vim
+source ftdetect/markdown.vim
+
 " clean and reload the markdown syntax in the current buffer
 nnoremap <silent> <Leader>r :unlet! b:current_syntax <BAR> syn clear <BAR> source syntax/markdown.vim<CR>
 
@@ -14,3 +17,8 @@ nnoremap <silent> <Leader>h :echo
 " tells you more information about the highlighting group of the item under cursor
 source .hilinks.vim
 nnoremap <silent> <Leader>t :HLT!<CR>
+
+if filereadable(expand("./.session.vim"))
+  execute "source " . expand("./.session.vim")
+  bufdo execute "normal " . mapleader . "r<CR>"
+endif
