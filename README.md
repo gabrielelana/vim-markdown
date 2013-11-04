@@ -1,16 +1,17 @@
 # Vim Markdown Support
-## Why?
+... This i not ready by any means to be used, stay tuned :-)
+
+# Why?
 Because I couldn't find a syntax file that would match my expectations
 
-## Development
-### Resources
+# Development
+## Resources
 * [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax)
 * [Markdown Debugger](http://daringfireball.net/projects/markdown/dingus)
 
-## TODO
+# TODO
 * how to automatically test that the syntax highlight is correct or at least to avoid regressions?
   * try with :TOhtml and compare that with a sample saved when the highlight of a particular element looks good
-* support syntax for blockquotes
 * support syntax for lists
 * support syntax for code blocks
 * support syntax for horizontal rules
@@ -20,3 +21,5 @@ Because I couldn't find a syntax file that would match my expectations
 * support syntax for images
 * support for tables with tabularize
 * support for spell checking
+* explain in this file why I chose to avoid to highlight nested block elements
+* MDOpenBlockquote will open the next level of Blockquote block under cursor in a markdown scratch buffer
