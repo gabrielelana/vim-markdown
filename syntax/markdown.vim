@@ -18,18 +18,17 @@ syn region markdownH4 matchgroup=markdownHeadingDelimiter start="^\s*####"   end
 syn region markdownH5 matchgroup=markdownHeadingDelimiter start="^\s*#####"  end="#*\s*$" oneline
 syn region markdownH6 matchgroup=markdownHeadingDelimiter start="^\s*######" end="#*\s*$" oneline
 
+syn match markdownHeadingUnderline "^[=-]\+$" contained
 syn match markdownH1 "^.\+\n=\+$" contains=markdownHeadingUnderline
 syn match markdownH2 "^.\+\n-\+$" contains=markdownHeadingUnderline
-syn match markdownHeadingUnderline "^[=-]\+$" contained
 
-syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
-
-syn cluster markdownDelimiters contains=markdownHeadingDelimiter,markdownBlockquoteDelimiter,markdownHeadingUnderline
-
+syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
 hi link markdownBlockquote              Comment
-hi link markdownDelimiters              Delimiter
+hi link markdownBlockquoteDelimiter     Delimiter
+hi link markdownHeadingDelimiter        Delimiter
+hi link markdownHeadingUnderline        Delimiter
 hi link markdownH1                      Title
 hi link markdownH2                      Title
 hi link markdownH3                      Title
