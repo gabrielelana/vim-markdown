@@ -25,15 +25,16 @@ syn match markdownH2 "^.\+\n-\+$" contains=markdownHeadingUnderline
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
-hi link markdownBlockquote              Comment
-hi link markdownBlockquoteDelimiter     Delimiter
-hi link markdownHeadingDelimiter        Delimiter
-hi link markdownHeadingUnderline        Delimiter
-hi link markdownH1                      Title
-hi link markdownH2                      Title
-hi link markdownH3                      Title
-hi link markdownH4                      Title
-hi link markdownH5                      Title
-hi link markdownH6                      Title
+hi def link markdownBlockquote              Comment
+hi def link markdownBlockquoteDelimiter     Delimiter
+hi def link markdownHeadingDelimiter        Delimiter
+hi def link markdownHeadingUnderline        Delimiter
+hi def link markdownInlineDelimiter         Delimiter
+hi def link markdownH1                      Title
+hi def link markdownH2                      Title
+hi def link markdownH3                      Title
+hi def link markdownH4                      Title
+hi def link markdownH5                      Title
+hi def link markdownH6                      Title
 
 let b:current_syntax = "markdown"
