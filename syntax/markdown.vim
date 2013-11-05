@@ -25,6 +25,17 @@ syn match markdownH2 "^.\+\n-\+$" contains=markdownHeadingUnderline
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
+syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*" end="\*\%(\s\|$\)\@=" oneline
+syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*" end="\*\*\%(\s\|$\)\@=" oneline
+syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=_" end="_\%(\s\|$\)\@=" oneline
+syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=__" end="__\%(\s\|$\)\@=" oneline
+
+hi def Italic                       term=italic, cterm=italic, gui=italic
+hi def Bold                         term=bold, cterm=bold, gui=bold
+
+hi def link markdownItalic                  Italic
+hi def link markdownBold                    Bold
+
 hi def link markdownBlockquote              Comment
 hi def link markdownBlockquoteDelimiter     Delimiter
 hi def link markdownHeadingDelimiter        Delimiter
