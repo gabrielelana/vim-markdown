@@ -25,14 +25,12 @@ syn match markdownH2 "^.\+\n-\+$" contains=markdownHeadingUnderline
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
-syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*" end="\*\%(\s\|$\)\@=" oneline keepend 
-syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=_" end="_\%(\s\|$\)\@=" oneline keepend 
-syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*" end="\*\*\%(\s\|$\)\@=" oneline keepend
-syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=__" end="__\%(\s\|$\)\@=" oneline keepend 
-syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*" end="\*\*\%(\s\|$\)\@=" oneline keepend
-syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=__" end="__\%(\s\|$\)\@=" oneline keepend 
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\*" end="\*\*\*\%(\s\|$\)\@=" oneline keepend
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=___" end="___\%(\s\|$\)\@=" oneline keepend 
+syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\%(\*\)\@!" end="\*\%(\s\|$\)\@=" oneline keepend 
+syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=_\%(_\)\@!" end="_\%(\s\|$\)\@=" oneline keepend 
+syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\%(\*\)\@!" end="\*\*\%(\s\|$\)\@=" oneline keepend
+syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=__\%(_\)\@!" end="__\%(\s\|$\)\@=" oneline keepend 
+syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\*\%(\*\)\@!" end="\*\*\*\%(\s\|$\)\@=" oneline keepend
+syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=___\%(_\)\@!" end="___\%(\s\|$\)\@=" oneline keepend 
 
 syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic
 
