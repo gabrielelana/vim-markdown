@@ -10,16 +10,19 @@ Because I couldn't find a syntax file that would match my expectations
 * [Markdown Debugger](http://daringfireball.net/projects/markdown/dingus)
 
 # TODO
+* support syntax for inline elements
+  * support inside other elements
+  * support bold+italic combination patterns __*foo*__ **_foo_** _**foo**_ *__foo__*
+  * should play well with lists :-)
+* explain in this file why I chose to avoid to highlight nested block elements
 * how to automatically test that the syntax highlight is correct or at least to avoid regressions?
   * try with :TOhtml and compare that with a sample saved when the highlight of a particular element looks good
 * support syntax for lists
 * support syntax for code blocks
 * support syntax for horizontal rules
 * support syntax for links
-* support syntax for emphasis
 * support syntax for code
 * support syntax for images
 * support for tables with tabularize
 * support for spell checking
-* explain in this file why I chose to avoid to highlight nested block elements
 * MDOpenBlockquote will open the next level of Blockquote block under cursor in a markdown scratch buffer
