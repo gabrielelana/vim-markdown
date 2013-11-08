@@ -1,13 +1,14 @@
-# Vim Markdown Support
+# Vim Github Markdown Support
 ... This i not ready by any means to be used, stay tuned :-)
 
 # Why?
-Because I couldn't find a syntax file that would match my expectations
+I wanted a strong support for the markdown flavour implemented by Github, I wanted a syntax highlight that would mirror the result I would find later on Github, I wanted a syntax hightlight that would not break easily, I wanted a syntax highlight that I could rely on (aka rapid feedback), I wanted something more that a mere syntax highlight. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) unfortunately it's so loosely defined that there are *flavours* of markdown that are subtly incompatible from each other, the [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
 
 # Development
 ## Resources
-* [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax)
-* [Markdown Debugger](http://daringfireball.net/projects/markdown/dingus)
+* [Markdown Github Syntax](https://help.github.com/articles/github-flavored-markdown)
+* [Markdown Github API](http://developer.github.com/v3/markdown)
+* [Markdown Github Quick Preview](http://github-markdown-preview.heroku.com/)
 
 # TODO
 * support syntax for inline elements
