@@ -29,7 +29,7 @@ that span multiple lines
 
 The usage of alternate delimiters must be idempotent, so all _foo_ *foo* _*foo*_ *_foo_* must be "foo" highlighted as italic
 
-The same delimiter could not be used twice **foo** and __foo__ must be normal
+The same delimiter could not be used twice **foo** and __foo__ must not be highlighted as italic
 
 _foo__bar_ must be "foo" highlighted as italic followed by "<UNDERSCORE>bar<UNDERSCORE>" highlighted as normal
 

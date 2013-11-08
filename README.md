@@ -11,8 +11,7 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 * [Markdown Github Quick Preview](http://github-markdown-preview.heroku.com/)
 
 # TODO
-* support syntax for inline elements
-  * support bold+italic combination patterns (features/combined_emphasis.md)
+* support syntax for emphasis elements
   * support emphasis inside other elements (features/contained_emphasis.md)
 * explain in this file why I chose to avoid to highlight nested block elements
 * how to automatically test that the syntax highlight is correct or at least to avoid regressions?

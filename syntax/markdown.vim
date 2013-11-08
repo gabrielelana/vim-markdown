@@ -30,10 +30,10 @@ syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^
 syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*" contains=markdownBold
 syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|\*\*\|^\)\@<=__\%(\s\|_\|$\)\@!" end="\%(\s\|__\)\@<!__" contains=markdownBold
 
-" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\*\%(\*\)\@!" end="\*\*\*\%(\s\|$\)\@=" oneline keepend
-" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=___\%(_\)\@!" end="___\%(\s\|$\)\@=" oneline keepend 
-" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*_\%(\*\|_\)\@!" end="_\*\*\%(\s\|$\)\@=" oneline keepend
-" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=_\*\*\%(\*\|_\)\@!" end="\*\*_\%(\s\|$\)\@=" oneline keepend
+syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*\*\*"
+syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=___\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!___"
+syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
+syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
 syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic
 
