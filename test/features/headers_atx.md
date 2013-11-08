@@ -26,7 +26,7 @@
 
 # An hash in the middle # have no special meaning
 
-  # This should not be an header be we are tollerant of initial white spaces
+ # This should not be an header because the hash should be the first character in the line
 
 This is # not an header, this is a normal paragraph and the hash must not be considered a delimiter
 

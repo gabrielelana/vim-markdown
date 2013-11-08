@@ -11,12 +11,12 @@ syn spell toplevel
 syn sync minlines=10
 syn case ignore
 
-syn region markdownH1 matchgroup=markdownHeadingDelimiter start="^\s*#"      end="#*\s*$" oneline
-syn region markdownH2 matchgroup=markdownHeadingDelimiter start="^\s*##"     end="#*\s*$" oneline
-syn region markdownH3 matchgroup=markdownHeadingDelimiter start="^\s*###"    end="#*\s*$" oneline
-syn region markdownH4 matchgroup=markdownHeadingDelimiter start="^\s*####"   end="#*\s*$" oneline
-syn region markdownH5 matchgroup=markdownHeadingDelimiter start="^\s*#####"  end="#*\s*$" oneline
-syn region markdownH6 matchgroup=markdownHeadingDelimiter start="^\s*######" end="#*\s*$" oneline
+syn region markdownH1 matchgroup=markdownHeadingDelimiter start="^#"      end="#*\s*$" oneline
+syn region markdownH2 matchgroup=markdownHeadingDelimiter start="^##"     end="#*\s*$" oneline
+syn region markdownH3 matchgroup=markdownHeadingDelimiter start="^###"    end="#*\s*$" oneline
+syn region markdownH4 matchgroup=markdownHeadingDelimiter start="^####"   end="#*\s*$" oneline
+syn region markdownH5 matchgroup=markdownHeadingDelimiter start="^#####"  end="#*\s*$" oneline
+syn region markdownH6 matchgroup=markdownHeadingDelimiter start="^######" end="#*\s*$" oneline
 
 syn match markdownHeadingUnderline "^[=-]\+$" contained
 syn match markdownH1 "^.\+\n=\+$" contains=markdownHeadingUnderline
