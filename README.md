@@ -12,9 +12,8 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 
 # TODO
 * support syntax for inline elements
-  * support inside other elements
-  * support bold+italic combination patterns __*foo*__ **_foo_** _**foo**_ *__foo__*
-  * should play well with lists :-)
+  * support bold+italic combination patterns (features/combined_emphasis.md)
+  * support emphasis inside other elements (features/contained_emphasis.md)
 * explain in this file why I chose to avoid to highlight nested block elements
 * how to automatically test that the syntax highlight is correct or at least to avoid regressions?
   * try with :TOhtml and compare that with a sample saved when the highlight of a particular element looks good

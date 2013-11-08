@@ -25,12 +25,15 @@ syn match markdownH2 "^.\+\n-\+$" contains=markdownHeadingUnderline
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
-syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\%(\*\)\@!" end="\*\%(\s\|$\)\@=" oneline keepend 
-syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=_\%(_\)\@!" end="_\%(\s\|$\)\@=" oneline keepend 
-syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\%(\*\)\@!" end="\*\*\%(\s\|$\)\@=" oneline keepend
-syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=__\%(_\)\@!" end="__\%(\s\|$\)\@=" oneline keepend 
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\*\%(\*\)\@!" end="\*\*\*\%(\s\|$\)\@=" oneline keepend
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=___\%(_\)\@!" end="___\%(\s\|$\)\@=" oneline keepend 
+syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*" contains=markdownItalic
+syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_" contains=markdownItalic
+syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*" contains=markdownBold
+syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|\*\*\|^\)\@<=__\%(\s\|_\|$\)\@!" end="\%(\s\|__\)\@<!__" contains=markdownBold
+
+" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*\*\%(\*\)\@!" end="\*\*\*\%(\s\|$\)\@=" oneline keepend
+" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=___\%(_\)\@!" end="___\%(\s\|$\)\@=" oneline keepend 
+" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=\*\*_\%(\*\|_\)\@!" end="_\*\*\%(\s\|$\)\@=" oneline keepend
+" syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|^\)\@<=_\*\*\%(\*\|_\)\@!" end="\*\*_\%(\s\|$\)\@=" oneline keepend
 
 syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic
 
