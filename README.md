@@ -11,11 +11,10 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 * [Markdown Github Quick Preview](http://github-markdown-preview.heroku.com/)
 
 # TODO
-* support syntax for emphasis elements
-  * support emphasis inside other elements (features/contained_emphasis.md)
-* explain in this file why I chose to avoid to highlight nested block elements
 * how to automatically test that the syntax highlight is correct or at least to avoid regressions?
   * try with :TOhtml and compare that with a sample saved when the highlight of a particular element looks good
+* explain in this file why I chose to avoid to highlight nested block elements
+* open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
 * support syntax for lists
 * support syntax for code blocks
 * support syntax for horizontal rules
@@ -24,4 +23,3 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 * support syntax for images
 * support for tables with tabularize
 * support for spell checking
-* MDOpenBlockquote will open the next level of Blockquote block under cursor in a markdown scratch buffer
