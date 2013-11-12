@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/projects/vim-markdown/spec/features/blockquotes.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Comment { color: #0000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Comment">&gt; </span>This is a blockquote
+
+ &gt; This is a blockquote even if the angle bracket is not at the beginning of the line
+
+<span class="Comment">&gt; </span>This is a single
+<span class="Comment">&gt; </span>blockquote even if it
+<span class="Comment">&gt; </span>spans a few lines
+
+<span class="Comment">&gt; </span>This is a single
+blockquote, you can put the angle bracket
+jnly at the first line of the paragraph and
+the all the paragraph is a blockquote
+
+This is not a blockquote because it's another paragraph
+
+<span class="Comment">&gt;</span>
+This is not a blockquote because the first line, the line with the angle bracket, must not be empty
+
+<span class="Comment">&gt; </span>
+This is a blockquote because the first line, the line with the angle bracket, is not empty, in this case contains a single space
+
+And again, this is not a blockquote because is another paragraph
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
