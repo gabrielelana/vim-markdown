@@ -13,14 +13,14 @@ features = [
   "weak_emphasis"
 ]
 
-describe "syntax" do
+describe "markdown syntax" do
 
   let(:filename) {"syntax.html"}
 
   features.each do |feature|
     source = File.expand_path("./features/#{feature}.md", File.dirname(__FILE__))
     master = source + ".html"
-    it "should support #{feature}" do
+    it "should support #{feature.gsub("_", " ")}" do
       vim.edit source
       vim.command "TOhtml | w #{filename}"
       if File.exists? master
