@@ -7,7 +7,7 @@ source ftdetect/markdown.vim
 source ftplugin/markdown.vim
 
 " clean and reload the markdown syntax in the current buffer
-nnoremap <silent> <Leader>r :unlet! b:current_syntax <BAR> :unlet! b:did_ftplugin <BAR> syn clear <BAR> source syntax/markdown.vim<CR>
+nnoremap <silent> <Leader>r :unlet! b:current_syntax <BAR> unlet! b:did_ftplugin <BAR> syn clear <BAR> source syntax/markdown.vim <BAR> source ftplugin/markdown.vim<CR>
 
 " display all the highgligh groups with relative colors
 nnoremap <silent> <Leader>g :source $VIMRUNTIME/syntax/hitest.vim<CR>
