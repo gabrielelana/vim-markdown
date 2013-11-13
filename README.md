@@ -14,9 +14,16 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 Testing syntax highlight could be tricky, here I use the golden master patter to at least avoid regressions, this is how it works: in `./rspec/features` you will find a bunch of `*.md` files, one for each syntactic element supported, for each of those files there's an html file, this file is created with the `:TOhtml` command and it's the reference (aka golden master) of the syntax highlight of the original file. Running `rspec` you are comparing the current syntax highlight of all the feature's file with the reference syntax highlight. If looking at some of the feature's file you see something wrong you can fix it and after regenerate the golden master files with `GENERATE_GOLDEN_MASTER=1 rspec`
 
 # TODO
-* explain in this file why I chose to avoid to highlight nested block elements
-* open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
 * support syntax for lists
+  * support for ordered lists
+  * consider to have list items recognized as text regions and replace the comment thing with some virscript love
+  * editing support through vim script?
+    * when hitting <Enter> on a list item it will create another list item on the next line
+    * when hitting <C-Enter> on a list item it will go to the next line on the same column as the first character of the line above
+    * when hitting <Tab> on a list item it will indent the item (check if it's in a list?)
+    * when hitting <S-Tab> on a list item it will unindent the item (check if it's in a list?)
+    * when hitting <Enter> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
+    * when hitting <C-BS> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
 * support syntax for code blocks
 * support syntax for horizontal rules
 * support syntax for links
@@ -25,3 +32,5 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 * support for tables with tabularize
 * support for spell checking
 * support for custom text objects
+* open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
+  * explain in this file why I chose to avoid to highlight nested block elements
