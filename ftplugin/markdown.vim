@@ -3,7 +3,7 @@ if exists("b:did_ftplugin")
 endif
 
 setlocal textwidth=0
-setlocal comments=b:*,b:-,b:+
+setlocal comments=b:*,b:-,b:+,n:>
 setlocal formatoptions+=tcrqon formatoptions-=wa
 
 let b:did_ftplugin = 1
