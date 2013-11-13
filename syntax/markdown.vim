@@ -22,6 +22,8 @@ syn match markdownHeadingUnderline "^[=-]\+$" contained
 syn match markdownH1 "^.\+\n=\+$" contains=@markdownInline,markdownHeadingUnderline
 syn match markdownH2 "^.\+\n-\+$" contains=@markdownInline,markdownHeadingUnderline
 
+syn match markdownUnorderedListDelimiter "\%(\t\| \{0,4\}\)\+[-*+]\%(\s\+\)\@="
+
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
@@ -50,6 +52,7 @@ hi def link markdownBlockquoteDelimiter     Delimiter
 hi def link markdownHeadingDelimiter        Delimiter
 hi def link markdownHeadingUnderline        Delimiter
 hi def link markdownInlineDelimiter         Delimiter
+hi def link markdownUnorderedListDelimiter  Delimiter
 hi def link markdownH1                      Title
 hi def link markdownH2                      Title
 hi def link markdownH3                      Title
