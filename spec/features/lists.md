@@ -54,13 +54,17 @@ Leading space are supported
   * second item
 
 
-Leading space with multiple line items
+Leading space with multiple list items
 
   * this is the first item in the list
     this is still the first item even if it's the second line
   * this is the second item in the list
     this is still the second item even if it's the second line
     this is still the second item even if it's the third line
+
+The first list item could not have 4 leading spaces, this should be interpreted as a code block starting with `*`
+
+    * this is not an item list
 
 A single list delimiter is not a list item
 
@@ -83,3 +87,4 @@ with [a link](http://google.com).
 
 * list items can have *inline content
   that spans multiple lines*
+

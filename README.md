@@ -16,7 +16,13 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 # TODO
 * support syntax for lists
   * support for ordered lists
-  * consider to have list items recognized as text regions and replace the comment thing with some virscript love
+  * support for proper list nesting
+    * markdownListBlock should be a transparent region
+      * starts with a markdownListItem not preceded by a markdownListItem
+      * ends with a markdownListItem not followed by a markdownListItem
+    * markdownListItem should be a region
+      * could contain other markdownListItem 
+      * should highlight the list delimiter
   * editing support through vim script?
     * when hitting <Enter> on a list item it will create another list item on the next line
     * when hitting <C-Enter> on a list item it will go to the next line on the same column as the first character of the line above

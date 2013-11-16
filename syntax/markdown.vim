@@ -22,7 +22,10 @@ syn match markdownHeadingUnderline "^[=-]\+$" contained
 syn match markdownH1 "^.\+\n=\+$" contains=@markdownInline,markdownHeadingUnderline
 syn match markdownH2 "^.\+\n-\+$" contains=@markdownInline,markdownHeadingUnderline
 
-syn match markdownUnorderedListDelimiter "^\s*[-*+]\%(\s\+\)\@="
+syn match markdownUnorderedListDelimiter "^\s*[-*+]\%(\s\+\)\@=" contained
+syn region markdownUnorderedListBlock transparent keepend contains=markdownUnorderedListDelimiter,@markdownInline
+  \ start="\(\_^\s*[-+*]\s\+\_.\{-}\n\n\)\@<!\_^\%(\t\| \{0,3}\)[-*+]\s\+"
+  \ end="\_^\s*[-+*]\s\+\_.\{-}\n\n" 
 
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
