@@ -26,7 +26,6 @@ Nesting
     * third item third level
     * fourth item third level
 
-
 List items on multiple lines
 
 * this is the first item in the list
@@ -63,6 +62,13 @@ Leading space with multiple line items
     this is still the second item even if it's the second line
     this is still the second item even if it's the third line
 
+A single list delimiter is not a list item
+
+*
+
+A single list delimiter follwed by at least one space is a list item
+
+* 
 
 List with inline elements
 
@@ -77,5 +83,3 @@ with [a link](http://google.com).
 
 * list items can have *inline content
   that spans multiple lines*
-
-
