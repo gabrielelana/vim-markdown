@@ -30,6 +30,8 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
     * when hitting <S-Tab> on a list item it will unindent the item (check if it's in a list?)
     * when hitting <Enter> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting <C-BS> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
+    * when hitting <C-k> on a list item it will swap it with the item above (if there exists)
+    * when hitting <C-j> on a list item it will swap it with the item below (if there exists)
 * support syntax for code blocks
 * support syntax for horizontal rules
 * support syntax for links
