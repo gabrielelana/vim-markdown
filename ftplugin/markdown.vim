@@ -20,6 +20,20 @@ function! s:MarkdownJumpToHeader(forward, visual)
   execute 'silent normal! ' . direction . pattern . "\n"
 endfunction
 
+function! s:MarkdownIndentListItem(indent)
+  let line = getline('.')
+  if line =~ '\v^\s*\*\s*$'
+    if a:indent
+      normal >>
+    else
+      normal <<
+    endif
+    call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
+  else 
+    call setline('.', substitute(line, '$', "\t", ''))
+  endif
+endfunction
+
 noremap <silent> <buffer> <script> ]] :call <SID>MarkdownJumpToHeader(1, 0)<CR>
 noremap <silent> <buffer> <script> [[ :call <SID>MarkdownJumpToHeader(0, 0)<CR>
 vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>MarkdownJumpToHeader(1, 1)<CR>
@@ -27,5 +41,8 @@ vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>MarkdownJumpToHeader(0, 1
 
 noremap <silent> <buffer> <script> ][ <nop>
 noremap <silent> <buffer> <script> [] <nop>
+
+inoremap <silent> <buffer> <Tab> <Esc>:call <SID>MarkdownIndentListItem(1)<CR>A
+inoremap <silent> <buffer> <S-Tab> <Esc>:call <SID>MarkdownIndentListItem(0)<CR>A
 
 let b:did_ftplugin = 1

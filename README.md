@@ -18,6 +18,9 @@ I would use this section ultil I have a proper documentation for this plugin
 ## Motions
 * `]]` start of the next header
 * `[[` start of the previous header
+## Editing
+* when hitting <Tab> on a list item it will indent the item (check if it's in a list?)
+* when hitting <S-Tab> on a list item it will unindent the item (check if it's in a list?)
 
 # TODO
 * support for text objects
@@ -36,8 +39,6 @@ I would use this section ultil I have a proper documentation for this plugin
   * editing support through vim script?
     * when hitting <Enter> on a list item it will create another list item on the next line
     * when hitting <C-Enter> on a list item it will go to the next line on the same column as the first character of the line above
-    * when hitting <Tab> on a list item it will indent the item (check if it's in a list?)
-    * when hitting <S-Tab> on a list item it will unindent the item (check if it's in a list?)
     * when hitting <Enter> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting <C-BS> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting <C-k> on a list item it will swap it with the item above (if there exists)
