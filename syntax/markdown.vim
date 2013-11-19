@@ -22,10 +22,10 @@ syn match markdownHeadingUnderline "^[=-]\+$" contained
 syn match markdownH1 "^.\+\n=\+$" contains=@markdownInline,markdownHeadingUnderline
 syn match markdownH2 "^.\+\n-\+$" contains=@markdownInline,markdownHeadingUnderline
 
-syn match markdownUnorderedListDelimiter "^\s*[-*+]\%(\s\+\)\@=" contained
-syn region markdownUnorderedListBlock transparent keepend contains=markdownUnorderedListDelimiter,@markdownInline
-  \ start="\(\_^\s*[-+*]\s\+\_.\{-}\n\n\)\@<!\_^\%(\t\| \{0,3}\)[-*+]\s\+"
-  \ end="\_^\s*[-+*]\s\+\_.\{-}\n\n" 
+syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
+syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
+  \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
+  \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
 
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
@@ -55,7 +55,7 @@ hi def link markdownBlockquoteDelimiter     Delimiter
 hi def link markdownHeadingDelimiter        Delimiter
 hi def link markdownHeadingUnderline        Delimiter
 hi def link markdownInlineDelimiter         Delimiter
-hi def link markdownUnorderedListDelimiter  Delimiter
+hi def link markdownListDelimiter           Delimiter
 hi def link markdownH1                      Title
 hi def link markdownH2                      Title
 hi def link markdownH3                      Title
