@@ -25,8 +25,8 @@ I would use this section ultil I have a proper documentation for this plugin
 * `[[` start of the previous header
 
 ## Editing
-* when hitting <Tab> on a list item it will indent the item (check if it's in a list?)
-* when hitting <S-Tab> on a list item it will unindent the item (check if it's in a list?)
+* when hitting <Tab>/<S-Tab> on a list item it will indent/unindent the item 
+* when hitting <Tab>/<S-Tab> on a blockquote it will increase/decrease the quote level
 
 
 # BUGS
