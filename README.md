@@ -40,6 +40,7 @@ I would use this section ultil I have a proper documentation for this plugin
     * start of the previous header on the same level of the current one `[]`
 * support syntax for lists
   * support for ordered lists
+    * formatlistpat doesn't work :-( find out why
   * editing support through vim script?
     * when hitting <Enter> on a list item it will create another list item on the next line
     * when hitting <C-Enter> on a list item it will go to the next line on the same column as the first character of the line above

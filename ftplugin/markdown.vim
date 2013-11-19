@@ -6,6 +6,7 @@ setlocal textwidth=0
 setlocal ts=2 sw=2 expandtab smarttab
 setlocal comments=b:*,b:-,b:+,n:> commentstring=>\ %s
 setlocal formatoptions+=tcrqon formatoptions-=wa
+setlocal formatlistpat="^\s*\d\.\s\+"
 
 function! s:MarkdownJumpToHeader(forward, visual)
   let pattern = '\v^#{1,6}.*$|^.+\n%(\-+|\=+)$'
