@@ -23,7 +23,7 @@ endfunction
 
 function! s:MarkdownIndentListItem(indent)
   let line = getline('.')
-  if line =~ '\v^\s*\*\s*$'
+  if line =~ '\v^\s*%([-*+]|\d\.)\s*$'
     if a:indent
       normal >>
     else
