@@ -12,6 +12,10 @@ execute 'setlocal dictionary+=' . expand('<sfile>:p:h:h') . '/dict/emoticons.dic
 setlocal iskeyword+=:,+,-
 setlocal complete+=k
 
+iabbr :-) :smile:
+iabbr :-D :laughing:
+iabbr :-( :disappointed:
+
 function! s:MarkdownJumpToHeader(forward, visual)
   let pattern = '\v^#{1,6}.*$|^.+\n%(\-+|\=+)$'
   if a:visual
