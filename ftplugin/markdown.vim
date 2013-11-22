@@ -50,7 +50,7 @@ vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>MarkdownJumpToHeader(0, 1
 noremap <silent> <buffer> <script> ][ <nop>
 noremap <silent> <buffer> <script> [] <nop>
 
-inoremap <silent> <buffer> <Tab> <Esc>:call <SID>MarkdownIndent(1)<CR>A
-inoremap <silent> <buffer> <S-Tab> <Esc>:call <SID>MarkdownIndent(0)<CR>A
+inoremap <silent> <buffer> <script> <Tab> <Esc>:call <SID>MarkdownIndent(1)<CR>A
+inoremap <silent> <buffer> <script> <S-Tab> <Esc>:call <SID>MarkdownIndent(0)<CR>A
 
 let b:did_ftplugin = 1
