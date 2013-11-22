@@ -54,3 +54,6 @@ I would use this section ultil I have a proper documentation for this plugin
 * support for custom text objects
 * open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
   * explain in this file why I chose to avoid to highlight nested block elements
+* emoticons
+  * more iabbr
+  * load dictionary for syn keyword?
