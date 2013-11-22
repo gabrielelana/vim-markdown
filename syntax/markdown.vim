@@ -411,6 +411,6 @@ hi def link markdownH3                      Title
 hi def link markdownH4                      Title
 hi def link markdownH5                      Title
 hi def link markdownH6                      Title
-hi def link markdownEmoticonKeyword         PreProc
+hi def link markdownEmoticonKeyword         Statement
 
 let b:current_syntax = "markdown"
