@@ -29,6 +29,16 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting <Tab>/<S-Tab> on a blockquote it will increase/decrease the quote level
 
 
+
+
+
+
+
+
+
+
+
+
 # TODO
 * support for text objects
   * move between headers with section motions

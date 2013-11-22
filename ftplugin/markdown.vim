@@ -31,7 +31,6 @@ function! s:MarkdownIndent(indent)
     endif
     call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
   elseif line =~ '\v^\s*(\s|\>)+\s*$'
-    echom "Blockquotes!!!"
     if a:indent
       call setline('.', substitute(getline('.'), '>\s*$', '> > ', ''))
     else
@@ -42,8 +41,6 @@ function! s:MarkdownIndent(indent)
     call setline('.', substitute(line, '$', "\t", ''))
   endif
 endfunction
-
-echom "Markdown Loaded!!!"
 
 noremap <silent> <buffer> <script> ]] :call <SID>MarkdownJumpToHeader(1, 0)<CR>
 noremap <silent> <buffer> <script> [[ :call <SID>MarkdownJumpToHeader(0, 0)<CR>
