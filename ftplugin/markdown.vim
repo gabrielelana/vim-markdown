@@ -8,6 +8,10 @@ setlocal comments=b:*,b:-,b:+,n:> commentstring=>\ %s
 setlocal formatoptions+=tcrqon formatoptions-=wa
 setlocal formatlistpat="^\s*\d\.\s\+"
 
+execute 'setlocal dictionary+=' . expand('<sfile>:p:h:h') . '/dict/emoticons.dict'
+setlocal iskeyword+=:,+,-
+setlocal complete+=k
+
 function! s:MarkdownJumpToHeader(forward, visual)
   let pattern = '\v^#{1,6}.*$|^.+\n%(\-+|\=+)$'
   if a:visual
