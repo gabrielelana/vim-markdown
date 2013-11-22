@@ -42,6 +42,14 @@ function! s:MarkdownIndent(indent)
   endif
 endfunction
 
+function! s:RemoveEmptyListItem()
+  if getline('.') =~ '\v^\s*%([-*+]|\d\.)\s*$'
+    normal! 0D
+  else
+    call feedkeys("\<CR>", "n")
+  endif
+endfunction
+
 noremap <silent> <buffer> <script> ]] :call <SID>MarkdownJumpToHeader(1, 0)<CR>
 noremap <silent> <buffer> <script> [[ :call <SID>MarkdownJumpToHeader(0, 0)<CR>
 vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>MarkdownJumpToHeader(1, 1)<CR>
@@ -52,5 +60,7 @@ noremap <silent> <buffer> <script> [] <nop>
 
 inoremap <silent> <buffer> <script> <Tab> <Esc>:call <SID>MarkdownIndent(1)<CR>A
 inoremap <silent> <buffer> <script> <S-Tab> <Esc>:call <SID>MarkdownIndent(0)<CR>A
+
+inoremap <silent> <buffer> <script> <CR> <Esc>:call <SID>RemoveEmptyListItem()<CR>A
 
 let b:did_ftplugin = 1

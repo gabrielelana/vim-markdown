@@ -27,16 +27,7 @@ I would use this section ultil I have a proper documentation for this plugin
 ## Editing
 * when hitting <Tab>/<S-Tab> on a list item it will indent/unindent the item 
 * when hitting <Tab>/<S-Tab> on a blockquote it will increase/decrease the quote level
-
-
-
-
-
-
-
-
-
-
+* when hitting <Enter> on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 
 
 # TODO
@@ -50,7 +41,6 @@ I would use this section ultil I have a proper documentation for this plugin
   * editing support through vim script?
     * when hitting <Enter> on a list item it will create another list item on the next line
     * when hitting <C-Enter> on a list item it will go to the next line on the same column as the first character of the line above
-    * when hitting <Enter> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting <C-BS> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting <C-k> on a list item it will swap it with the item above (if there exists)
     * when hitting <C-j> on a list item it will swap it with the item below (if there exists)
