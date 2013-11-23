@@ -25,9 +25,9 @@ I would use this section ultil I have a proper documentation for this plugin
 * `[[` start of the previous header
 
 ## Editing
-* when hitting <Tab>/<S-Tab> on a list item it will indent/unindent the item 
-* when hitting <Tab>/<S-Tab> on a blockquote it will increase/decrease the quote level
-* when hitting <Enter> on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
+* when hitting `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item 
+* when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
+* when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 
 
 # TODO
@@ -39,11 +39,11 @@ I would use this section ultil I have a proper documentation for this plugin
   * support for ordered lists
     * formatlistpat doesn't work :-( find out why
   * editing support through vim script?
-    * when hitting <Enter> on a list item it will create another list item on the next line
-    * when hitting <C-Enter> on a list item it will go to the next line on the same column as the first character of the line above
-    * when hitting <C-BS> on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
-    * when hitting <C-k> on a list item it will swap it with the item above (if there exists)
-    * when hitting <C-j> on a list item it will swap it with the item below (if there exists)
+    * when hitting `<Enter>` on a list item it will create another list item on the next line
+    * when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
+    * when hitting `<C-BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
+    * when hitting `<C-k>` on a list item it will swap it with the item above (if there exists)
+    * when hitting `<C-j>` on a list item it will swap it with the item below (if there exists)
 * support syntax for code blocks
 * support syntax for horizontal rules
 * support syntax for links
@@ -54,6 +54,6 @@ I would use this section ultil I have a proper documentation for this plugin
 * support for custom text objects
 * open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
   * explain in this file why I chose to avoid to highlight nested block elements
-* emoticons
+* support for emoticons
   * more iabbr
   * load dictionary for syn keyword?
