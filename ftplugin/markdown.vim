@@ -35,6 +35,7 @@ function! s:MarkdownIndent(indent)
     if a:indent
       normal >>
     else
+      call setline('.', substitute(getline('.'), '^\*\s*$', '', ''))
       normal <<
     endif
     call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
