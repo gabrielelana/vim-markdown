@@ -38,6 +38,7 @@ function! s:MarkdownIndent(indent)
       normal <<
     endif
     call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
+    normal $
   elseif line =~ '\v^\s*(\s|\>)+\s*$'
     if a:indent
       call setline('.', substitute(getline('.'), '>\s*$', '> > ', ''))
@@ -45,6 +46,7 @@ function! s:MarkdownIndent(indent)
       call setline('.', substitute(getline('.'), '\s*>\s*$', ' ', ''))
       call setline('.', substitute(getline('.'), '^\s\+$', '', ''))
     endif
+    normal $
   else 
     call setline('.', substitute(line, '$', "\t", ''))
   endif
@@ -66,9 +68,9 @@ vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>MarkdownJumpToHeader(0, 1
 noremap <silent> <buffer> <script> ][ <nop>
 noremap <silent> <buffer> <script> [] <nop>
 
-inoremap <silent> <buffer> <script> <Tab> <Esc>:call <SID>MarkdownIndent(1)<CR>A
-inoremap <silent> <buffer> <script> <S-Tab> <Esc>:call <SID>MarkdownIndent(0)<CR>A
+inoremap <silent> <buffer> <script> <Tab> <C-O>:call <SID>MarkdownIndent(1)<CR>
+inoremap <silent> <buffer> <script> <S-Tab> <C-O>:call <SID>MarkdownIndent(0)<CR>
 
-inoremap <silent> <buffer> <script> <CR> <Esc>:call <SID>RemoveEmptyListItem()<CR>A
+inoremap <silent> <buffer> <script> <CR> <C-O>:call <SID>RemoveEmptyListItem()<CR>
 
 let b:did_ftplugin = 1
