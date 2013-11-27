@@ -28,6 +28,7 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item 
 * when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
+* when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
 
 
 # TODO
@@ -40,7 +41,6 @@ I would use this section ultil I have a proper documentation for this plugin
 * support syntax for lists
   * formatlistpat doesn't work for ordered lists :-( find out why
   * editing support through vim script?
-    * when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
     * when hitting `<BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting `<C-k>` on a list item it will swap it with the item above (if it exists)
     * when hitting `<C-j>` on a list item it will swap it with the item below (if it exists)

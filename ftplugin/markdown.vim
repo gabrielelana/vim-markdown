@@ -48,7 +48,7 @@ function! s:MarkdownIndent(indent)
       call setline('.', substitute(getline('.'), '^\s\+$', '', ''))
     endif
     normal $
-  else 
+  else
     call setline('.', substitute(line, '$', "\t", ''))
   endif
 endfunction
@@ -60,6 +60,18 @@ function! s:RemoveEmptyListItem()
     call feedkeys("\<CR>", "n")
   endif
 endfunction
+
+function! s:NextLineForTheSameListItem()
+  let currentSyntaxElement = synIDattr(synID(line("."), col("."), 0), "name")
+  if currentSyntaxElement ==# "markdownListItem"
+    let indentationLevel = strlen(matchstr(getline("."), '^\W\+'))
+    call append('.', [repeat(" ", indentationLevel)])
+    normal j$
+  else
+    call feedkeys("\<CR>", "n")
+  endif
+endfunction
+
 
 noremap <silent> <buffer> <script> ]] :call <SID>MarkdownJumpToHeader(1, 0)<CR>
 noremap <silent> <buffer> <script> [[ :call <SID>MarkdownJumpToHeader(0, 0)<CR>
@@ -73,5 +85,7 @@ inoremap <silent> <buffer> <script> <Tab> <C-O>:call <SID>MarkdownIndent(1)<CR>
 inoremap <silent> <buffer> <script> <S-Tab> <C-O>:call <SID>MarkdownIndent(0)<CR>
 
 inoremap <silent> <buffer> <script> <CR> <C-O>:call <SID>RemoveEmptyListItem()<CR>
+
+inoremap <script> <silent> <buffer> <C-Bslash><CR> <C-O>:call <SID>NextLineForTheSameListItem()<CR>
 
 let b:did_ftplugin = 1
