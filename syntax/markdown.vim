@@ -40,7 +40,7 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
-syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic
+syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
