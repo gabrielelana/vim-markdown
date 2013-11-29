@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/projects/vim-markdown/spec/features/lists.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.htmlBold { font-weight: bold; }
+.Special { color: #c000c0; }
+.htmlItalic { font-style: italic; }
+.Statement { color: #af5f00; }
+.Constant { color: #c00000; }
+.Underlined { color: #c000c0; text-decoration: underline; }
+.Title { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+Stars
+
+<span class="Statement">*</span> first item
+<span class="Statement">*</span> second item
+<span class="Statement">*</span> third item
+
+
+Dashes
+
+<span class="Statement">-</span> first item
+<span class="Statement">-</span> second item
+<span class="Statement">-</span> third item
+
+
+Pluses
+
+<span class="Statement">+</span> first item
+<span class="Statement">+</span> second item
+<span class="Statement">+</span> third item
+
+Ordered
+
+<span class="Statement">1.</span> first item
+<span class="Statement">2.</span> second item
+<span class="Statement">3.</span> third item
+
+Nesting
+
+<span class="Statement">*</span> first item first level
+<span class="Statement">  *</span> second item second level
+<span class="Statement">    *</span> third item third level
+<span class="Statement">    *</span> fourth item third level
+      1. first item of the fourth level
+      2. second item of the fourth level
+
+List items on multiple lines
+
+<span class="Statement">*</span> this is the first item in the list
+this is still the first item even if it's the second line
+<span class="Statement">*</span> this is the second item in the list
+this is still the second item even if it's the second line
+this is still the second item even if it's the third line
+
+this is not part of the above list
+
+
+List items on multiple lines aligned
+
+<span class="Statement">*</span> this is the first item in the list
+  this is still the first item even if it's the second line
+<span class="Statement">*</span> this is the second item in the list
+  this is still the second item even if it's the second line
+  this is still the second item even if it's the third line
+
+  this is still the second item even if it's separated with a newline
+
+this is not part of the above list
+
+
+Leading space are supported
+
+<span class="Statement">  *</span> first item
+<span class="Statement">  *</span> second item
+
+
+Leading space with multiple list items
+
+<span class="Statement">  *</span> this is the first item in the list
+    this is still the first item even if it's the second line
+<span class="Statement">  *</span> this is the second item in the list
+    this is still the second item even if it's the second line
+    this is still the second item even if it's the third line
+
+    this is still the second item even if it's separated with a newline
+
+A single list delimiter followed by a newline is not a list item
+
+*
+
+A single list delimiter followed by at least one space is a list item
+
+*
+
+List with inline elements
+
+<span class="Statement">*</span> list item <span class="htmlItalic">_ending_</span>
+with <span class="htmlItalic">_emphasis_</span>.
+
+<span class="Statement">*</span> list item
+with <span class="htmlItalic">**</span><span class="htmlBold">strong emphasis</span><span class="htmlItalic">**</span>.
+
+<span class="Statement">*</span> list item
+with [<span class="Underlined">a link</span>](<span class="Constant"><a href="http://google.com">http://google.com</a></span>).
+
+<span class="Statement">*</span> list items can have <span class="htmlItalic">*inline content</span>
+<span class="htmlItalic">  that spans multiple lines*</span>
+
+<span class="htmlItalic">*this is not a list item but a weak emphasys element beginning at the beginning of the line*</span>
+
+<span class="Statement">*</span> this is a list item that ends with an asterisk *
+
+Everything that immediately follows a list item is still part of the list item and a list item could not contain (at least for Github but not for the original Dingus interpreter) block elements like headers
+
+<span class="Statement">*</span> This is a list item
+<span class="Special">#</span><span class="Title"> This is not an header, is the continuation</span>
+
+<span class="Special">#</span><span class="Title"> This is an header</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

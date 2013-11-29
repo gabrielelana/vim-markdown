@@ -3,6 +3,7 @@ require "nokogiri"
 require_relative "spec_helper"
 
 features = [
+  "lists",
   "blockquotes",
   "blockquotes_nested",
   "combined_emphasis",
