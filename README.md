@@ -25,7 +25,7 @@ I would use this section ultil I have a proper documentation for this plugin
 * `[[` start of the previous header
 
 ## Editing
-* when hitting `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item 
+* when hitting `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item
 * when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 * when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
@@ -50,7 +50,7 @@ I would use this section ultil I have a proper documentation for this plugin
 * support syntax for code
 * support syntax for images
 * support for tables with tabularize
-* support for spell checking
+* support for english spell checking
 * support for custom text objects
 * open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
   * explain in this file why I chose to avoid to highlight nested block elements
