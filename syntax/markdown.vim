@@ -30,6 +30,8 @@ syn region markdownListItem transparent keepend contains=markdownListDelimiter,m
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
+syn region markdownStrike matchgroup=markdownInlineDelimiter start="\%(\\\)\@<!\~\~" skip="\\\~" end="\~\~"
+
 syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*" contains=markdownItalic
 syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_" contains=markdownItalic
 syn region markdownBold matchgroup=markdownInlineDelimiter start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*" contains=markdownBold
@@ -40,7 +42,7 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
-syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword
+syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword,markdownStrike
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -395,6 +397,7 @@ hi def Italic                       term=italic cterm=italic gui=italic
 hi def Bold                         term=bold cterm=bold gui=bold
 hi def BoldItalic                   term=bold,italic cterm=bold,italic gui=bold,italic
 
+hi def link markdownStrike                  NonText
 hi def link markdownItalic                  Italic
 hi def link markdownBold                    Bold
 hi def link markdownBoldItalic              BoldItalic
