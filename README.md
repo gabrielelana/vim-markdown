@@ -32,7 +32,13 @@ I would use this section ultil I have a proper documentation for this plugin
 
 
 # TODO
-* support for text objects
+* emphasys elements could be escaped?
+* support for text objects transformations
+  * make text object as header
+  * make text object as list item
+  * make text object as todo item
+  * custom surrounding with various markers like `~~`, `*`, `_`, ecc...
+* support for custom text objects
   * move between headers with section motions
     * start of the next header on the same level of the current one `][`
     * start of the previous header on the same level of the current one `[]`
@@ -51,11 +57,12 @@ I would use this section ultil I have a proper documentation for this plugin
 * support syntax for images
 * support for tables with tabularize
 * support for english spell checking
-* support for custom text objects
 * open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
   * explain in this file why I chose to avoid to highlight nested block elements
-* support for todo lists
-* support for emoticons
+* support for autolink (GFM)
+* support for strikethrough (GFM)
+* support for todo lists (GFM)
+* support for emoticons (GFM)
   * start completion when hitting `:` in insert mode
   * remove duplication between syntax keywords and dictionary completion
   * more iabbr
