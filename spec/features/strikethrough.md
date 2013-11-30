@@ -10,9 +10,7 @@ beginning
 with a newline
 ~~
 
-~~you could escape \~~ with a backslash~~
-
-could be escaped \~~ ~~in the beginning~~
+could not be escaped ~~this is striked\~~ this is not
 
 * this is a list ~~with a strikethrough~~
 

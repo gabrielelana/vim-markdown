@@ -32,7 +32,6 @@ I would use this section ultil I have a proper documentation for this plugin
 
 
 # TODO
-* emphasys elements could be escaped?
 * support for text objects transformations
   * make text object as header
   * make text object as list item

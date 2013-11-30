@@ -30,7 +30,7 @@ syn region markdownListItem transparent keepend contains=markdownListDelimiter,m
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
-syn region markdownStrike matchgroup=markdownInlineDelimiter start="\%(\\\)\@<!\~\~" skip="\\\~" end="\~\~"
+syn region markdownStrike matchgroup=markdownInlineDelimiter start="\%(\\\)\@<!\~\~" end="\~\~"
 
 syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*" contains=markdownItalic
 syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_" contains=markdownItalic
