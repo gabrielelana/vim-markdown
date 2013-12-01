@@ -43,6 +43,9 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
+syn match markdownInlineUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
+syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
+
 syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword,markdownStrike
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -401,6 +404,9 @@ hi def BoldItalic                   term=bold,italic cterm=bold,italic gui=bold,
 hi def link markdownItalic                  Italic
 hi def link markdownBold                    Bold
 hi def link markdownBoldItalic              BoldItalic
+
+hi def link markdownInlineUrl               Underlined
+hi def link markdownInlineEmail             Underlined
 
 hi def link markdownStrike                  NonText
 hi def link markdownStrikeDelimiter         Delimiter
