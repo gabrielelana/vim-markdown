@@ -8,6 +8,7 @@ features = [
   "blockquotes_nested",
   "combined_emphasis",
   "contained_emphasis",
+  "strikethrough",
   "headers_atx",
   "headers_setext",
   "strong_emphasis",

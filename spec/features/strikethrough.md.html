@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/projects/vim-markdown/spec/features/strikethrough.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Statement { color: #af5f00; }
+.Title { color: #c000c0; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+~~one line strikethrough~~
+
+~~multiple line
+strike through~~
+
+the end could not be escaped ~~this is striked\~~
+
+the begin could be escaped \~~this is not striked~~
+
+<span class="Statement">*</span> this is a list ~~with a strikethrough~~
+
+<span class="Special">#</span><span class="Title"> this is a header ~~with a strikethrough~~ this is still part of the header</span>
+
+~~
+could not begin
+with a new line
+this is not striked~~
+
+~~ could not begin with a space this is not striked~~
+
+~~could not end with a space, this is not striked ~~
+
+~~could not end
+with a newline
+this is not striked
+~~
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
