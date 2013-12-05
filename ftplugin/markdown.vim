@@ -40,7 +40,7 @@ function! s:MarkdownIndent(indent)
     endif
     call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
     normal $
-  elseif line =~ '\v^\s*(\s|\>)+\s*$'
+  elseif line =~ '\v^\s*(\s?\>)+\s*$'
     if a:indent
       call setline('.', substitute(getline('.'), '>\s*$', '> > ', ''))
     else
@@ -49,7 +49,7 @@ function! s:MarkdownIndent(indent)
     endif
     normal $
   else
-    call setline('.', substitute(line, '$', "\t", ''))
+    call feedkeys("\<Tab>", "n")
   endif
 endfunction
 
