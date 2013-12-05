@@ -44,6 +44,7 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
 syn match markdownInlinePull /\%(\w\)\@<!#\d\+/
+syn match markdownInlineUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/
 syn match markdownInlineUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
 syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 
@@ -407,6 +408,7 @@ hi def link markdownBold                    Bold
 hi def link markdownBoldItalic              BoldItalic
 
 hi def link markdownInlinePull              Underlined
+hi def link markdownInlineUser              Underlined
 hi def link markdownInlineUrl               Underlined
 hi def link markdownInlineEmail             Underlined
 
