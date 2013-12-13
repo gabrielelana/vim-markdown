@@ -30,6 +30,10 @@ syn region markdownListItem transparent keepend contains=markdownListDelimiter,m
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
+syn region markdownCode matchgroup=markdownCodeDelimiter start="`" end="`" keepend
+syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" keepend
+syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$"
+
 syn match markdownStrikeDelimiter "\~\~" contained
 syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\+\n\?\)*\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter
 
@@ -48,7 +52,7 @@ syn match markdownInlineUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/
 syn match markdownInlineUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
 syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 
-syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword,markdownStrike
+syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword,markdownStrike,markdownCode
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -411,6 +415,9 @@ hi def link markdownInlinePull              Underlined
 hi def link markdownInlineUser              Underlined
 hi def link markdownInlineUrl               Underlined
 hi def link markdownInlineEmail             Underlined
+
+hi def link markdownCodeDelimiter           Delimiter
+hi def link markdownCode                    String
 
 hi def link markdownStrike                  NonText
 hi def link markdownStrikeDelimiter         Delimiter
