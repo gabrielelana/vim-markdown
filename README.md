@@ -7,7 +7,6 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 
 
 # Development
-
 ## Resources
 * [Markdown Github Syntax](https://help.github.com/articles/github-flavored-markdown)
 * [Markdown Github API](http://developer.github.com/v3/markdown)
@@ -15,7 +14,6 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 
 ## Syntax Specs
 Testing syntax highlight could be tricky, here I use the golden master patter to at least avoid regressions, this is how it works: in `./rspec/features` you will find a bunch of `*.md` files, one for each syntactic element supported, for each of those files there's an html file, this file is created with the `:TOhtml` command and it's the reference (aka golden master) of the syntax highlight of the original file. Running `rspec` you are comparing the current syntax highlight of all the feature's file with the reference syntax highlight. If looking at some of the feature's file you see something wrong you can fix it and after regenerate the golden master files with `GENERATE_GOLDEN_MASTER=1 rspec`
-
 
 # Documentation
 I would use this section ultil I have a proper documentation for this plugin
@@ -29,7 +27,6 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 * when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
-
 
 # TODO
 * support for text objects transformations
@@ -49,6 +46,7 @@ I would use this section ultil I have a proper documentation for this plugin
     * when hitting `<BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
     * when hitting `<C-k>` on a list item it will swap it with the item above (if it exists)
     * when hitting `<C-j>` on a list item it will swap it with the item below (if it exists)
+* enable spelling
 * support syntax for code blocks
 * support syntax for horizontal rules
 * support syntax for links
