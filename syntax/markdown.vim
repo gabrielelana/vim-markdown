@@ -52,7 +52,11 @@ syn match markdownInlineUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/
 syn match markdownInlineUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
 syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 
-syn cluster markdownInline contains=markdownItalic,markdownBold,markdownBoldItalic,markdownEmoticonKeyword,markdownStrike,markdownCode
+syn cluster markdownInline contains=
+  \ markdownItalic,markdownBold,markdownBoldItalic,
+  \ markdownStrike,markdownCode,markdownInlinePull,
+  \ markdownInlineUser,markdownInlineUrl,markdownInlineEmail,
+  \ markdownEmoticonsKeyword
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
