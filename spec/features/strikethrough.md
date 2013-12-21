@@ -11,6 +11,8 @@ the begin could be escaped \~~this is not striked~~
 
 # this is a header ~~with a strikethrough~~ this is still part of the header
 
+~~strikethrough *could* __contain__ other http://google.it inline elements~~
+
 ~~
 could not begin
 with a new line

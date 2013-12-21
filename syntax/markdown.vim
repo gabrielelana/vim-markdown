@@ -35,7 +35,7 @@ syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=`
 syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$"
 
 syn match markdownStrikeDelimiter "\~\~" contained
-syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\|\n\)\{-}\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter
+syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\|\n\)\{-}\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter,@markdownInline
 
 syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*" contains=markdownItalic
 syn region markdownItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_" contains=markdownItalic
