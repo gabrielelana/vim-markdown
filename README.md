@@ -28,36 +28,39 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 * when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
 
+# BUGS
+* formatlistpat doesn't work for ordered lists
+* enter doesn't select completion options anymore
+
 # TODO
-* support for text objects transformations
-  * make text object as header
-  * make text object as list item
-  * make text object as todo item
-  * custom surrounding with various markers like `~~`, `*`, `_`, ecc...
-* support for custom text objects
-  * move between headers with section motions
-    * start of the next header on the same level of the current one `][`
-    * start of the previous header on the same level of the current one `[]`
-    * start of the next paragraph `}`
-    * start of the previous paragraph `{`
-* support syntax for lists
-  * formatlistpat doesn't work for ordered lists :-( find out why
-  * editing support through vim script?
-    * when hitting `<BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
-    * when hitting `<C-k>` on a list item it will swap it with the item above (if it exists)
-    * when hitting `<C-j>` on a list item it will swap it with the item below (if it exists)
-* enable spelling
-* support syntax for code blocks
-* support syntax for horizontal rules
-* support syntax for links
-* support syntax for code
-* support syntax for images
-* support for tables with tabularize
-* support for english spell checking
-* open next quote level of a blockquote element in a scratch buffer, edit it with markdown syntax highlight, on exit copy the buffer's content back in the original file with the original quote level
-  * explain in this file why I chose to avoid to highlight nested block elements
-* support for todo lists (GFM)
-* support for emoticons (GFM)
+* mapping from `<C-\><Enter>` to `<Leader><Enter>`
+* syntax
+  * code blocks
+  * preformatted blocks
+  * horizontal rules
+  * links with references
+  * images with references
+  * todo lists (GFM)
+* enable english spelling checking
+* support tables if tabularize is installed
+* emoticons (GFM)
   * start completion when hitting `:` in insert mode
   * remove duplication between syntax keywords and dictionary completion
   * more iabbr
+* todo lists (GFM)
+  * when on over todo item `<Leader><Space>` will check/uncheck it
+* lists
+  * when hitting `<BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
+  * when hitting `<C-K>` on a list item it will swap it with the item above (if it exists)
+  * when hitting `<C-J>` on a list item it will swap it with the item below (if it exists)
+* fenced code blocks (GFM)
+  * open next quote level of a blockquote element in a scratch buffer
+  * edit it with markdown syntax highlight
+  * on exit copy the buffer's content back in the original file with the original quote level
+  * explain in this file why I chose to avoid to highlight nested block elements
+* custom text objects
+  * list/todo item
+  * paragraph
+    * start of the next paragraph `}`
+    * start of the previous paragraph `{`
+  * inline elements
