@@ -27,6 +27,10 @@ syn region markdownListItem transparent keepend contains=markdownListDelimiter,m
   \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
   \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
 
+syn match markdownRule "^\s*\*\s*\*\s*\*[[:space:]*]*$"
+syn match markdownRule "^\s*-\s*-\s*-[[:space:]-]*$"
+syn match markdownRule "^\s*_\s*_\s*_[[:space:]_]*$"
+
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
@@ -438,5 +442,6 @@ hi def link markdownH4                      Title
 hi def link markdownH5                      Title
 hi def link markdownH6                      Title
 hi def link markdownEmoticonKeyword         Statement
+hi def link markdownRule                    Identifier
 
 let b:current_syntax = "markdown"

@@ -31,6 +31,7 @@ I would use this section ultil I have a proper documentation for this plugin
 # BUGS
 * formatlistpat doesn't work for ordered lists
 * enter doesn't select completion options anymore
+* avoid effect of formatoptions with horizontal rules (asterisks and dashes)
 
 # TODO
 * mapping from `<C-\><Enter>` to `<Leader><Enter>`
