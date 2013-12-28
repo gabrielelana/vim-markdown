@@ -36,9 +36,7 @@ I would use this section ultil I have a proper documentation for this plugin
 # TODO
 * mapping from `<C-\><Enter>` to `<Leader><Enter>`
 * syntax
-  * code blocks
   * preformatted blocks
-  * horizontal rules
   * links with references
   * images with references
   * todo lists (GFM)
