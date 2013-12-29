@@ -58,7 +58,8 @@ syn match markdownInlineUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A
 syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 
 syn region markdownInlineLinkText matchgroup=markdownInlineLinkTextDelimiter start="\%(\\\)\@<!\[" skip="\\]" end="\]" keepend skipwhite skipempty contains=@markdownInline nextgroup=markdownInlineLinkUrl
-syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained 
+syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained contains=markdownInlineLinkTitle
+syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*"/ skip=/\\"/ end=/:/ keepend contained
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
@@ -429,6 +430,7 @@ hi def link markdownInlineUrl               Underlined
 hi def link markdownInlineEmail             Underlined
 hi def link markdownInlineLinkText          Underlined
 hi def link markdownInlineLinkUrl           Underlined
+hi def link markdownInlineLinkTitle         Bold
 
 hi def link markdownInlineLinkTextDelimiter Delimiter
 hi def link markdownInlineLinkUrlDelimiter  Delimiter
