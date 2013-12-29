@@ -59,7 +59,7 @@ syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 
 syn region markdownInlineLinkText matchgroup=markdownInlineLinkTextDelimiter start="\%(\\\)\@<!\[" skip="\\]" end="\]" keepend skipwhite skipempty contains=@markdownInline nextgroup=markdownInlineLinkUrl
 syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained contains=markdownInlineLinkTitle
-syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*"/ skip=/\\"/ end=/:/ keepend contained
+syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*['"]/ skip=/\\['"]/ end=/['"]/ keepend contained
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,

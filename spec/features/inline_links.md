@@ -2,6 +2,8 @@ Link [link](http://example.com)
 
 Link with title [link](http://example.com "Title")
 
+Link with title surrounded by single quotes [link](http://example.com 'Title')
+
 Link to a relative path [link](/about)
 
 Link with escaped parentesis in url [link](/url\(test\) "Title")
