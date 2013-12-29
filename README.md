@@ -37,6 +37,9 @@ I would use this section ultil I have a proper documentation for this plugin
 * mapping from `<C-\><Enter>` to `<Leader><Enter>`
 * syntax
   * preformatted blocks
+  * auto links
+    * http://example.com) the closed parentesis should not be highlighted
+    * http://example.com/(foo) should all be highlighted
   * links with references
   * images with references
   * todo lists (GFM)
