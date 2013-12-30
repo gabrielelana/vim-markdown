@@ -51,11 +51,10 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
-" TODO: rename markdownAutolink*
-syn match markdownInlinePull /\%(\w\)\@<!#\d\+/
-syn match markdownInlineUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/
-syn match markdownInlineUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
-syn match markdownInlineEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
+syn match markdownAutolinkPull /\%(\w\)\@<!#\d\+/
+syn match markdownAutolinkUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/
+syn match markdownAutolinkUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
+syn match markdownAutolinkEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 
 syn region markdownInlineLinkText matchgroup=markdownInlineLinkTextDelimiter start="\%(\\\)\@<!\[" skip="\\]" end="\]" keepend skipwhite skipempty contains=@markdownInline nextgroup=markdownInlineLinkUrl
 syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained contains=markdownInlineLinkTitle
@@ -63,8 +62,8 @@ syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*['"]/ skip=/\\['"]/ end=
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
-  \ markdownStrike,markdownCode,markdownInlinePull,
-  \ markdownInlineUser,markdownInlineUrl,markdownInlineEmail,
+  \ markdownStrike,markdownCode,markdownAutolinkPull,
+  \ markdownAutolinkUser,markdownAutolinkUrl,markdownAutolinkEmail,
   \ markdownEmoticonsKeyword,markdownInlineLinkText,markdownInlineLinkUrl
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -424,10 +423,10 @@ hi def link markdownItalic                  Italic
 hi def link markdownBold                    Bold
 hi def link markdownBoldItalic              BoldItalic
 
-hi def link markdownInlinePull              Underlined
-hi def link markdownInlineUser              Underlined
-hi def link markdownInlineUrl               Underlined
-hi def link markdownInlineEmail             Underlined
+hi def link markdownAutolinkPull            Underlined
+hi def link markdownAutolinkUser            Underlined
+hi def link markdownAutolinkUrl             Underlined
+hi def link markdownAutolinkEmail           Underlined
 hi def link markdownInlineLinkText          Underlined
 hi def link markdownInlineLinkUrl           Underlined
 hi def link markdownInlineLinkTitle         Bold
