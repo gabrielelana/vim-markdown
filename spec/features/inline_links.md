@@ -17,16 +17,19 @@ Link with inline elment in text [this **is** a link](http://example.com)
 Link with newline in text [text
 link](http://inline.com)
 
-Link with spaces between test and url it's ok [link]     (http://example.com)
+Link with spaces between text and url it's ok [link]     (http://example.com)
 
-Link with newline between test and url it's ok [link]
+Link with newline between text and url it's ok [link]
 (http://example.com)
 
+# This is [link](http://github.com) in a title
 
 
 The following is not a link because it's escaped \[link](http://example.com) but the url must be autolinked anyway
 
 Link with non-escaped parentesis in url are not supported [link](/url(test) "Title")
 
+The following is a bug I found, I'll tell you that because this one is particulary odd, it's not a test a test case I came up with
+* content between rounded parentesis in an list item (like this) should not be considered links
 
-# This is [link](http://github.com) in a title
+[This] should not be highlighted

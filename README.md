@@ -29,9 +29,11 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
 
 # BUGS
+* look at spec/features/inline_links.md the last two examples, regions and nextgroup are not going to work here
 * formatlistpat doesn't work for ordered lists
 * enter doesn't select completion options anymore
 * avoid effect of formatoptions with horizontal rules (asterisks and dashes)
+* seems that iskeyword is not local?
 
 # TODO
 * mapping from `<C-\><Enter>` to `<Leader><Enter>`
