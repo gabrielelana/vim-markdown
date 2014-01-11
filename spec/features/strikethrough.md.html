@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>~/projects/vim-markdown/spec/features/strikethrough.md.html</title>
+<title>~/prj/vim-markdown/spec/features/strikethrough.md.html</title>
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
@@ -13,6 +13,8 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
+.htmlBold { font-weight: bold; }
+.htmlItalic { font-style: italic; }
 .Statement { color: #af5f00; }
 .Title { color: #c000c0; }
 .Special { color: #c000c0; }
@@ -39,6 +41,8 @@ the begin could be escaped \~~this is not striked~~
 <span class="Statement">*</span> this is a list ~~with a strikethrough~~
 
 <span class="Special">#</span><span class="Title"> this is a header ~~with a strikethrough~~ this is still part of the header</span>
+
+~~strikethrough <span class="htmlItalic">*could*</span> <span class="htmlItalic">__</span><span class="htmlBold">contain</span><span class="htmlItalic">__</span> other <a href="http://google.it">http://google.it</a> inline elements~~
 
 ~~
 could not begin
