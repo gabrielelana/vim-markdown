@@ -68,3 +68,4 @@ I would use this section ultil I have a proper documentation for this plugin
     * start of the next paragraph `}`
     * start of the previous paragraph `{`
   * inline elements
+* tried to make strikethrough work without success but found [a patch](https://groups.google.com/d/msg/vim_use/xTXC-lk_pdc/Fe-TQzal_EMJ) wiil look into it another time
