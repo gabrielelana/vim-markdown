@@ -30,6 +30,7 @@ I would use this section ultil I have a proper documentation for this plugin
 
 # BUGS
 * look at spec/features/inline_links.md the last two examples, regions and nextgroup are not going to work here
+  * content between round parentesys, only in list items, gets highlighted as link text???
 * formatlistpat doesn't work for ordered lists
 * enter doesn't select completion options anymore
 * avoid effect of formatoptions with horizontal rules (asterisks and dashes)
@@ -45,10 +46,11 @@ I would use this section ultil I have a proper documentation for this plugin
   * links with references
   * images with references
   * todo lists (GFM)
+  * tables (GFM)
 * enable english spelling checking
-* support tables if tabularize is installed
+* realtime autoformatting tables if Tabular plugin is installed
 * emoticons (GFM)
-  * start completion when hitting `:` in insert mode
+  * start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
   * remove duplication between syntax keywords and dictionary completion
   * more iabbr
 * todo lists (GFM)
