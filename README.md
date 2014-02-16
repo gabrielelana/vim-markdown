@@ -26,23 +26,23 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item
 * when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
-* when hitting `<C-\><Enter>` on a list item it will go to the next line on the same column as the first character of the line above
 
 # BUGS
 * look at spec/features/inline_links.md the last two examples, regions and nextgroup are not going to work here
-  * content between round parentesys, only in list items, gets highlighted as link text???
+  * content between round parentesis, only in list items, gets highlighted as link text???
 * formatlistpat doesn't work for ordered lists
-* enter doesn't select completion options anymore
 * avoid effect of formatoptions with horizontal rules (asterisks and dashes)
-* seems that iskeyword is not local?
+* seems that iskeyword is not local...
 
 # TODO
-* mapping from `<C-\><Enter>` to `<Leader><Enter>`
+* indentation
+  * `>` and `<` in normal mode should properly indent/unindent list items and quote lines
+  * `<C-D>` and `<C-T>` in insert mode should properly indent/unindent list items and quote lines
 * syntax
-  * preformatted blocks
   * auto links
     * http://example.com) the closed parentesis should not be highlighted
     * http://example.com/(foo) should all be highlighted
+  * preformatted blocks
   * links with references
   * images with references
   * todo lists (GFM)

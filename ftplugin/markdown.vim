@@ -30,8 +30,7 @@ function! s:MarkdownJumpToHeader(forward, visual)
 endfunction
 
 function! s:MarkdownIndent(indent)
-  let line = getline('.')
-  if line =~ '\v^\s*%([-*+]|\d\.)\s*$'
+  if getline('.') =~ '\v^\s*%([-*+]|\d\.)\s*$'
     if a:indent
       normal >>
     else
@@ -40,52 +39,40 @@ function! s:MarkdownIndent(indent)
     endif
     call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
     normal $
-  elseif line =~ '\v^\s*(\s?\>)+\s*$'
+  elseif getline('.') =~ '\v^\s*(\s?\>)+\s*$'
     if a:indent
-      call setline('.', substitute(getline('.'), '>\s*$', '> > ', ''))
+      call setline('.', substitute(getline('.'), '>\s*$', '>> ', ''))
     else
       call setline('.', substitute(getline('.'), '\s*>\s*$', ' ', ''))
       call setline('.', substitute(getline('.'), '^\s\+$', '', ''))
     endif
     normal $
-  else
-    call feedkeys("\<Tab>", "n")
   endif
 endfunction
 
-function! s:RemoveEmptyListItem()
-  if getline('.') =~ '\v^\s*%([-*+]|\d\.)\s*$'
-    normal! 0D
-  else
-    call feedkeys("\<CR>", "n")
-  endif
+function! s:IsAnEmptyListItem()
+  return getline('.') =~ '\v^\s*%([-*+]|\d\.)\s*$'
 endfunction
 
-function! s:NextLineForTheSameListItem()
-  let currentSyntaxElement = synIDattr(synID(line("."), col("."), 0), "name")
-  if currentSyntaxElement ==# "markdownListItem"
-    let indentationLevel = strlen(matchstr(getline("."), '^\W\+'))
-    call append('.', [repeat(" ", indentationLevel)])
-    normal j$
-  else
-    call feedkeys("\<CR>", "n")
-  endif
+function! s:IsAnEmptyQuote()
+  return getline('.') =~ '\v^\s*(\s?\>)+\s*$'
 endfunction
 
-
+" Jumping Around
 noremap <silent> <buffer> <script> ]] :call <SID>MarkdownJumpToHeader(1, 0)<CR>
 noremap <silent> <buffer> <script> [[ :call <SID>MarkdownJumpToHeader(0, 0)<CR>
 vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>MarkdownJumpToHeader(1, 1)<CR>
 vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>MarkdownJumpToHeader(0, 1)<CR>
-
 noremap <silent> <buffer> <script> ][ <nop>
 noremap <silent> <buffer> <script> [] <nop>
 
-inoremap <silent> <buffer> <script> <Tab> <C-O>:call <SID>MarkdownIndent(1)<CR>
-inoremap <silent> <buffer> <script> <S-Tab> <C-O>:call <SID>MarkdownIndent(0)<CR>
+" Indenting Things
+inoremap <silent> <buffer> <script> <expr> <Tab>
+  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>MarkdownIndent(1)<CR>' : '<Tab>'
+inoremap <silent> <buffer> <script> <expr> <S-Tab>
+  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>MarkdownIndent(0)<CR>' : '<Tab>'
 
-inoremap <silent> <buffer> <script> <CR> <C-O>:call <SID>RemoveEmptyListItem()<CR>
-
-inoremap <script> <silent> <buffer> <C-Bslash><CR> <C-O>:call <SID>NextLineForTheSameListItem()<CR>
+" List Items
+inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
 
 let b:did_ftplugin = 1
