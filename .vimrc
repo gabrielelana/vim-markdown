@@ -2,10 +2,6 @@
 " https://github.com/MarcWeber/vim-addon-local-vimrc
 " plugin installed
 
-source syntax/markdown.vim
-source ftdetect/markdown.vim
-source ftplugin/markdown.vim
-
 " clean and reload the markdown syntax in the current buffer
 nnoremap <silent> <Leader>r :unlet! b:current_syntax <BAR> unlet! b:did_ftplugin <BAR> syn clear <BAR> source syntax/markdown.vim <BAR> source ftplugin/markdown.vim<CR>
 
