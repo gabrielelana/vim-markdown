@@ -8,10 +8,18 @@ setlocal comments=b:*,b:-,b:+,n:> commentstring=>\ %s
 setlocal formatoptions+=tcrqon formatoptions-=wa
 setlocal formatlistpat="^\s*\d\.\s\+"
 
+" enable spelling and completion based on dictionary words
+if &spelllang !~# '^\s*$'
+  echom 'SPELL CHECK ENABLED'
+  setlocal spell
+endif
+
+" custom dictionary for emoji
 execute 'setlocal dictionary+=' . expand('<sfile>:p:h:h') . '/dict/emoticons.dict'
 setlocal iskeyword+=:,+,-
 setlocal complete+=k
 
+" replace common ascii emoticons with supported emoji
 iabbr :-) :smile:
 iabbr :-D :laughing:
 iabbr :-( :disappointed:

@@ -34,9 +34,9 @@ syn match markdownRule "^\s*_\s*_\s*_[[:space:]_]*$"
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
-syn region markdownCode matchgroup=markdownCodeDelimiter start="`" end="`" keepend
-syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" keepend
-syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$"
+syn region markdownCode matchgroup=markdownCodeDelimiter start="`" end="`" keepend contains=@NoSpell
+syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" keepend contains=@NoSpell
+syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$" contains=@NoSpell
 
 syn match markdownStrikeDelimiter "\~\~" contained
 syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\|\n\)\{-}\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter,@markdownInline
@@ -52,13 +52,13 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
 syn match markdownAutolinkPull /\%(\w\)\@<!#\d\+/
-syn match markdownAutolinkUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/
-syn match markdownAutolinkUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
-syn match markdownAutolinkEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
+syn match markdownAutolinkUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell
+syn match markdownAutolinkUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell
+syn match markdownAutolinkEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
 
-syn region markdownInlineLinkText matchgroup=markdownInlineLinkTextDelimiter start="\%(\\\)\@<!\[" skip="\\]" end="\]" keepend skipwhite skipempty contains=@markdownInline nextgroup=markdownInlineLinkUrl
-syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained contains=markdownInlineLinkTitle
-syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*['"]/ skip=/\\['"]/ end=/['"]/ keepend contained
+syn region markdownInlineLinkText matchgroup=markdownInlineLinkTextDelimiter start="\%(\\\)\@<!\[" skip="\\]" end="\]" keepend skipwhite skipempty contains=@markdownInline,@NoSpell nextgroup=markdownInlineLinkUrl
+syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained contains=markdownInlineLinkTitle,@NoSpell
+syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*['"]/ skip=/\\['"]/ end=/['"]/ keepend contained contains=@NoSpell
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,

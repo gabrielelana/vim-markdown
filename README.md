@@ -15,6 +15,7 @@ I wanted a strong support for the markdown flavour implemented by Github, I want
 ## Syntax Specs
 Testing syntax highlight could be tricky, here I use the golden master patter to at least avoid regressions, this is how it works: in `./rspec/features` you will find a bunch of `*.md` files, one for each syntactic element supported, for each of those files there's an html file, this file is created with the `:TOhtml` command and it's the reference (aka golden master) of the syntax highlight of the original file. Running `rspec` you are comparing the current syntax highlight of all the feature's file with the reference syntax highlight. If looking at some of the feature's file you see something wrong you can fix it and after regenerate the golden master files with `GENERATE_GOLDEN_MASTER=1 rspec`
 
+
 # Documentation
 I would use this section ultil I have a proper documentation for this plugin
 
@@ -47,7 +48,6 @@ I would use this section ultil I have a proper documentation for this plugin
   * images with references
   * todo lists (GFM)
   * tables (GFM)
-* enable english spelling checking
 * realtime autoformatting tables if Tabular plugin is installed
 * emoticons (GFM)
   * start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
