@@ -10,7 +10,6 @@ setlocal formatlistpat="^\s*\d\.\s\+"
 
 " enable spelling and completion based on dictionary words
 if &spelllang !~# '^\s*$'
-  echom 'SPELL CHECK ENABLED'
   setlocal spell
 endif
 
