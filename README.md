@@ -17,7 +17,7 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 
 
 # Documentation
-I would use this section ultil I have a proper documentation for this plugin
+I would use this section until I have a proper documentation for this plugin
 
 ## Motions
 * `]]` start of the next header
@@ -28,12 +28,14 @@ I would use this section ultil I have a proper documentation for this plugin
 * when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 
+
 # BUGS
-* look at spec/features/inline_links.md the last two examples, regions and nextgroup are not going to work here
-  * content between round parentesis, only in list items, gets highlighted as link text???
-* formatlistpat doesn't work for ordered lists
-* avoid effect of formatoptions with horizontal rules (asterisks and dashes)
-* seems that iskeyword is not local...
+* look at spec/features/inline_links.md the last two examples, regions and `nextgroup` are not going to work here
+  * content between round parenthesis, only in list items, gets highlighted as link text???
+* `formatlistpat` doesn't work for ordered lists
+* avoid effect of `formatoptions` with horizontal rules (asterisks and dashes)
+* seems that `iskeyword` is not local...
+
 
 # TODO
 * indentation
@@ -41,18 +43,18 @@ I would use this section ultil I have a proper documentation for this plugin
   * `<C-D>` and `<C-T>` in insert mode should properly indent/unindent list items and quote lines
 * syntax
   * auto links
-    * http://example.com) the closed parentesis should not be highlighted
+    * http://example.com) the closed parenthesis should not be highlighted
     * http://example.com/(foo) should all be highlighted
-  * preformatted blocks
+  * pre formatted blocks
   * links with references
   * images with references
   * todo lists (GFM)
   * tables (GFM)
-* realtime autoformatting tables if Tabular plugin is installed
-* emoticons (GFM)
+* real-time auto-formatting tables if Tabular plugin is installed
+* emoji (GFM)
   * start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
   * remove duplication between syntax keywords and dictionary completion
-  * more iabbr
+  * more `iabbr`
 * todo lists (GFM)
   * when on over todo item `<Leader><Space>` will check/uncheck it
 * lists
