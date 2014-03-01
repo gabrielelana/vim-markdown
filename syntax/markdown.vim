@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     Markdown
 " Maintainer:   Gabriele Lana <gabriele.lana@gmail.com>
-" Filenames:    *.markdown
+" Filenames:    *.md
 
 if exists("b:current_syntax")
   finish

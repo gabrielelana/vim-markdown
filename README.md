@@ -38,16 +38,13 @@ I would use this section until I have a proper documentation for this plugin
 
 
 # TODO
-* indentation
-  * `>` and `<` in normal mode should properly indent/unindent list items and quote lines
-  * `<C-D>` and `<C-T>` in insert mode should properly indent/unindent list items and quote lines
 * syntax
   * auto links
     * http://example.com) the closed parenthesis should not be highlighted
     * http://example.com/(foo) should all be highlighted
-  * pre formatted blocks
   * links with references
   * images with references
+  * pre formatted blocks
   * todo lists (GFM)
   * tables (GFM)
 * real-time auto-formatting tables if Tabular plugin is installed
@@ -61,6 +58,9 @@ I would use this section until I have a proper documentation for this plugin
   * when hitting `<BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
   * when hitting `<C-K>` on a list item it will swap it with the item above (if it exists)
   * when hitting `<C-J>` on a list item it will swap it with the item below (if it exists)
+* indentation
+  * `>` and `<` in normal mode should properly indent/unindent list items and quote lines
+  * `<C-D>` and `<C-T>` in insert mode should properly indent/unindent list items and quote lines
 * fenced code blocks (GFM)
   * open next quote level of a blockquote element in a scratch buffer
   * edit it with markdown syntax highlight
@@ -72,4 +72,3 @@ I would use this section until I have a proper documentation for this plugin
     * start of the next paragraph `}`
     * start of the previous paragraph `{`
   * inline elements
-* tried to make strikethrough work without success but found [a patch](https://groups.google.com/d/msg/vim_use/xTXC-lk_pdc/Fe-TQzal_EMJ) wiil look into it another time
