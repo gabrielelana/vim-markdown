@@ -24,12 +24,8 @@ Link with newline between text and URL it's ok [link]
 
 # This is [link](http://github.com) in a title
 
-
-The following is not a link because it's escaped \[link](http://example.com) but the URL must be auto linked anyway
-
-Link with non-escaped parenthesis in URL are not supported [link](/url(test) "Title")
-
-The following is a bug I found, I'll tell you that because this one is particularly odd, it's not a test a test case I came up with
-* content between rounded parenthesis in an list item (like this) should not be considered links
+The following is not a link because it's escaped \[link](http://example.com) but the URL must be auto linked anyway, the rounded parenthesis must not be highlighted
 
 [This] should not be highlighted
+
+TODO: Link with non-escaped parenthesis in URL [link](/url(test) "Title")

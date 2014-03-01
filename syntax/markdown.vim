@@ -56,15 +56,39 @@ syn match markdownAutolinkUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpel
 syn match markdownAutolinkUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell
 syn match markdownAutolinkEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
 
-syn region markdownInlineLinkText matchgroup=markdownInlineLinkTextDelimiter start="\%(\\\)\@<!\[" skip="\\]" end="\]" keepend skipwhite skipempty contains=@markdownInline,@NoSpell nextgroup=markdownInlineLinkUrl
-syn region markdownInlineLinkUrl matchgroup=markdownInlineLinkUrlDelimiter start="\%(\\\)\@<!(" skip="\\)" end=")" keepend contained contains=markdownInlineLinkTitle,@NoSpell
-syn region markdownInlineLinkTitle start=/\%(\\\)\@<!\s*['"]/ skip=/\\['"]/ end=/['"]/ keepend contained contains=@NoSpell
+
+
+" \%(\\\)\@<!\[                     # a `[` not preceeded by a backslash
+" \%(\\\]\|\n\%(\n)\@!\|[^\]]\)\{-} # anything that is not a `]`
+"                                   # escaped square brackets are allowed `\]`
+"                                   # no more than one consecutive end-of-line is allowed
+" \%(\\\)\@<!\]                     # a `[` not preceeded by a backslash
+" \_s*                              # separated by optional space or end-of-line
+" \%(\\\)\@<!(                      # a `(` not preceeded by a backslash
+" \%(\\)\|\_[^)]\)\{-}              # anything that is not a `)` or is a `\)` or is an end-of-line (`\_`)
+" \%(\\)\|\n\%(\n)\@!\|[^)]\)\{-}   # anything that is not a `)`
+"                                   # escaped square brackets are allowed `\)`
+"                                   # no more than one consecutive end-of-line is allowed
+" \%(\\\)\@<!)                      # a `)` not preceeded by a backslash
+
+syn match markdownLinkContainer /\%(\\\)\@<!\[\%(\\\]\|\n\%(\n\)\@!\|[^\]]\)\{-}\%(\\\)\@<!\]\_s*\%(\\\)\@<!(\%(\\)\|\n\%\(\n\)\|[^)]\)\{-}\%(\\\)\@<!)/ contains=markdownLinkText,markdownLinkURL transparent
+
+syn region markdownLinkText matchgroup=markdownLinkDelimiter start="\[" skip="\\]" end="\]"
+  \ keepend contained skipwhite skipempty contains=@markdownInline " nextgroup=markdownLinkUrl
+
+syn region markdownLinkUrl matchgroup=markdownLinkDelimiter start="(" skip="\\)" end=")"
+  \ keepend contained contains=markdownLinkTitle,@NoSpell
+
+syn region markdownLinkTitle start=/\s*['"]/ skip=/\\['"]/ end=/['"]\_s*)/
+  \ keepend contained contains=@markdownInline
+
+
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
   \ markdownStrike,markdownCode,markdownAutolinkPull,
   \ markdownAutolinkUser,markdownAutolinkUrl,markdownAutolinkEmail,
-  \ markdownEmoticonsKeyword,markdownInlineLinkText,markdownInlineLinkUrl
+  \ markdownEmoticonsKeyword,markdownLinkContainer
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -427,12 +451,11 @@ hi def link markdownAutolinkPull            Underlined
 hi def link markdownAutolinkUser            Underlined
 hi def link markdownAutolinkUrl             Underlined
 hi def link markdownAutolinkEmail           Underlined
-hi def link markdownInlineLinkText          Underlined
-hi def link markdownInlineLinkUrl           Underlined
-hi def link markdownInlineLinkTitle         Bold
 
-hi def link markdownInlineLinkTextDelimiter Delimiter
-hi def link markdownInlineLinkUrlDelimiter  Delimiter
+hi def link markdownLinkText                Underlined
+hi def link markdownLinkUrl                 Underlined
+hi def link markdownLinkDelimiter           Delimiter
+hi def link markdownLinkTitle               Bold
 
 hi def link markdownCodeDelimiter           Delimiter
 hi def link markdownCode                    String
