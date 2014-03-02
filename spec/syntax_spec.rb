@@ -25,6 +25,7 @@ describe "markdown syntax" do
     master = source + ".html"
     it "should support #{feature.gsub("_", " ")}" do
       vim.edit source
+      vim.command "set nospell"
       vim.command "TOhtml | w #{filename}"
       if not File.exists?(master) or ENV["GENERATE_GOLDEN_MASTER"]
         vim.command "w #{master}"
