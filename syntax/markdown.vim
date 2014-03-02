@@ -55,26 +55,27 @@ syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/
 syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell
 syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
 
-" \c                                                               # case insensitive
-" \<                                                               # must be preceded by something that is not part of a word
-" \%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)                  # the schema is optional
-" [-A-Z0-9+&@#/%=~_|\[\](){}$?!:,.]*[-A-Z0-9+&@#/%=~_|\[\](){}$]   # we exclude some puctuation (?!:,.) from the end of the URL
+" /\c\<                                           # case insensitive, beginning of a word
+" \%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\) # the schema is optional
+" \%((C*)\|\[C*\]\|{C*}\|C\)*                     # pair of parenthesis that surround a piece
+"                                                 # of an url or a piece of url, all optional
+" \%((C*)\|\[C*\]\|{C*}\|T*\)*                    # same as above but the terminal part of an
+"                                                 # url could not be punctuation
+syn match markdownUrlLinkInText /\c\<\%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)\%(([-A-Z0-9+&@#/%=~_|$?!:,.]*)\|\[[-A-Z0-9+&@#/%=~_|$?!:,.]*\]\|{[-A-Z0-9+&@#/%=~_|$?!:,.]*}\|[-A-Z0-9+&@#/%=~_|$?!:,.]\)*\%(([-A-Z0-9+&@#/%=~_|$?!:,.]*)\|\[[-A-Z0-9+&@#/%=~_|$?!:,.]*\]\|{[-A-Z0-9+&@#/%=~_|$?!:,.]*}\|[-A-Z0-9+&@#/%=~_|$]*\)/ contains=@NoSpell
 
-syn match markdownUrlLinkInText /\c\<\%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)[-A-Z0-9+&@#/%=~_|\[\](){}$?!:,.]*[-A-Z0-9+&@#/%=~_|\[\](){}$,]/ contains=@NoSpell
 
-
-" \%(\\\)\@<!\[                     # a `[` not preceeded by a backslash
+" \%(\\\)\@<!\[                     # a `[` not preceded by a backslash
 " \%(\\\]\|\n\%(\n)\@!\|[^\]]\)\{-} # anything that is not a `]`
 "                                   # escaped square brackets are allowed `\]`
 "                                   # no more than one consecutive end-of-line is allowed
-" \%(\\\)\@<!\]                     # a `[` not preceeded by a backslash
+" \%(\\\)\@<!\]                     # a `[` not preceded by a backslash
 " \_s*                              # separated by optional space or end-of-line
-" \%(\\\)\@<!(                      # a `(` not preceeded by a backslash
+" \%(\\\)\@<!(                      # a `(` not preceded by a backslash
 " \%(\\)\|\_[^)]\)\{-}              # anything that is not a `)` or is a `\)` or is an end-of-line (`\_`)
 " \%(\\)\|\n\%(\n)\@!\|[^)]\)\{-}   # anything that is not a `)`
 "                                   # escaped square brackets are allowed `\)`
 "                                   # no more than one consecutive end-of-line is allowed
-" \%(\\\)\@<!)                      # a `)` not preceeded by a backslash
+" \%(\\\)\@<!)                      # a `)` not preceded by a backslash
 
 syn match markdownLinkContainer /\%(\\\)\@<!\[\%(\\\]\|\n\%(\n\)\@!\|[^\]]\)\{-}\%(\\\)\@<!\]\_s*\%(\\\)\@<!(\%(\\)\|\n\%\(\n\)\|[^)]\)\{-}\%(\\\)\@<!)/ contains=markdownLinkText,markdownLinkURL transparent
 

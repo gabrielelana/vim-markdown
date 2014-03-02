@@ -9,6 +9,12 @@ URL are terminated by punctuation so http://example.com/foo, the comma is not pa
 
 URL may contain parenthesis http://example.com/(foo)?foo[1]=bar&foo[2]=baz
 
+URL may be surrounded by parenthesis (http://example.com/foo) but parenthesis are not part of the URL
+
+URL may terminate with parenthesis http://example.com/foo()
+
+URL may be surrounded by parenthesis (http://example.com/foo()) but the surrounding parenthesis are not part of the URL
+
 Email addresses bill@microsoft.com get auto linked
 
 Pull requests and issues are linked #42

@@ -30,18 +30,12 @@ I would use this section until I have a proper documentation for this plugin
 
 
 # BUGS
-* look at spec/features/inline_links.md the last two examples, regions and `nextgroup` are not going to work here
-  * content between round parenthesis, only in list items, gets highlighted as link text???
 * `formatlistpat` doesn't work for ordered lists
 * avoid effect of `formatoptions` with horizontal rules (asterisks and dashes)
-* seems that `iskeyword` is not local...
 
 
 # TODO
 * syntax
-  * auto links
-    * http://example.com) the closed parenthesis should not be highlighted
-    * http://example.com/(foo) should all be highlighted
   * links with references
   * images with references
   * pre formatted blocks
