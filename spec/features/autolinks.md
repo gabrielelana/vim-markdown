@@ -1,7 +1,15 @@
 
-URLs like http://google.com get autolinked
+URL like http://google.com gets auto linked
 
-Email addresses bill@microsoft.com get autolinked
+URL may contain punctuation http://example.com/foo,bar,baz
+
+URL may be preceded by punctuation !http://example.com/foo,bar,baz so the exclamation point is not part of the URL
+
+URL are terminated by punctuation so http://example.com/foo, the comma is not part of the URL
+
+URL may contain parenthesis http://example.com/(foo)?foo[1]=bar&foo[2]=baz
+
+Email addresses bill@microsoft.com get auto linked
 
 Pull requests and issues are linked #42
   could be preceded by symbols \#42

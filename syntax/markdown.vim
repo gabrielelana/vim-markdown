@@ -51,11 +51,16 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
-syn match markdownAutolinkPull /\%(\w\)\@<!#\d\+/
-syn match markdownAutolinkUser /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell
-syn match markdownAutolinkUrl /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell
-syn match markdownAutolinkEmail /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
+syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/
+syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell
+syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
 
+" \c                                                               # case insensitive
+" \<                                                               # must be preceded by something that is not part of a word
+" \%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)                  # the schema is optional
+" [-A-Z0-9+&@#/%=~_|\[\](){}$?!:,.]*[-A-Z0-9+&@#/%=~_|\[\](){}$]   # we exclude some puctuation (?!:,.) from the end of the URL
+
+syn match markdownUrlLinkInText /\c\<\%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)[-A-Z0-9+&@#/%=~_|\[\](){}$?!:,.]*[-A-Z0-9+&@#/%=~_|\[\](){}$,]/ contains=@NoSpell
 
 
 " \%(\\\)\@<!\[                     # a `[` not preceeded by a backslash
@@ -86,8 +91,8 @@ syn region markdownLinkTitle start=/\s*['"]/ skip=/\\['"]/ end=/['"]\_s*)/
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
-  \ markdownStrike,markdownCode,markdownAutolinkPull,
-  \ markdownAutolinkUser,markdownAutolinkUrl,markdownAutolinkEmail,
+  \ markdownStrike,markdownCode,markdownFreePullRequestLink,
+  \ markdownFreeUserLink,markdownFreeUrlLink,markdownFreeEmailLink,
   \ markdownEmoticonsKeyword,markdownLinkContainer
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -447,10 +452,10 @@ hi def link markdownItalic                  Italic
 hi def link markdownBold                    Bold
 hi def link markdownBoldItalic              BoldItalic
 
-hi def link markdownAutolinkPull            Underlined
-hi def link markdownAutolinkUser            Underlined
-hi def link markdownAutolinkUrl             Underlined
-hi def link markdownAutolinkEmail           Underlined
+hi def link markdownPullRequestLinkInText   Underlined
+hi def link markdownUserLinkInText          Underlined
+hi def link markdownUrlLinkInText           Underlined
+hi def link markdownEmailLinkInText         Underlined
 
 hi def link markdownLinkText                Underlined
 hi def link markdownLinkUrl                 Underlined

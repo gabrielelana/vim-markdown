@@ -4,6 +4,7 @@ require_relative "spec_helper"
 
 features = [
   "lists",
+  "autolinks",
   "blockquotes",
   "blockquotes_nested",
   "combined_emphasis",

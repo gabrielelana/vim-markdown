@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/autolinks.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+
+URL like <a href="http://google.com">http://google.com</a> gets auto linked
+
+URL may contain punctuation <a href="http://example.com/foo,bar,baz">http://example.com/foo,bar,baz</a>
+
+URL may be preceded by punctuation !<a href="http://example.com/foo,bar,baz">http://example.com/foo,bar,baz</a> so the exclamation point is not part of the URL
+
+URL are terminated by punctuation so <a href="http://example.com/foo">http://example.com/foo</a>, the comma is not part of the URL
+
+URL may contain parenthesis <a href="http://example.com/(foo)?foo[1]=bar&amp;foo[2]=baz">http://example.com/(foo)?foo[1]=bar&amp;foo[2]=baz</a>
+
+Email addresses bill@microsoft.com get auto linked
+
+Pull requests and issues are linked #42
+  could be preceded by symbols <span class="Special">\#</span>42
+  could not be preceded by letters a#42 or numbers 3#42
+
+Reference to other users are linked @gabrielelana
+  could be preceded by symbols \@gabrielelana
+  could not be preceded by letters a@gabrielelana or numbers 3@gabrielelana
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
