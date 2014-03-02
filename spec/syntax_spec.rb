@@ -13,7 +13,8 @@ features = [
   "headers_atx",
   "headers_setext",
   "strong_emphasis",
-  "weak_emphasis"
+  "weak_emphasis",
+  "inline_html"
 ]
 
 describe "markdown syntax" do

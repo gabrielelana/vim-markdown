@@ -67,17 +67,17 @@ syn match markdownUrlLinkInText /\c\<\%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp
 " \%(\\\)\@<!\[                     # a `[` not preceded by a backslash
 " \%(\\\]\|\n\%(\n)\@!\|[^\]]\)\{-} # anything that is not a `]`
 "                                   # escaped square brackets are allowed `\]`
-"                                   # no more than one consecutive end-of-line is allowed
+"                                   # no more than one consecutive newline is allowed
 " \%(\\\)\@<!\]                     # a `[` not preceded by a backslash
-" \_s*                              # separated by optional space or end-of-line
+" \%(\s*\|\n\%\(\n\)\@!\)           # separated by optional space or newline (no more than one)
 " \%(\\\)\@<!(                      # a `(` not preceded by a backslash
-" \%(\\)\|\_[^)]\)\{-}              # anything that is not a `)` or is a `\)` or is an end-of-line (`\_`)
+" \%(\\)\|\_[^)]\)\{-}              # anything that is not a `)` or is a `\)` or is an newline (`\_`)
 " \%(\\)\|\n\%(\n)\@!\|[^)]\)\{-}   # anything that is not a `)`
 "                                   # escaped square brackets are allowed `\)`
-"                                   # no more than one consecutive end-of-line is allowed
+"                                   # no more than one consecutive newline is allowed
 " \%(\\\)\@<!)                      # a `)` not preceded by a backslash
 
-syn match markdownLinkContainer /\%(\\\)\@<!\[\%(\\\]\|\n\%(\n\)\@!\|[^\]]\)\{-}\%(\\\)\@<!\]\_s*\%(\\\)\@<!(\%(\\)\|\n\%\(\n\)\|[^)]\)\{-}\%(\\\)\@<!)/ contains=markdownLinkText,markdownLinkURL transparent
+syn match markdownLinkContainer /\%(\\\)\@<!\[\%(\\\]\|\n\%(\n\)\@!\|[^\]]\)\{-}\%(\\\)\@<!\]\%(\s*\|\n\%\(\n\)\@!\)\%(\\\)\@<!(\%(\\)\|\n\%\(\n\)\@!\|[^)]\)\{-}\%(\\\)\@<!)/ contains=markdownLinkText,markdownLinkURL transparent
 
 syn region markdownLinkText matchgroup=markdownLinkDelimiter start="\[" skip="\\]" end="\]"
   \ keepend contained skipwhite skipempty contains=@markdownInline " nextgroup=markdownLinkUrl
@@ -88,13 +88,14 @@ syn region markdownLinkUrl matchgroup=markdownLinkDelimiter start="(" skip="\\)"
 syn region markdownLinkTitle start=/\s*['"]/ skip=/\\['"]/ end=/['"]\_s*)/
   \ keepend contained contains=@markdownInline
 
-
+syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
+syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
   \ markdownStrike,markdownCode,markdownFreePullRequestLink,
   \ markdownFreeUserLink,markdownFreeUrlLink,markdownFreeEmailLink,
-  \ markdownEmoticonsKeyword,markdownLinkContainer
+  \ markdownEmoticonsKeyword,markdownLinkContainer,markdownXmlElement
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -482,5 +483,8 @@ hi def link markdownH5                      Title
 hi def link markdownH6                      Title
 hi def link markdownEmoticonKeyword         Statement
 hi def link markdownRule                    Identifier
+
+hi def link markdownXmlComment              NonText
+hi def link markdownXmlElement              NonText
 
 let b:current_syntax = "markdown"
