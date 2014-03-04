@@ -8,13 +8,23 @@ Link to a relative path [link](/about)
 
 Link with escaped parenthesis in URL [link](/url\(test\) "Title")
 
+TODO: Link with unescaped parenthesis in URL [link](/url(test) "Title")
+
+The following is not a link because it's escaped \[link](http://example.com) the URL must be auto linked anyway but the rounded parenthesis must not be highlighted
+
 Link with spaces in URL [link](Link to file/Lorem Ipsum.txt "Title")
 
-Link with escaped closed square bracket in it [text \] link](http://example.com)
+Link with escaped closed square bracket in text [text \] link](http://example.com)
 
 Link with inline element in text [this **is** a link](http://example.com)
 
 Link with newline in text [text
+link](http://inline.com)
+
+Link with multiple newline in text [this
+is
+text
+in
 link](http://inline.com)
 
 Link with spaces between text and URL it's ok [link]     (http://example.com)
@@ -22,10 +32,22 @@ Link with spaces between text and URL it's ok [link]     (http://example.com)
 Link with newline between text and URL it's ok [link]
 (http://example.com)
 
+Link with newline between URL and title it's ok [link](http://example.com
+"Title")
+
 # This is [link](http://github.com) in a title
 
-The following is not a link because it's escaped \[link](http://example.com) but the URL must be auto linked anyway, the rounded parenthesis must not be highlighted
 
-[This] should not be highlighted
+The following are not valid links
 
-TODO: Link with non-escaped parenthesis in URL [link](/url(test) "Title")
+No more than one newline between text and URL [link]
+
+(http://example.com)
+
+No more that one newline in text [text
+
+link](http://example.com)
+
+No more that one newline between URL and title [link](http://example.com
+
+"Title")
