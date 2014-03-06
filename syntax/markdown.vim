@@ -8,7 +8,7 @@ if exists("b:current_syntax")
 endif
 
 syn spell toplevel
-syn sync minlines=10
+syn sync minlines=342
 syn case ignore
 
 syn region markdownH1 matchgroup=markdownHeadingDelimiter start="^#"      end="#*\s*$" oneline contains=@markdownInline
