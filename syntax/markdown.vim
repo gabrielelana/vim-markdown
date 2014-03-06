@@ -90,12 +90,14 @@ syn region markdownLinkTitle start=/\s*['"]/ skip=/\\['"]/ end=/['"]\_s*)/
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
 syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
+syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}\/>/ contains=@NoSpell
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
   \ markdownStrike,markdownCode,markdownFreePullRequestLink,
   \ markdownFreeUserLink,markdownFreeUrlLink,markdownFreeEmailLink,
-  \ markdownEmoticonsKeyword,markdownLinkContainer,markdownXmlElement
+  \ markdownEmoticonsKeyword,markdownLinkContainer,markdownXmlComment,
+  \ markdownXmlElement,markdownXmlEmptyElement
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -486,5 +488,6 @@ hi def link markdownRule                    Identifier
 
 hi def link markdownXmlComment              NonText
 hi def link markdownXmlElement              NonText
+hi def link markdownXmlEmptyElement         NonText
 
 let b:current_syntax = "markdown"
