@@ -13,8 +13,9 @@ Vimrunner::RSpec.configure do |config|
   config.start_vim do
     vim = Vimrunner.start
     vim.prepend_runtimepath(plugin_path)
-    vim.command("runtime ftdetect/markdown.vim")
-    vim.command("runtime ftplugin/markdown.vim")
+    vim.command "runtime ftdetect/markdown.vim"
+    vim.command "runtime ftplugin/markdown.vim"
+    vim.command "set nospell"
     vim
   end
 end
