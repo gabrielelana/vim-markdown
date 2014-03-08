@@ -3,7 +3,14 @@
 " plugin installed
 
 " clean and reload the markdown syntax in the current buffer
-nnoremap <silent> <Leader>r :unlet! b:current_syntax <BAR> unlet! b:did_ftplugin <BAR> syn clear <BAR> source syntax/markdown.vim <BAR> source ftplugin/markdown.vim<CR>
+nnoremap <silent> <Leader>r :
+  \ if expand('%:e') ==# 'md' <BAR>
+  \   syn clear <BAR>
+  \   unlet! b:did_ftplugin <BAR>
+  \   unlet! b:current_syntax <BAR>
+  \   source syntax/markdown.vim <BAR>
+  \   source ftplugin/markdown.vim <BAR>
+  \ endif <CR>
 
 " display all the highgligh groups with relative colors
 nnoremap <silent> <Leader>g :source $VIMRUNTIME/syntax/hitest.vim<CR>
