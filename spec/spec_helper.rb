@@ -12,8 +12,9 @@ Vimrunner::RSpec.configure do |config|
   config.reuse_server = false
   config.start_vim do
     vim = Vimrunner.start
-    vim.add_plugin(plugin_path, "syntax/markdown.vim")
-    vim.add_plugin(plugin_path, "ftdetect/markdown.vim")
+    vim.prepend_runtimepath(plugin_path)
+    vim.command("runtime ftdetect/markdown.vim")
+    vim.command("runtime ftplugin/markdown.vim")
     vim
   end
 end
