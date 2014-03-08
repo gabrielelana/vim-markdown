@@ -6,7 +6,7 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
@@ -14,6 +14,7 @@ pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
 .Comment { color: #0000c0; }
+.Special { color: #c000c0; }
 -->
 </style>
 
@@ -25,26 +26,26 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Comment">&gt; </span>This is a blockquote
+<span class="Special">&gt; </span><span class="Comment">This is a blockquote</span>
 
- &gt; This is a blockquote even if the angle bracket is not at the beginning of the line
+<span class="Special"> &gt; </span><span class="Comment">This is a blockquote even if the angle bracket is not at the beginning of the line</span>
 
-<span class="Comment">&gt; </span>This is a single
-<span class="Comment">&gt; </span>blockquote even if it
-<span class="Comment">&gt; </span>spans a few lines
+<span class="Special">&gt; </span><span class="Comment">This is a single</span>
+<span class="Special">&gt; </span><span class="Comment">blockquote even if it</span>
+<span class="Special">&gt; </span><span class="Comment">spans a few lines</span>
 
-<span class="Comment">&gt; </span>This is a single
-blockquote, you can put the angle bracket
-jnly at the first line of the paragraph and
-the all the paragraph is a blockquote
+<span class="Special">&gt; </span><span class="Comment">This is a single</span>
+<span class="Comment">blockquote, you can put the angle bracket</span>
+<span class="Comment">jnly at the first line of the paragraph and</span>
+<span class="Comment">the all the paragraph is a blockquote</span>
 
 This is not a blockquote because it's another paragraph
 
-<span class="Comment">&gt;</span>
+&gt;
 This is not a blockquote because the first line, the line with the angle bracket, must not be empty
 
-<span class="Comment">&gt; </span>
-This is a blockquote because the first line, the line with the angle bracket, is not empty, in this case contains a single space
+<span class="Special">&gt; </span>
+<span class="Comment">This is a blockquote because the first line, the line with the angle bracket, is not empty, in this case contains a single space</span>
 
 And again, this is not a blockquote because is another paragraph
 </pre>

@@ -6,20 +6,18 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.Special { color: #c000c0; }
-.htmlItalic { font-style: italic; }
-.htmlBold { font-weight: bold; }
-.Statement { color: #af5f00; }
-.Title { color: #c000c0; }
-.Constant { color: #c00000; }
 .Underlined { color: #c000c0; text-decoration: underline; }
+.Italic { font-style: italic; }
+.Bold { font-weight: bold; }
+.Special { color: #c000c0; }
+.Title { color: #c000c0; }
 -->
 </style>
 
@@ -33,44 +31,44 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 <pre id='vimCodeElement'>
 Stars
 
-<span class="Statement">*</span> first item
-<span class="Statement">*</span> second item
-<span class="Statement">*</span> third item
+<span class="Special">* </span>first item
+<span class="Special">* </span>second item
+<span class="Special">* </span>third item
 
 
 Dashes
 
-<span class="Statement">-</span> first item
-<span class="Statement">-</span> second item
-<span class="Statement">-</span> third item
+<span class="Special">- </span>first item
+<span class="Special">- </span>second item
+<span class="Special">- </span>third item
 
 
 Pluses
 
-<span class="Statement">+</span> first item
-<span class="Statement">+</span> second item
-<span class="Statement">+</span> third item
+<span class="Special">+ </span>first item
+<span class="Special">+ </span>second item
+<span class="Special">+ </span>third item
 
 Ordered
 
-<span class="Statement">1.</span> first item
-<span class="Statement">2.</span> second item
-<span class="Statement">3.</span> third item
+<span class="Special">1. </span>first item
+<span class="Special">2. </span>second item
+<span class="Special">3. </span>third item
 
 Nesting
 
-<span class="Statement">*</span> first item first level
-<span class="Statement">  *</span> second item second level
-<span class="Statement">    *</span> third item third level
-<span class="Statement">    *</span> fourth item third level
-      1. first item of the fourth level
-      2. second item of the fourth level
+<span class="Special">* </span>first item first level
+<span class="Special">  * </span>second item second level
+<span class="Special">    * </span>third item third level
+<span class="Special">    * </span>fourth item third level
+<span class="Special">      1. </span>first item of the fourth level
+<span class="Special">      2. </span>second item of the fourth level
 
 List items on multiple lines
 
-<span class="Statement">*</span> this is the first item in the list
+<span class="Special">* </span>this is the first item in the list
 this is still the first item even if it's the second line
-<span class="Statement">*</span> this is the second item in the list
+<span class="Special">* </span>this is the second item in the list
 this is still the second item even if it's the second line
 this is still the second item even if it's the third line
 
@@ -79,9 +77,9 @@ this is not part of the above list
 
 List items on multiple lines aligned
 
-<span class="Statement">*</span> this is the first item in the list
+<span class="Special">* </span>this is the first item in the list
   this is still the first item even if it's the second line
-<span class="Statement">*</span> this is the second item in the list
+<span class="Special">* </span>this is the second item in the list
   this is still the second item even if it's the second line
   this is still the second item even if it's the third line
 
@@ -92,15 +90,15 @@ this is not part of the above list
 
 Leading space are supported
 
-<span class="Statement">  *</span> first item
-<span class="Statement">  *</span> second item
+<span class="Special">  * </span>first item
+<span class="Special">  * </span>second item
 
 
 Leading space with multiple list items
 
-<span class="Statement">  *</span> this is the first item in the list
+<span class="Special">  * </span>this is the first item in the list
     this is still the first item even if it's the second line
-<span class="Statement">  *</span> this is the second item in the list
+<span class="Special">  * </span>this is the second item in the list
     this is still the second item even if it's the second line
     this is still the second item even if it's the third line
 
@@ -112,30 +110,30 @@ A single list delimiter followed by a newline is not a list item
 
 A single list delimiter followed by at least one space is a list item
 
-*
+<span class="Special">* </span>
 
 List with inline elements
 
-<span class="Statement">*</span> list item <span class="htmlItalic">_ending_</span>
-with <span class="htmlItalic">_emphasis_</span>.
+<span class="Special">* </span>list item <span class="Special">_</span><span class="Italic">ending</span><span class="Special">_</span>
+with <span class="Special">_</span><span class="Italic">emphasis</span><span class="Special">_</span>.
 
-<span class="Statement">*</span> list item
-with <span class="htmlItalic">**</span><span class="htmlBold">strong emphasis</span><span class="htmlItalic">**</span>.
+<span class="Special">* </span>list item
+with <span class="Special">**</span><span class="Bold">strong emphasis</span><span class="Special">**</span>.
 
-<span class="Statement">*</span> list item
-with [<span class="Underlined">a link</span>](<span class="Constant"><a href="http://google.com">http://google.com</a></span>).
+<span class="Special">* </span>list item
+with <span class="Special">[</span><span class="Underlined">a link</span><span class="Special">](</span><span class="Underlined"><a href="http://google.com">http://google.com</a></span><span class="Special">)</span>.
 
-<span class="Statement">*</span> list items can have <span class="htmlItalic">*inline content</span>
-<span class="htmlItalic">  that spans multiple lines*</span>
+<span class="Special">* </span>list items can have <span class="Special">*</span><span class="Italic">inline content</span>
+<span class="Italic">  that spans multiple lines</span><span class="Special">*</span>
 
-<span class="htmlItalic">*this is not a list item but a weak emphasys element beginning at the beginning of the line*</span>
+<span class="Special">*</span><span class="Italic">this is not a list item but a weak emphasys element beginning at the beginning of the line</span><span class="Special">*</span>
 
-<span class="Statement">*</span> this is a list item that ends with an asterisk *
+<span class="Special">* </span>this is a list item that ends with an asterisk *
 
 Everything that immediately follows a list item is still part of the list item and a list item could not contain (at least for Github but not for the original Dingus interpreter) block elements like headers
 
-<span class="Statement">*</span> This is a list item
-<span class="Special">#</span><span class="Title"> This is not an header, is the continuation</span>
+<span class="Special">* </span>This is a list item
+# This is not an header, is the continuation
 
 <span class="Special">#</span><span class="Title"> This is an header</span>
 </pre>

@@ -6,14 +6,14 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.Special { color: #c000c0; }
+.Underlined { color: #c000c0; text-decoration: underline; }
 -->
 </style>
 
@@ -26,30 +26,30 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 <body>
 <pre id='vimCodeElement'>
 
-URL like <a href="http://google.com">http://google.com</a> gets auto linked
+URL like <span class="Underlined"><a href="http://google.com">http://google.com</a></span> gets auto linked
 
-URL may contain punctuation <a href="http://example.com/foo,bar,baz">http://example.com/foo,bar,baz</a>
+URL may contain punctuation <span class="Underlined"><a href="http://example.com/foo,bar,baz">http://example.com/foo,bar,baz</a></span>
 
-URL may be preceded by punctuation !<a href="http://example.com/foo,bar,baz">http://example.com/foo,bar,baz</a> so the exclamation point is not part of the URL
+URL may be preceded by punctuation !<span class="Underlined"><a href="http://example.com/foo,bar,baz">http://example.com/foo,bar,baz</a></span> so the exclamation point is not part of the URL
 
-URL are terminated by punctuation so <a href="http://example.com/foo">http://example.com/foo</a>, the comma is not part of the URL
+URL are terminated by punctuation so <span class="Underlined"><a href="http://example.com/foo,">http://example.com/foo,</a></span> the comma is not part of the URL
 
-URL may contain parenthesis <a href="http://example.com/(foo)?foo[1]=bar&amp;foo[2]=baz">http://example.com/(foo)?foo[1]=bar&amp;foo[2]=baz</a>
+URL may contain parenthesis <span class="Underlined"><a href="http://example.com/(foo)?foo[1]=bar&amp;foo[2]=baz">http://example.com/(foo)?foo[1]=bar&amp;foo[2]=baz</a></span>
 
-URL may be surrounded by parenthesis (<a href="http://example.com/foo)">http://example.com/foo)</a> but parenthesis are not part of the URL
+URL may be surrounded by parenthesis (<span class="Underlined"><a href="http://example.com/foo">http://example.com/foo</a></span>) but parenthesis are not part of the URL
 
-URL may terminate with parenthesis <a href="http://example.com/foo()">http://example.com/foo()</a>
+URL may terminate with parenthesis <span class="Underlined"><a href="http://example.com/foo()">http://example.com/foo()</a></span>
 
-URL may be surrounded by parenthesis (<a href="http://example.com/foo())">http://example.com/foo())</a> but the surrounding parenthesis are not part of the URL
+URL may be surrounded by parenthesis (<span class="Underlined"><a href="http://example.com/foo()">http://example.com/foo()</a></span>) but the surrounding parenthesis are not part of the URL
 
-Email addresses bill@microsoft.com get auto linked
+Email addresses <span class="Underlined">bill@microsoft.com</span> get auto linked
 
-Pull requests and issues are linked #42
-  could be preceded by symbols <span class="Special">\#</span>42
+Pull requests and issues are linked <span class="Underlined">#42</span>
+  could be preceded by symbols \<span class="Underlined">#42</span>
   could not be preceded by letters a#42 or numbers 3#42
 
-Reference to other users are linked @gabrielelana
-  could be preceded by symbols \@gabrielelana
+Reference to other users are linked <span class="Underlined">@gabrielelana</span>
+  could be preceded by symbols \<span class="Underlined">@gabrielelana</span>
   could not be preceded by letters a@gabrielelana or numbers 3@gabrielelana
 </pre>
 </body>

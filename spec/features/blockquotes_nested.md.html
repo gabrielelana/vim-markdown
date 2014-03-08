@@ -6,17 +6,15 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.Statement { color: #af5f00; }
 .Comment { color: #0000c0; }
 .Special { color: #c000c0; }
-.Title { color: #c000c0; }
 -->
 </style>
 
@@ -28,22 +26,22 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Comment">&gt; </span>First level blockquote
-<span class="Comment">&gt; &gt; </span>Second level blockquote
-&gt;&gt; Second level blockquote
-<span class="Comment">&gt; &gt; &gt; </span>Third level blockquote
-&gt;&gt;&gt; Third level blockquote
+<span class="Special">&gt; </span><span class="Comment">First level blockquote</span>
+<span class="Special">&gt; &gt; </span><span class="Comment">Second level blockquote</span>
+<span class="Special">&gt;&gt; </span><span class="Comment">Second level blockquote</span>
+<span class="Special">&gt; &gt; &gt; </span><span class="Comment">Third level blockquote</span>
+<span class="Special">&gt;&gt;&gt; </span><span class="Comment">Third level blockquote</span>
 
-<span class="Comment">&gt; </span><span class="Special">#</span><span class="Title"> Nested elements problem</span>
-<span class="Comment">&gt; </span>Nested elements inside blockquotes and other elements could be very problematic
-<span class="Comment">&gt;</span>
-<span class="Comment">&gt; </span><span class="Special">##</span><span class="Title"> A conscious choice</span>
-<span class="Comment">&gt; </span>I chose to not highlight nested elements because:
-<span class="Comment">&gt; </span><span class="Statement">*</span> things could get really nasty in the syntax definition
-<span class="Comment">&gt; </span><span class="Statement">*</span> the end result could get confusing for the user (ex. no difference in the highlight between an headline inside and outside a blockquote)
-<span class="Comment">&gt;</span>
-<span class="Comment">&gt; </span><span class="Special">##</span><span class="Title"> An alternative solution</span>
-<span class="Comment">&gt; </span>MDOpenBlockquote will open the next level of the Blockquote block under cursor in a scratch buffer with a markdown syntax highlight
+<span class="Special">&gt; </span><span class="Comment"># Nested elements problem</span>
+<span class="Special">&gt; </span><span class="Comment">Nested elements inside blockquotes and other elements could be very problematic</span>
+<span class="Special">&gt;</span>
+<span class="Special">&gt; </span><span class="Comment">## A conscious choice</span>
+<span class="Special">&gt; </span><span class="Comment">I chose to not highlight nested elements because:</span>
+<span class="Special">&gt; </span><span class="Comment">* things could get really nasty in the syntax definition</span>
+<span class="Special">&gt; </span><span class="Comment">* the end result could get confusing for the user (ex. no difference in the highlight between an headline inside and outside a blockquote)</span>
+<span class="Special">&gt;</span>
+<span class="Special">&gt; </span><span class="Comment">## An alternative solution</span>
+<span class="Special">&gt; </span><span class="Comment">MDOpenBlockquote will open the next level of the Blockquote block under cursor in a scratch buffer with a markdown syntax highlight</span>
 </pre>
 </body>
 </html>

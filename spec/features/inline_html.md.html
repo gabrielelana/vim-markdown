@@ -6,19 +6,16 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.Constant { color: #c00000; }
-.Statement { color: #af5f00; }
-.Comment { color: #0000c0; }
-.Type { color: #008000; }
-.Underlined { color: #c000c0; text-decoration: underline; }
-.Identifier { color: #008080; }
+.NonText { color: #8080ff; }
+.Title { color: #c000c0; }
+.Special { color: #c000c0; }
 -->
 </style>
 
@@ -30,21 +27,21 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
-  This is a <span class="Identifier">&lt;</span><span class="Statement">span</span><span class="Identifier">&gt;</span>block<span class="Identifier">&lt;/</span><span class="Statement">span</span><span class="Identifier">&gt;</span> of html
-<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+<span class="NonText">&lt;div&gt;</span>
+<span class="NonText">  This is a &lt;span&gt;block&lt;/span&gt; of html</span>
+<span class="NonText">&lt;/div&gt;</span>
 
-<span class="Comment">&lt;!</span><span class="Comment">--</span>
-<span class="Comment">  This is a comment</span>
-<span class="Comment">--</span><span class="Comment">&gt;</span>
+<span class="NonText">&lt;!--</span>
+<span class="NonText">  This is a comment</span>
+<span class="NonText">--&gt;</span>
 
-<span class="Identifier">&lt;</span><span class="Statement">a</span><span class="Identifier"> </span><span class="Type">href</span><span class="Identifier">=</span><span class="Constant">&quot;<a href="http://example.com">http://example.com</a>&quot;</span><span class="Identifier"> </span><span class="Type">title</span><span class="Identifier">=</span><span class="Constant">&quot;This is an empty element&quot;</span><span class="Identifier"> /&gt;</span>
+<span class="NonText">&lt;a href=&quot;<a href="http://example.com">http://example.com</a>&quot; title=&quot;This is an empty element&quot; /&gt;</span>
 
-<span class="Underlined">This is normal text</span>
+This is normal text
 
-<span class="Underlined">* XML </span><span class="Identifier">&lt;</span><span class="Statement">i</span><span class="Identifier">&gt;</span><span class="Underlined">element</span><span class="Identifier">&lt;/</span><span class="Statement">i</span><span class="Identifier">&gt;</span><span class="Underlined"> in a list item</span>
+<span class="Special">* </span>XML <span class="NonText">&lt;i&gt;element&lt;/i&gt;</span> in a list item
 
-<span class="Underlined"># XML </span><span class="Identifier">&lt;</span><span class="Statement">i</span><span class="Identifier">&gt;</span><span class="Underlined">element</span><span class="Identifier">&lt;/</span><span class="Statement">i</span><span class="Identifier">&gt;</span><span class="Underlined"> in an header</span>
+<span class="Special">#</span><span class="Title"> XML </span><span class="NonText">&lt;i&gt;element&lt;/i&gt;</span><span class="Title"> in an header</span>
 </pre>
 </body>
 </html>

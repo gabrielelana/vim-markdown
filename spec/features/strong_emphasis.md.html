@@ -6,17 +6,15 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.htmlBold { font-weight: bold; }
-.htmlBoldItalic { font-weight: bold; font-style: italic; }
-.htmlItalic { font-style: italic; }
-.Error { color: #ffffff; background-color: #ff6060; padding-bottom: 1px; }
+.Bold { font-weight: bold; }
+.Special { color: #c000c0; }
 -->
 </style>
 
@@ -29,57 +27,57 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 <body>
 <pre id='vimCodeElement'>
 
-This is <span class="htmlItalic">__</span><span class="htmlBold">strong</span><span class="htmlItalic">__</span> emphasis
+This is <span class="Special">__</span><span class="Bold">strong</span><span class="Special">__</span> emphasis
 
-This is also <span class="htmlItalic">**</span><span class="htmlBold">strong</span><span class="htmlItalic">**</span> emphasis
+This is also <span class="Special">**</span><span class="Bold">strong</span><span class="Special">**</span> emphasis
 
-This is <span class="htmlItalic">__</span><span class="htmlBold">multiple words</span><span class="htmlItalic">__</span> strong emphasis
+This is <span class="Special">__</span><span class="Bold">multiple words</span><span class="Special">__</span> strong emphasis
 
-This is also <span class="htmlItalic">**</span><span class="htmlBold">multiple words</span><span class="htmlItalic">**</span> strong emphasis
+This is also <span class="Special">**</span><span class="Bold">multiple words</span><span class="Special">**</span> strong emphasis
 
-This is <span class="htmlItalic">__</span> not valid <span class="htmlItalic">__</span>
+This is __ not valid __
 
-<span class="htmlItalic">**</span><span class="htmlBold">strong</span><span class="htmlItalic">**</span> emphasis could be the first word in the line
+<span class="Special">**</span><span class="Bold">strong</span><span class="Special">**</span> emphasis could be the first word in the line
 
-<span class="htmlItalic">__</span><span class="htmlBold">strong</span><span class="htmlItalic">__</span> emphasis could be the first word in the line
+<span class="Special">__</span><span class="Bold">strong</span><span class="Special">__</span> emphasis could be the first word in the line
 
-Strong <span class="htmlItalic">**</span><span class="htmlBold">emphasis</span>
-<span class="htmlBold">could span</span><span class="htmlItalic">**</span> multiple lines
+Strong <span class="Special">**</span><span class="Bold">emphasis</span>
+<span class="Bold">could span</span><span class="Special">**</span> multiple lines
 
-Strong <span class="htmlItalic">__</span><span class="htmlBold">emphasis</span>
-<span class="htmlBold">could span</span><span class="htmlItalic">__</span> multiple lines
+Strong <span class="Special">__</span><span class="Bold">emphasis</span>
+<span class="Bold">could span</span><span class="Special">__</span> multiple lines
 
-The following is not a strong emphasis <span class="htmlItalic">__</span>
+The following is not a strong emphasis __
 that span multiple lines
-<span class="htmlItalic">__</span> because the start delimiter must be followed by something (not the end of line)
+__ because the start delimiter must be followed by something (not the end of line)
 
-The following is not a strong emphasis <span class="htmlItalic">**</span>
+The following is not a strong emphasis **
 that span multiple lines
-<span class="htmlItalic">**</span> because the start delimiter must be followed by something (not the end of line)
+** because the start delimiter must be followed by something (not the end of line)
 
-The usage of alternate delimiters must be idempotent, so all <span class="htmlItalic">__</span><span class="htmlBold">foo</span><span class="htmlItalic">__</span> <span class="htmlItalic">**</span><span class="htmlBold">foo</span><span class="htmlItalic">**</span> <span class="htmlItalic">__**</span><span class="htmlBold">foo</span><span class="htmlItalic">**__</span> <span class="htmlItalic">**__</span><span class="htmlBold">foo</span><span class="htmlItalic">__**</span> must be &quot;foo&quot; highlighted as bold
+The usage of alternate delimiters must be idempotent, so all <span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span> <span class="Special">**</span><span class="Bold">foo</span><span class="Special">**</span> <span class="Special">__**</span><span class="Bold">foo</span><span class="Special">**__</span> <span class="Special">**__</span><span class="Bold">foo</span><span class="Special">__**</span> must be &quot;foo&quot; highlighted as bold
 
-The same delimiter could not be used twice <span class="htmlBoldItalic">****foo***</span> and <span class="htmlBoldItalic">____foo___</span><span class="htmlItalic">_ must be normal</span>
+The same delimiter could not be used twice ****foo*** and ____foo____ must be normal
 
-<span class="htmlItalic">_</span><span class="Error">_</span>foo<span class="Error">____</span>bar<span class="Error">_</span><span class="htmlItalic">_ must be &quot;foo&quot; highlighted as bold followed by &quot;&lt;UNDERSCORE&gt;&lt;UNDERSCORE&gt;bar&lt;UNDERSCORE&gt;&lt;UNDERSCORE&gt;&quot; highlighted as normal</span>
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>__bar__ must be &quot;foo&quot; highlighted as bold followed by &quot;&lt;UNDERSCORE&gt;&lt;UNDERSCORE&gt;bar&lt;UNDERSCORE&gt;&lt;UNDERSCORE&gt;&quot; highlighted as normal
 
-<span class="htmlItalic">_</span><span class="Error">_</span>foo<span class="Error">_</span><span class="htmlItalic">_**bar** must be &quot;foo&quot; highlighted as bold followed by &quot;bar&quot; highlighted as bold</span>
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__**</span><span class="Bold">bar</span><span class="Special">**</span> must be &quot;foo&quot; highlighted as bold followed by &quot;bar&quot; highlighted as bold
 
-<span class="htmlItalic">_</span><span class="Error">_</span>foo<span class="Error">__</span>b must be &quot;foo&quot; highlighted as bold followed by &quot;b&quot; highlighted as normal
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>b must be &quot;foo&quot; highlighted as bold followed by &quot;b&quot; highlighted as normal
 
-<span class="htmlItalic">__</span><span class="htmlBold">foo</span><span class="htmlItalic">__</span>bar<span class="Error">__</span>baz<span class="Error">_</span><span class="htmlItalic">_ must be &quot;foo&quot; highlighted as bold followed by &quot;bar&lt;UNDERSCORE&gt;baz&lt;UNDERSCORE&gt;&quot; highlighted as normal</span>
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>bar__baz__ must be &quot;foo&quot; highlighted as bold followed by &quot;bar&lt;UNDERSCORE&gt;baz&lt;UNDERSCORE&gt;&quot; highlighted as normal
 
-<span class="htmlItalic">_</span><span class="Error">_</span>foo<span class="Error">__</span>bar <span class="htmlItalic">__</span><span class="htmlBold">baz</span><span class="htmlItalic">__</span> must be &quot;foo&quot; and &quot;baz&quot; highlighted as bold and &quot;bar&quot; highlighted as normal
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>bar <span class="Special">__</span><span class="Bold">baz</span><span class="Special">__</span> must be &quot;foo&quot; and &quot;baz&quot; highlighted as bold and &quot;bar&quot; highlighted as normal
 
-Four underscore <span class="htmlBoldItalic">____ or four asterisks **** must not be highlighted without something between</span>
+Four underscore ____ or four asterisks **** must not be highlighted without something between
 
-<span class="htmlBoldItalic">Spaces do not count for something so __ __ and ** ** must be normal</span>
+Spaces do not count for something so __ __ and ** ** must be normal
 
-<span class="htmlBoldItalic">FOO__BAR must not be normal</span>
+FOO__BAR must not be normal
 
-<span class="htmlBoldItalic">FOO__BAR and BAR__FOO must be normal</span>
+FOO__BAR and BAR__FOO must be normal
 
-<span class="htmlBoldItalic">Unfortunately __FOO__BAR doen't work but escaping \__FOO__BAR is always possible</span>
+Unfortunately <span class="Special">__</span><span class="Bold">FOO</span><span class="Special">__</span>BAR doen't work but escaping \__FOO__BAR is always possible
 
 </pre>
 </body>

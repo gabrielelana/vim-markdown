@@ -6,18 +6,16 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.htmlBold { font-weight: bold; }
-.htmlItalic { font-style: italic; }
-.Statement { color: #af5f00; }
+.Italic { font-style: italic; }
+.Bold { font-weight: bold; }
 .Special { color: #c000c0; }
-.Error { color: #ffffff; background-color: #ff6060; padding-bottom: 1px; }
 -->
 </style>
 
@@ -30,25 +28,25 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 <body>
 <pre id='vimCodeElement'>
 
-This is <span class="htmlItalic">_weak_</span> emphasis
+This is <span class="Special">_</span><span class="Italic">weak</span><span class="Special">_</span> emphasis
 
-This is also <span class="htmlItalic">*weak*</span> emphasis
+This is also <span class="Special">*</span><span class="Italic">weak</span><span class="Special">*</span> emphasis
 
-This is <span class="htmlItalic">_multiple words_</span> weak emphasis
+This is <span class="Special">_</span><span class="Italic">multiple words</span><span class="Special">_</span> weak emphasis
 
-This is also <span class="htmlItalic">*multiple words*</span> weak emphasis
+This is also <span class="Special">*</span><span class="Italic">multiple words</span><span class="Special">*</span> weak emphasis
 
 This is _ not valid _ because the start delimiter must be followed by something (not a space)
 
-<span class="htmlItalic">*weak*</span> emphasis could be the first word in the line
+<span class="Special">*</span><span class="Italic">weak</span><span class="Special">*</span> emphasis could be the first word in the line
 
-<span class="htmlItalic">_weak_</span> emphasis could be the first word in the line
+<span class="Special">_</span><span class="Italic">weak</span><span class="Special">_</span> emphasis could be the first word in the line
 
-Weak <span class="htmlItalic">*emphasis</span>
-<span class="htmlItalic">could span*</span> multiple lines
+Weak <span class="Special">*</span><span class="Italic">emphasis</span>
+<span class="Italic">could span</span><span class="Special">*</span> multiple lines
 
-Weak <span class="htmlItalic">_emphasis</span>
-<span class="htmlItalic">could span_</span> multiple lines
+Weak <span class="Special">_</span><span class="Italic">emphasis</span>
+<span class="Italic">could span</span><span class="Special">_</span> multiple lines
 
 The following is not a weak emphasis _
 that span multiple lines
@@ -56,31 +54,31 @@ _ because the start delimiter must be followed by something (not the end of line
 
 The following is not a weak emphasis *
 that span multiple lines
-<span class="Statement">*</span> because the start delimiter must be followed by something (not the end of line)
+<span class="Special">* </span>because the start delimiter must be followed by something (not the end of line)
 
-The usage of alternate delimiters must be idempotent, so all <span class="htmlItalic">_foo_</span> <span class="htmlItalic">*foo*</span> <span class="htmlItalic">_*foo*_</span> <span class="htmlItalic">*_foo_*</span> must be &quot;foo&quot; highlighted as italic
+The usage of alternate delimiters must be idempotent, so all <span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span> <span class="Special">*</span><span class="Italic">foo</span><span class="Special">*</span> <span class="Special">_*</span><span class="Italic">foo</span><span class="Special">*_</span> <span class="Special">*_</span><span class="Italic">foo</span><span class="Special">_*</span> must be &quot;foo&quot; highlighted as italic
 
-The same delimiter could not be used twice <span class="htmlItalic">**</span><span class="htmlBold">foo</span><span class="htmlItalic">**</span> and <span class="htmlItalic">__</span><span class="htmlBold">foo</span><span class="htmlItalic">__</span> must not be highlighted as italic
+The same delimiter could not be used twice <span class="Special">**</span><span class="Bold">foo</span><span class="Special">**</span> and <span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span> must not be highlighted as italic
 
-<span class="htmlItalic">_foo_</span><span class="Error">_</span>bar<span class="htmlItalic">_ must be &quot;foo&quot; highlighted as italic followed by &quot;&lt;UNDERSCORE&gt;bar&lt;UNDERSCORE&gt;&quot; highlighted as normal</span>
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>_bar_ must be &quot;foo&quot; highlighted as italic followed by &quot;&lt;UNDERSCORE&gt;bar&lt;UNDERSCORE&gt;&quot; highlighted as normal
 
-<span class="htmlItalic">_</span>foo<span class="htmlItalic">_*bar* must be &quot;foo&quot; highlighted as italic followed by &quot;bar&quot; highlighted as italic</span>
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_*</span><span class="Italic">bar</span><span class="Special">*</span> must be &quot;foo&quot; highlighted as italic followed by &quot;bar&quot; highlighted as italic
 
-<span class="htmlItalic">_</span>foo<span class="Error">_</span>b must be &quot;foo&quot; highlighted as italic followed by &quot;b&quot; highlighted as normal
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>b must be &quot;foo&quot; highlighted as italic followed by &quot;b&quot; highlighted as normal
 
-<span class="htmlItalic">_foo_</span>bar<span class="Error">_</span>baz<span class="htmlItalic">_ must be &quot;foo&quot; highlighted as italic followed by &quot;bar&lt;UNDERSCORE&gt;baz&lt;UNDERSCORE&gt;&quot; highlighted as normal</span>
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>bar_baz_ must be &quot;foo&quot; highlighted as italic followed by &quot;bar&lt;UNDERSCORE&gt;baz&lt;UNDERSCORE&gt;&quot; highlighted as normal
 
-<span class="htmlItalic">_</span>foo<span class="Error">_</span>bar <span class="htmlItalic">_baz_</span> must be &quot;foo&quot; and &quot;baz&quot; highlighted as italic and &quot;bar&quot; highlighted as normal
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>bar <span class="Special">_</span><span class="Italic">baz</span><span class="Special">_</span> must be &quot;foo&quot; and &quot;baz&quot; highlighted as italic and &quot;bar&quot; highlighted as normal
 
-Two underscores <span class="htmlItalic">__</span> or two asterisks <span class="htmlItalic">**</span> must not be highlighted without something between them
+Two underscores __ or two asterisks ** must not be highlighted without something between them
 
 Spaces do not count for something so _ _ and * * must be normal
 
-FOO<span class="Error">_</span>BAR must be normal
+FOO_BAR must be normal
 
-FOO<span class="Error">_</span>BAR and BAR<span class="Error">_</span>FOO must be normal
+FOO_BAR and BAR_FOO must be normal
 
-Unfortunately <span class="htmlItalic">_FOO_</span>BAR doen't work but escaping <span class="Special">\_</span>FOO<span class="Error">_</span>BAR is always possible
+Unfortunately <span class="Special">_</span><span class="Italic">FOO</span><span class="Special">_</span>BAR doen't work but escaping \_FOO_BAR is always possible
 
 </pre>
 </body>

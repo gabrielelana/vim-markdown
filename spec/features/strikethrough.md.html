@@ -6,18 +6,18 @@
 <meta name="Generator" content="Vim/7.4">
 <meta name="plugin-version" content="vim7.4_v1">
 <meta name="syntax" content="markdown">
-<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
 <meta name="colorscheme" content="none">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.htmlBold { font-weight: bold; }
-.htmlItalic { font-style: italic; }
-.Statement { color: #af5f00; }
+.NonText { color: #8080ff; }
+.Italic { font-style: italic; }
 .Title { color: #c000c0; }
 .Special { color: #c000c0; }
+.Bold { font-weight: bold; }
 -->
 </style>
 
@@ -29,20 +29,20 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-~~one line strikethrough~~
+<span class="Special">~~</span><span class="NonText">one line strikethrough</span><span class="Special">~~</span>
 
-~~multiple line
-strike through~~
+<span class="Special">~~</span><span class="NonText">multiple line</span>
+<span class="NonText">strike through</span><span class="Special">~~</span>
 
-the end could not be escaped ~~this is striked\~~
+the end could not be escaped <span class="Special">~~</span><span class="NonText">this is striked\</span><span class="Special">~~</span>
 
 the begin could be escaped \~~this is not striked~~
 
-<span class="Statement">*</span> this is a list ~~with a strikethrough~~
+<span class="Special">* </span>this is a list <span class="Special">~~</span><span class="NonText">with a strikethrough</span><span class="Special">~~</span>
 
-<span class="Special">#</span><span class="Title"> this is a header ~~with a strikethrough~~ this is still part of the header</span>
+<span class="Special">#</span><span class="Title"> this is a header </span><span class="Special">~~</span><span class="NonText">with a strikethrough</span><span class="Special">~~</span><span class="Title"> this is still part of the header</span>
 
-~~strikethrough <span class="htmlItalic">*could*</span> <span class="htmlItalic">__</span><span class="htmlBold">contain</span><span class="htmlItalic">__</span> other <a href="http://google.it">http://google.it</a> inline elements~~
+<span class="Special">~~</span><span class="NonText">strikethrough </span><span class="Special">*</span><span class="Italic">could</span><span class="Special">*</span><span class="NonText"> </span><span class="Special">__</span><span class="Bold">contain</span><span class="Special">__</span><span class="NonText"> other <a href="http://google.it">http://google.it</a> inline elements</span><span class="Special">~~</span>
 
 ~~
 could not begin
