@@ -6,6 +6,8 @@ Link with title surrounded by single quotes [link](http://example.com 'Title')
 
 Link to a relative path [link](/about)
 
+Link to an anchor [link](#about)
+
 Link with escaped parenthesis in URL [link](/url\(test\) "Title")
 
 Link with unescaped parenthesis in URL [link](/url(test) "Title")
