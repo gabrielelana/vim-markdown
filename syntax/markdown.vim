@@ -72,6 +72,7 @@ syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 "                                                 # url could not be punctuation
 let b:markdown_syntax_url =
   \ '\c'
+  \ . '<\?'
   \ . '\%('
   \ .   '\%(\<\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)'
   \ .   '\|'
@@ -99,6 +100,7 @@ let b:markdown_syntax_url =
   \ .   '\|'
   \ .   '[-A-Z0-9+&@#/%=~_|$]\+'
   \ . '\)'
+  \ . '>\?'
 
 execute 'syn match markdownUrlLinkInText /' . b:markdown_syntax_url . '/ contains=@NoSpell'
 
@@ -194,8 +196,16 @@ syn region markdownLinkTitleSingleQuoted start=/\s*'/ skip=/\\'/ end=/'\_s*/
 syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/
   \ keepend contained contains=@markdownInline
 
-
-
+execute 'syn match markdownLinkReference '
+  \ . 'contains=markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted,@markdownInline '
+  \ . '/'
+  \ . '^\s\{,3}'
+  \ . b:markdown_syntax_square_brackets_block
+  \ . '\%('
+  \ .   ':.*'
+  \ .   '\%(\n\%\(\n\)\@!.*$\)\?'
+  \ . '\)\?'
+  \ . '/'
 
 
 
@@ -207,12 +217,12 @@ syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
 syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
-syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}\/>/ contains=@NoSpell
+syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s+[^>]\{-}\/>\|\/>\)/ contains=@NoSpell
 
 syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,
-  \ markdownStrike,markdownCode,markdownFreePullRequestLink,
-  \ markdownFreeUserLink,markdownFreeUrlLink,markdownFreeEmailLink,
+  \ markdownStrike,markdownCode,markdownPullRequestLinkInText,
+  \ markdownUrlLinkInText,markdownUserLinkInText,markdownEmailLinkInText,
   \ markdownEmoticonsKeyword,markdownLinkContainer,markdownXmlComment,
   \ markdownXmlElement,markdownXmlEmptyElement
 
@@ -584,6 +594,7 @@ hi def link markdownLinkTitleSingleQuoted   Bold
 hi def link markdownLinkTitleDoubleQuoted   Bold
 hi def link markdownLinkUrlContainer        Delimiter
 hi def link markdownLinkTextContainer       Delimiter
+hi def link markdownLinkReference           Bold
 
 hi def link markdownCodeDelimiter           Delimiter
 hi def link markdownCode                    String

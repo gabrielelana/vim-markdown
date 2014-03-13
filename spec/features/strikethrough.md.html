@@ -14,9 +14,10 @@ pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
 .NonText { color: #8080ff; }
+.Underlined { color: #c000c0; text-decoration: underline; }
+.Italic { font-style: italic; }
 .Bold { font-weight: bold; }
 .Title { color: #c000c0; }
-.Italic { font-style: italic; }
 .Special { color: #c000c0; }
 -->
 </style>
@@ -42,7 +43,7 @@ the begin could be escaped \~~this is not striked~~
 
 <span class="Special">#</span><span class="Title"> this is a header </span><span class="Special">~~</span><span class="NonText">with a strikethrough</span><span class="Special">~~</span><span class="Title"> this is still part of the header</span>
 
-<span class="Special">~~</span><span class="NonText">strikethrough </span><span class="Special">*</span><span class="Italic">could</span><span class="Special">*</span><span class="NonText"> </span><span class="Special">__</span><span class="Bold">contain</span><span class="Special">__</span><span class="NonText"> other <a href="http://google.it">http://google.it</a> inline elements</span><span class="Special">~~</span>
+<span class="Special">~~</span><span class="NonText">strikethrough </span><span class="Special">*</span><span class="Italic">could</span><span class="Special">*</span><span class="NonText"> </span><span class="Special">__</span><span class="Bold">contain</span><span class="Special">__</span><span class="NonText"> other </span><span class="Underlined"><a href="http://google.it">http://google.it</a></span><span class="NonText"> inline elements</span><span class="Special">~~</span>
 
 ~~
 could not begin

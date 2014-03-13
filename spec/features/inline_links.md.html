@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/inline_links.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Bold { font-weight: bold; }
+.Underlined { color: #c000c0; text-decoration: underline; }
+.Title { color: #c000c0; }
+.Special { color: #c000c0; }
+.Identifier { color: #008080; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+Link <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Special">)</span>
+
+Link with title <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Bold"> &quot;Title&quot;</span><span class="Special">)</span>
+
+Link with title surrounded by single quotes <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Bold"> 'Title'</span><span class="Special">)</span>
+
+Link to a relative path <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined">/about</span><span class="Special">)</span>
+
+Link with escaped parenthesis in URL <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined">/url\(test\)</span><span class="Bold"> &quot;Title&quot;</span><span class="Special">)</span>
+
+Link with unescaped parenthesis in URL <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined">/url(test)</span><span class="Bold"> &quot;Title&quot;</span><span class="Special">)</span>
+
+The following is not a link because it's escaped \[link](<span class="Underlined"><a href="http://example.com">http://example.com</a></span>) the URL must be auto linked anyway but the rounded parenthesis must not be highlighted
+
+Link with escaped closed square bracket in text <span class="Special">[</span><span class="Underlined">text \] link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Special">)</span>
+
+Link with inline element in text <span class="Special">[</span><span class="Underlined">this </span><span class="Special">**</span><span class="Bold">is</span><span class="Special">**</span><span class="Underlined"> a link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Special">)</span>
+
+Link with newline in text <span class="Special">[</span><span class="Underlined">text</span>
+<span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://inline.com">http://inline.com</a></span><span class="Special">)</span>
+
+Link with multiple newline in text <span class="Special">[</span><span class="Underlined">this</span>
+<span class="Underlined">is</span>
+<span class="Underlined">text</span>
+<span class="Underlined">in</span>
+<span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://inline.com">http://inline.com</a></span><span class="Special">)</span>
+
+Link with spaces between text and URL it's ok <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span>     <span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Special">)</span>
+
+Link with newline between text and URL it's ok <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span>
+<span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Special">)</span>
+
+Link with newline between URL and title it's ok <span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://example.com">http://example.com</a></span>
+<span class="Bold">&quot;Title&quot;</span><span class="Special">)</span>
+
+<span class="Special">#</span><span class="Title"> This is </span><span class="Special">[</span><span class="Underlined">link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://github.com">http://github.com</a></span><span class="Special">)</span><span class="Title"> in a title</span>
+
+
+
+<span class="Identifier">---</span>
+The following are not valid links
+
+
+No more than one newline between text and URL [link]
+
+(<span class="Underlined"><a href="http://example.com">http://example.com</a></span>)
+
+
+No more that one newline in text [text
+
+link](<span class="Underlined"><a href="http://example.com">http://example.com</a></span>)
+
+
+No more that one newline between URL and title [link](<span class="Underlined"><a href="http://example.com">http://example.com</a></span>
+
+&quot;Title&quot;)
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

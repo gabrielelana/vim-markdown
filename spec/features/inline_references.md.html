@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/inline_references.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Bold { font-weight: bold; }
+.Underlined { color: #c000c0; text-decoration: underline; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+Reference <span class="Special">[</span><span class="Underlined">bar</span><span class="Special">]</span> <span class="Special">[</span><span class="Underlined">1</span><span class="Special">]</span>
+
+Reference <span class="Special">[</span><span class="Underlined">bar</span><span class="Special">][</span><span class="Underlined">1</span><span class="Special">]</span>
+
+Reference <span class="Special">[</span><span class="Underlined">bar</span><span class="Special">]</span>
+<span class="Special">[</span><span class="Underlined">1</span><span class="Special">]</span>
+
+<span class="Bold">[1]: </span><span class="Underlined">/url/</span><span class="Bold"> &quot;Title&quot;</span>
+
+
+With <span class="Special">[</span><span class="Underlined">embedded [brackets]</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
+With quoted <span class="Special">[</span><span class="Underlined">embedded \[brackets\]</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
+With quoted <span class="Special">[</span><span class="Underlined">embedded \[ brackets</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
+With quoted <span class="Special">[</span><span class="Underlined">embedded \] brackets</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
+
+<span class="Bold">[b]: </span><span class="Underlined">/url/</span>
+
+Indented <span class="Special">[</span><span class="Underlined">once</span><span class="Special">][]</span> times
+Indented <span class="Special">[</span><span class="Underlined">twice</span><span class="Special">][]</span> times
+Indented <span class="Special">[</span><span class="Underlined">thrice</span><span class="Special">][]</span> times
+Indented <span class="Special">[</span><span class="Underlined">four</span><span class="Special">][]</span> times must not a reference, must be a code block
+
+<span class="Bold"> [once]: </span><span class="Underlined">/url</span>
+<span class="Bold">  [twice]: </span><span class="Underlined">/url</span>
+<span class="Bold">   [thrice]: </span><span class="Underlined">/url</span>
+<span class="Bold">    [four]: </span><span class="Underlined">/url</span>
+
+With <span class="Special">[</span><span class="Underlined">angle brackets</span><span class="Special">][]</span>
+And <span class="Special">[</span><span class="Underlined">without</span><span class="Special">][]</span>
+
+<span class="Bold">[angle brackets]: </span><span class="Underlined">&lt;<a href="http://example.com/">http://example.com/</a>&gt;</span><span class="Bold"> &quot;Angle Brackets&quot;</span>
+<span class="Bold">[without]: </span><span class="Underlined"><a href="http://example.com/">http://example.com/</a></span><span class="Bold"> &quot;Without angle brackets.&quot;</span>
+
+With <span class="Special">[</span><span class="Underlined">line</span>
+<span class="Underlined">breaks</span><span class="Special">][]</span>
+
+<span class="Bold">[line breaks]: </span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Bold"> &quot;Yes this works&quot;</span>
+
+<span class="Bold">[short ref]</span>
+
+<span class="Bold">[short</span>
+<span class="Bold">ref]</span>
+
+<span class="Bold">[short ref]: </span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Bold"> &quot;No more hanging empty bracket!&quot;</span>
+
+<span class="Bold">[a ref]</span>
+
+<span class="Bold">[a ref]: </span><span class="Underlined"><a href="http://example.com">http://example.com</a></span>
+<span class="Bold">    &quot;Title on next line.&quot;</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

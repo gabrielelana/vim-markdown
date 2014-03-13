@@ -14,7 +14,9 @@ features = [
   "headers_setext",
   "strong_emphasis",
   "weak_emphasis",
-  "inline_html"
+  "inline_html",
+  "inline_links",
+  "inline_references"
 ]
 
 describe "markdown syntax" do
