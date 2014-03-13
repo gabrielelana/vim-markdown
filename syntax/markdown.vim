@@ -105,21 +105,14 @@ let b:markdown_syntax_url =
 execute 'syn match markdownUrlLinkInText /' . b:markdown_syntax_url . '/ contains=@NoSpell'
 
 
-
-" \%(\\\)\@<!\[                     # a `[` not preceded by a backslash
-" \%(\\\]\|\n\%(\n)\@!\|[^\]]\)\{-} # anything that is not a `]`
-"                                   # escaped square brackets are allowed `\]`
-"                                   # no more than one consecutive newline is allowed
-" \%(\\\)\@<!\]                     # a `]` not preceded by a backslash
-" \%(\s*\|\n\%\(\n\)\@!\)           # separated by optional space or newline (but no more than one)
-" \%(\\\)\@<!(                      # a `(` not preceded by a backslash
-" \%(\\)\|\_[^)]\)\{-}              # anything that is not a `)` or is a `\)` or is an newline (`\_`)
-" \%(\\)\|\n\%(\n)\@!\|[^)]\)\{-}   # anything that is not a `)`
-"                                   # escaped square brackets are allowed `\)`
-"                                   # no more than one consecutive newline is allowed
-" \%(\\\)\@<!)                      # a `)` not preceded by a backslash
-
-
+" something encosed in square brackets
+" could not be preceded by a backslash
+" could contain pairs of square brackets
+" could contain pairs of escaped square brackets
+" could contain no more than two consecutive newlines
+" could contain single square brackets escaped
+" could not contain unbalanced square brackets like 'a [ b \] c'
+" could not contain nested square brackets
 let b:markdown_syntax_square_brackets_block =
   \ '\%(\\\)\@<!\['
   \ . '\%('
@@ -136,6 +129,14 @@ let b:markdown_syntax_square_brackets_block =
   \ . '\)\+'
   \ . '\]'
 
+" something encosed in round brackets
+" could not be preceded by a backslash
+" could contain pairs of round brackets
+" could contain pairs of escaped round brackets
+" could contain no more than two consecutive newlines
+" could contain single round brackets escaped
+" could not contain unbalanced round brackets like 'a [ b \] c'
+" could not contain nested round brackets
 let b:markdown_syntax_round_brackets_block =
   \ '\%(\\\)\@<!('
   \ . '\%('
