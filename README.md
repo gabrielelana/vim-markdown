@@ -41,8 +41,6 @@ Sadly Vim doesn't gives you a full blown parser to do syntax highlighting so the
 
 # TODO
 * syntax
-  * links with references
-  * images with references
   * pre formatted blocks
   * todo lists (GFM)
   * tables (GFM)

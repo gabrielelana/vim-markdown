@@ -8,6 +8,8 @@ Link to a relative path [link](/about)
 
 Link to an anchor [link](#about)
 
+Link to an image ![image](path/to/image.png)
+
 Link with escaped parenthesis in URL [link](/url\(test\) "Title")
 
 Link with unescaped parenthesis in URL [link](/url(test) "Title")

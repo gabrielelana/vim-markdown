@@ -161,6 +161,7 @@ let b:markdown_syntax_round_brackets_block =
 execute 'syn match markdownLinkContainer '
   \ . 'contains=markdownLinkTextContainer,markdownLinkUrlContainer transparent '
   \ . '/'
+  \ . '!\?'
   \ . b:markdown_syntax_square_brackets_block
   \ . '\%(\s*\|\n\%\(\n\)\@!\)'
   \ . '\%('
@@ -173,12 +174,14 @@ execute 'syn match markdownLinkContainer '
 execute 'syn match markdownLinkTextContainer contained '
   \ . 'contains=markdownLinkText '
   \ . '/'
+  \ . '!\?'
   \ . b:markdown_syntax_square_brackets_block
   \ . '/'
 
 execute 'syn match markdownLinkText contained '
-  \ . 'contains=@markdownInline '
+  \ . 'contains=@markdownInline,@NoSpell '
   \ . '/'
+  \ . '!\?'
   \ . b:markdown_syntax_square_brackets_block
   \ . '/'
   \ . 'hs=s+1,he=e-1'
