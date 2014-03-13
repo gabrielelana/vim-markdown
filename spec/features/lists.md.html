@@ -14,10 +14,10 @@ pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
 .Underlined { color: #c000c0; text-decoration: underline; }
-.Italic { font-style: italic; }
 .Bold { font-weight: bold; }
-.Special { color: #c000c0; }
 .Title { color: #c000c0; }
+.Italic { font-style: italic; }
+.Special { color: #c000c0; }
 -->
 </style>
 
@@ -110,7 +110,7 @@ A single list delimiter followed by a newline is not a list item
 
 A single list delimiter followed by at least one space is a list item
 
-<span class="Special">* </span>
+*
 
 List with inline elements
 
@@ -121,19 +121,19 @@ with <span class="Special">_</span><span class="Italic">emphasis</span><span cla
 with <span class="Special">**</span><span class="Bold">strong emphasis</span><span class="Special">**</span>.
 
 <span class="Special">* </span>list item
-with <span class="Special">[</span><span class="Underlined">a link</span><span class="Special">](</span><span class="Underlined"><a href="http://google.com">http://google.com</a></span><span class="Special">)</span>.
+with <span class="Special">[</span><span class="Underlined">a link</span><span class="Special">]</span><span class="Special">(</span><span class="Underlined"><a href="http://google.com">http://google.com</a></span><span class="Special">)</span>.
 
 <span class="Special">* </span>list items can have <span class="Special">*</span><span class="Italic">inline content</span>
 <span class="Italic">  that spans multiple lines</span><span class="Special">*</span>
 
-<span class="Special">*</span><span class="Italic">this is not a list item but a weak emphasys element beginning at the beginning of the line</span><span class="Special">*</span>
+<span class="Special">*</span><span class="Italic">this is not a list item but a weak emphasis element beginning at the beginning of the line</span><span class="Special">*</span>
 
 <span class="Special">* </span>this is a list item that ends with an asterisk *
 
 Everything that immediately follows a list item is still part of the list item and a list item could not contain (at least for Github but not for the original Dingus interpreter) block elements like headers
 
 <span class="Special">* </span>This is a list item
-# This is not an header, is the continuation
+# This is not an header, is the continuation of the previous list item, an empty line is needed to terminate a list item
 
 <span class="Special">#</span><span class="Title"> This is an header</span>
 </pre>

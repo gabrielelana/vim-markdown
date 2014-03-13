@@ -63,21 +63,53 @@ syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/
 syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell
 syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
 
+
 " /\c\<                                           # case insensitive, beginning of a word
 " \%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\) # the schema is optional
 " \%((C*)\|\[C*\]\|{C*}\|C\)*                     # pair of parenthesis that surround a piece
 "                                                 # of an url or a piece of url, all optional
 " \%((C*)\|\[C*\]\|{C*}\|T*\)*                    # same as above but the terminal part of an
 "                                                 # url could not be punctuation
-syn match markdownUrlLinkInText /\c\<\%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)\%(([-A-Z0-9+&@#/%=~_|$?!:,.]*)\|\[[-A-Z0-9+&@#/%=~_|$?!:,.]*\]\|{[-A-Z0-9+&@#/%=~_|$?!:,.]*}\|[-A-Z0-9+&@#/%=~_|$?!:,.]\)*\%(([-A-Z0-9+&@#/%=~_|$?!:,.]*)\|\[[-A-Z0-9+&@#/%=~_|$?!:,.]*\]\|{[-A-Z0-9+&@#/%=~_|$?!:,.]*}\|[-A-Z0-9+&@#/%=~_|$]*\)/ contains=@NoSpell
+let b:markdown_syntax_url =
+  \ '\c'
+  \ . '\%('
+  \ .   '\%(\<\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)'
+  \ .   '\|'
+  \ .   '\/\%([^/]\)\@='
+  \ . '\)'
+  \ . '\%('
+  \ .   '\\'
+  \ .   '\|'
+  \ .   '([-A-Z0-9+&@#/%=~_|$?!:,.]*\\\?)'
+  \ .   '\|'
+  \ .   '\[[-A-Z0-9+&@#/%=~_|$?!:,.]*\\\?\]'
+  \ .   '\|'
+  \ .   '{[-A-Z0-9+&@#/%=~_|$?!:,.]*\\\?}'
+  \ .   '\|'
+  \ .   '[-A-Z0-9+&@#/%=~_|$?!:,.]'
+  \ . '\)*'
+  \ . '\%('
+  \ .   '\\'
+  \ .   '\|'
+  \ .   '([-A-Z0-9+&@#/%=~_|$?!:,.]*\\\?)'
+  \ .   '\|'
+  \ .   '\[[-A-Z0-9+&@#/%=~_|$?!:,.]*\\\?\]'
+  \ .   '\|'
+  \ .   '{[-A-Z0-9+&@#/%=~_|$?!:,.]*\\\?}'
+  \ .   '\|'
+  \ .   '[-A-Z0-9+&@#/%=~_|$]\+'
+  \ . '\)'
+
+execute 'syn match markdownUrlLinkInText /' . b:markdown_syntax_url . '/ contains=@NoSpell'
+
 
 
 " \%(\\\)\@<!\[                     # a `[` not preceded by a backslash
 " \%(\\\]\|\n\%(\n)\@!\|[^\]]\)\{-} # anything that is not a `]`
 "                                   # escaped square brackets are allowed `\]`
 "                                   # no more than one consecutive newline is allowed
-" \%(\\\)\@<!\]                     # a `[` not preceded by a backslash
-" \%(\s*\|\n\%\(\n\)\@!\)           # separated by optional space or newline (no more than one)
+" \%(\\\)\@<!\]                     # a `]` not preceded by a backslash
+" \%(\s*\|\n\%\(\n\)\@!\)           # separated by optional space or newline (but no more than one)
 " \%(\\\)\@<!(                      # a `(` not preceded by a backslash
 " \%(\\)\|\_[^)]\)\{-}              # anything that is not a `)` or is a `\)` or is an newline (`\_`)
 " \%(\\)\|\n\%(\n)\@!\|[^)]\)\{-}   # anything that is not a `)`
@@ -85,16 +117,93 @@ syn match markdownUrlLinkInText /\c\<\%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp
 "                                   # no more than one consecutive newline is allowed
 " \%(\\\)\@<!)                      # a `)` not preceded by a backslash
 
-syn match markdownLinkContainer /\%(\\\)\@<!\[\%(\\\]\|\n\%(\n\)\@!\|[^\]]\)\{-}\%(\\\)\@<!\]\%(\s*\|\n\%\(\n\)\@!\)\%(\\\)\@<!(\%(\\)\|\n\%\(\n\)\@!\|[^)]\)\{-}\%(\\\)\@<!)/ contains=markdownLinkText,markdownLinkURL transparent
 
-syn region markdownLinkText matchgroup=markdownLinkDelimiter start="\[" skip="\\]" end="\]"
-  \ keepend contained skipwhite skipempty contains=@markdownInline " nextgroup=markdownLinkUrl
+let b:markdown_syntax_square_brackets_block =
+  \ '\%(\\\)\@<!\['
+  \ . '\%('
+  \ .   '\[.\{-\}\]'
+  \ .   '\|'
+  \ .   '\\\[.\{-\}\\\]'
+  \ .   '\|'
+  \ .   '\n\%(\n\)\@!'
+  \ .   '\|[^\[\]]*'
+  \ .   '\|'
+  \ .   '\\\['
+  \ .   '\|'
+  \ .   '\\\]'
+  \ . '\)\+'
+  \ . '\]'
 
-syn region markdownLinkUrl matchgroup=markdownLinkDelimiter start="(" skip="\\)" end=")"
-  \ keepend contained contains=markdownLinkTitle,@NoSpell
+let b:markdown_syntax_round_brackets_block =
+  \ '\%(\\\)\@<!('
+  \ . '\%('
+  \ .   '(.\{-\})'
+  \ .   '\|'
+  \ .   '\\(.\{-\}\\)'
+  \ .   '\|'
+  \ .   '\n\%(\n\)\@!'
+  \ .   '\|'
+  \ .   '[^()]*'
+  \ .   '\|'
+  \ .   '\\('
+  \ .   '\|'
+  \ .   '\\)'
+  \ . '\)\+'
+  \ . ')'
 
-syn region markdownLinkTitle start=/\s*['"]/ skip=/\\['"]/ end=/['"]\_s*)/
+execute 'syn match markdownLinkContainer '
+  \ . 'contains=markdownLinkTextContainer,markdownLinkUrlContainer transparent '
+  \ . '/'
+  \ . b:markdown_syntax_square_brackets_block
+  \ . '\%(\s*\|\n\%\(\n\)\@!\)'
+  \ . '\%('
+  \ .   b:markdown_syntax_round_brackets_block
+  \ .   '\|'
+  \ .   b:markdown_syntax_square_brackets_block
+  \ . '\)'
+  \ . '/'
+
+execute 'syn match markdownLinkTextContainer contained '
+  \ . 'contains=markdownLinkText '
+  \ . '/'
+  \ . b:markdown_syntax_square_brackets_block
+  \ . '/'
+
+execute 'syn match markdownLinkText contained '
+  \ . 'contains=@markdownInline '
+  \ . '/'
+  \ . b:markdown_syntax_square_brackets_block
+  \ . '/'
+  \ . 'hs=s+1,he=e-1'
+
+execute 'syn match markdownLinkUrlContainer contained '
+  \ . 'contains=markdownLinkUrl,markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted '
+  \ . '/'
+  \ . b:markdown_syntax_round_brackets_block
+  \ . '/'
+
+execute 'syn match markdownLinkUrl contained '
+  \ . 'contains=@NoSpell '
+  \ . '/'
+  \ . b:markdown_syntax_url
+  \ . '/'
+
+syn region markdownLinkTitleSingleQuoted start=/\s*'/ skip=/\\'/ end=/'\_s*/
   \ keepend contained contains=@markdownInline
+
+syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/
+  \ keepend contained contains=@markdownInline
+
+
+
+
+
+
+
+
+
+
+
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
 syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
@@ -471,8 +580,10 @@ hi def link markdownEmailLinkInText         Underlined
 
 hi def link markdownLinkText                Underlined
 hi def link markdownLinkUrl                 Underlined
-hi def link markdownLinkDelimiter           Delimiter
-hi def link markdownLinkTitle               Bold
+hi def link markdownLinkTitleSingleQuoted   Bold
+hi def link markdownLinkTitleDoubleQuoted   Bold
+hi def link markdownLinkUrlContainer        Delimiter
+hi def link markdownLinkTextContainer       Delimiter
 
 hi def link markdownCodeDelimiter           Delimiter
 hi def link markdownCode                    String

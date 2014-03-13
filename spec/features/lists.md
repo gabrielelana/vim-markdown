@@ -79,7 +79,7 @@ A single list delimiter followed by a newline is not a list item
 
 A single list delimiter followed by at least one space is a list item
 
-* 
+*
 
 List with inline elements
 
@@ -95,13 +95,13 @@ with [a link](http://google.com).
 * list items can have *inline content
   that spans multiple lines*
 
-*this is not a list item but a weak emphasys element beginning at the beginning of the line*
+*this is not a list item but a weak emphasis element beginning at the beginning of the line*
 
 * this is a list item that ends with an asterisk *
 
 Everything that immediately follows a list item is still part of the list item and a list item could not contain (at least for Github but not for the original Dingus interpreter) block elements like headers
 
 * This is a list item
-# This is not an header, is the continuation
+# This is not an header, is the continuation of the previous list item, an empty line is needed to terminate a list item
 
 # This is an header

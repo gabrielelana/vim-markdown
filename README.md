@@ -29,6 +29,11 @@ I would use this section until I have a proper documentation for this plugin
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 
 
+# Known Limitations
+Sadly Vim doesn't gives you a full blown parser to do syntax highlighting so there are a few limitation
+* inline links URLs cannot contain spaces, you need to encode them with `%20`
+
+
 # BUGS
 * `formatlistpat` doesn't work for ordered lists
 * avoid effect of `formatoptions` with horizontal rules (asterisks and dashes)
