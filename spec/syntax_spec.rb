@@ -16,7 +16,8 @@ features = [
   "weak_emphasis",
   "inline_html",
   "inline_links",
-  "inline_references"
+  "inline_references",
+  "code_blocks"
 ]
 
 describe "markdown syntax" do

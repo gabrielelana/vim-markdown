@@ -29,11 +29,6 @@ I would use this section until I have a proper documentation for this plugin
 * when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
 
 
-# Known Limitations
-Sadly Vim doesn't gives you a full blown parser to do syntax highlighting so there are a few limitation
-* inline links URLs cannot contain spaces, you need to encode them with `%20`
-
-
 # BUGS
 * `formatlistpat` doesn't work for ordered lists
 * avoid effect of `formatoptions` with horizontal rules (asterisks and dashes)
@@ -41,7 +36,6 @@ Sadly Vim doesn't gives you a full blown parser to do syntax highlighting so the
 
 # TODO
 * syntax
-  * pre formatted blocks
   * todo lists (GFM)
   * tables (GFM)
 * real-time auto-formatting tables if Tabular plugin is installed
@@ -69,3 +63,7 @@ Sadly Vim doesn't gives you a full blown parser to do syntax highlighting so the
     * start of the next paragraph `}`
     * start of the previous paragraph `{`
   * inline elements
+
+
+# Corner Cases Not Yet Supported
+* syntax support for fenced code blocks and code blocks in list items

@@ -34,9 +34,10 @@ syn match markdownRule "^\s*_\s*_\s*_[[:space:]_]*$"
 syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
 syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
 
-syn region markdownCode matchgroup=markdownCodeDelimiter start="`" end="`" keepend contains=@NoSpell
-syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" keepend contains=@NoSpell
-syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$" contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`" end="`" keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" keepend contains=@NoSpell
+syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$" contains=@NoSpell
+syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
 
 syn match markdownStrikeDelimiter "\~\~" contained
 syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\|\n\)\{-}\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter,@markdownInline
@@ -245,11 +246,10 @@ syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s+[^>]\{-}\/>\|\
 syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
 syn cluster markdownInline contains=
-  \ markdownItalic,markdownBold,markdownBoldItalic,
-  \ markdownStrike,markdownCode,markdownPullRequestLinkInText,
-  \ markdownUrlLinkInText,markdownUserLinkInText,markdownEmailLinkInText,
-  \ markdownEmoticonsKeyword,markdownLinkContainer,markdownXmlComment,
-  \ markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
+  \ markdownItalic,markdownBold,markdownBoldItalic,markdownStrike,markdownInlineCode,
+  \ markdownPullRequestLinkInText,markdownUrlLinkInText,markdownUserLinkInText,
+  \ markdownEmailLinkInText,markdownEmoticonsKeyword,markdownLinkContainer,
+  \ markdownXmlComment,markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -622,7 +622,9 @@ hi def link markdownLinkTextContainer       Delimiter
 hi def link markdownLinkReference           Bold
 
 hi def link markdownCodeDelimiter           Delimiter
-hi def link markdownCode                    String
+hi def link markdownInlineCode              String
+hi def link markdownFencedCodeBlock         String
+hi def link markdownCodeBlock               String
 
 hi def link markdownStrike                  NonText
 hi def link markdownStrikeDelimiter         Delimiter
