@@ -8,10 +8,19 @@ nnoremap <silent> <Leader>r :
   \   syn clear <BAR>
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
+  \   unlet! g:markdown_edit_code_blocks <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
+  \   source ftplugin/markdown_edit_code_blocks.vim <BAR>
   \ endif <CR>
+
+augroup MdAdvisedMappings
+  autocmd!
+  autocmd FileType markdown nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
+  autocmd FileType markdown vnoremap <buffer> <Leader>e :'<,'>MdEditCodeBlock<CR>
+augroup END
+
 
 " display all the highgligh groups with relative colors
 nnoremap <silent> <Leader>g :source $VIMRUNTIME/syntax/hitest.vim<CR>

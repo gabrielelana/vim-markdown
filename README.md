@@ -28,46 +28,53 @@ I would use this section until I have a proper documentation for this plugin
 * `]]` start of the next header
 * `[[` start of the previous header
 
+## Advised Mappings
+```viml
+nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
+vnoremap <buffer> <Leader>e :'<,'>MdEditCodeBlock<CR>
+```
+
 ## Editing
-* when hitting `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item
-* when hitting `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
-* when hitting `<Enter>` on a list item with no text in it (freshly created) it will delete the list item (aka everything till the column 0)
+* `i_<Tab>`/`i_<S-Tab>` on a list item it will indent/unindent the item
+* `i_<Tab>`/`i_<S-Tab>` on a blockquote it will increase/decrease the quote level
+* `i_<Enter>` on a list item with no text in it (freshly created) it will delete everything till the column 0
 
 
-# BUGS
+# Known Bugs
 * `formatlistpat` doesn't work for ordered lists
 * avoid effect of `formatoptions` with horizontal rules (asterisks and dashes)
+* when back after editing a code block it doesn't go back to the saved position
 
 
 # TODO
-* syntax
-  * todo lists (GFM)
-  * tables (GFM)
-* real-time auto-formatting tables if Tabular plugin is installed
-* emoji (GFM)
+* Code Blocks
+  * edit range code block
+  * edit html code block
+  * edit jekyll front matter code block
+  * explain in this file why I chose to avoid to highlight nested block elements
+* Check Lists (GFM)
+  * syntax highlight
+  * when on over check item `<Space>` will check/uncheck it
+* Tables (GFM)
+  * syntax highlight
+  * auto formatting tables if Tabular plugin is installed
+* Emoji (GFM)
   * start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
   * remove duplication between syntax keywords and dictionary completion
   * more `iabbr`
-* todo lists (GFM)
-  * when on over todo item `<Leader><Space>` will check/uncheck it
-* lists
-  * when hitting `<BS>` on a list item with no text in it (freshly created) it will delete the list item (everything till the column 0)
-  * when hitting `<C-K>` on a list item it will swap it with the item above (if it exists)
-  * when hitting `<C-J>` on a list item it will swap it with the item below (if it exists)
-* indentation
-  * `>` and `<` in normal mode should properly indent/unindent list items and quote lines
-  * `<C-D>` and `<C-T>` in insert mode should properly indent/unindent list items and quote lines
-* fenced code blocks (GFM)
-  * open next quote level of a blockquote element in a scratch buffer
-  * edit it with markdown syntax highlight
-  * on exit copy the buffer's content back in the original file with the original quote level
-  * explain in this file why I chose to avoid to highlight nested block elements
-* custom text objects
-  * list/todo item
+* Lists
+  * `i_<BS>` on a list item with no text in it (freshly created) it will delete everything till the column 0
+  * `<C-K>` on a list item it will swap it with the item above (if it exists)
+  * `<C-J>` on a list item it will swap it with the item below (if it exists)
+  * `>` and `<` should properly indent/unindent list items
+  * `i_<C-D>` and `i_<C-T>` should properly indent/unindent list items and quote lines
+* Define custom text objects for:
+  * list items
+  * check list items
   * paragraph
     * start of the next paragraph `}`
     * start of the previous paragraph `{`
-  * inline elements
+  * other inline elements
 
 
 # Corner Cases Not Yet Supported
