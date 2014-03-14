@@ -3,6 +3,7 @@ require "nokogiri"
 require_relative "spec_helper"
 
 features = [
+  "jekyll",
   "lists",
   "autolinks",
   "blockquotes",

@@ -2,6 +2,11 @@
 ... This is not ready by any means to be used, stay tuned :-)
 
 
+# Highlights
+* Strong support for the Markdown flavour implemented by Github: what you see in Vim is what you get on Github (fenced code blocks, tables, check lists, emoji, ...)
+* Detects Jekyll files and automatically adds support for Liquid template engine
+
+
 # Why?
 I wanted a strong support for the markdown flavour implemented by Github, I wanted a syntax highlight that would mirror the result I would find later on Github, I wanted a syntax highlight that would not break easily, I wanted a syntax highlight that I could rely on (aka rapid feedback), I wanted something more that a mere syntax highlight. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) unfortunately it's so loosely defined that there are *flavours* of markdown that are subtly incompatible from each other, the [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
 

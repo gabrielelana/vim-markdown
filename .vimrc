@@ -9,6 +9,7 @@ nnoremap <silent> <Leader>r :
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
   \   source syntax/markdown.vim <BAR>
+  \   source syntax/markdown_jekyll.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
   \ endif <CR>
 
