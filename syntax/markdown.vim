@@ -242,7 +242,7 @@ execute 'syn match markdownLinkReference '
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
 syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
-syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s+[^>]\{-}\/>\|\/>\)/ contains=@NoSpell
+syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s\+[^>]\{-}\/>\|\s*\/>\)/ contains=@NoSpell
 syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
 syn cluster markdownInline contains=

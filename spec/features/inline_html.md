@@ -8,6 +8,10 @@
 
 <a href="http://example.com" title="This is an empty element" />
 
+<a href="http://example.com"/>
+
+<br />
+
 This is normal text
 
 * XML <i>element</i> in a list item
