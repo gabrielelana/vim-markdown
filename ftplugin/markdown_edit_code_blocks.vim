@@ -30,7 +30,9 @@ function! s:edit_code_block(bang) range abort
   let code_block['back_to_position'][1] = code_block['from']
   let code_block['back_to_position'][2] = 0
   let b:code_block = code_block
-  execute 'edit ' . code_block['file_path']
+
+  execute 'split ' . code_block['file_path']
+  autocmd BufLeave <buffer> wq
 endfunction
 
 function! s:replace_edited_code_block()
