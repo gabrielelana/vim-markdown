@@ -19,8 +19,8 @@ nnoremap <silent> <Leader>r :
 
 augroup MdAdvisedMappings
   autocmd!
-  autocmd FileType markdown nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
-  autocmd FileType markdown vnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
+  autocmd FileType markdown nnoremap <buffer> <Leader>e :MdEditCodeBlock 'N'<CR>
+  autocmd FileType markdown vnoremap <buffer> <Leader>e :MdEditCodeBlock 'V'<CR>
 augroup END
 
 

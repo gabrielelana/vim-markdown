@@ -3,13 +3,13 @@ if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700
 endif
 let g:markdown_edit_code_blocks_loaded = 1
 
-  " TODO: extract search_block_around(up, down, do)
+" TODO: extract search_block_around(up, down, do)
 " TODO: locate_html_code_block(starting_from)
 " TODO: locate_jekyll_front_matter_code_block(starting_from)
 
 
-function! s:edit_code_block(bang) range abort
-  let code_block = s:locate_range_code_block(a:firstline, a:lastline)
+function! s:edit_code_block(mode) range abort
+  let code_block = s:locate_range_code_block(a:firstline, a:lastline, a:mode)
   if code_block['from'] == 0 || code_block['to'] == 0
     let code_block = s:locate_fenced_code_block(a:firstline)
   endif
@@ -41,7 +41,7 @@ function! s:replace_edited_code_block()
   augroup END
   augroup! MdReplaceEditedCodeBlock
 
-  if b:code_block['to'] - b:code_block['from'] > 0
+  if b:code_block['to'] - b:code_block['from'] >= 0
     execute b:code_block['from'] . ',' b:code_block['to'] . ' delete _'
   endif
   call append(b:code_block['from']-1, readfile(b:code_block['file_path']))
@@ -52,9 +52,9 @@ function! s:replace_edited_code_block()
   unlet! b:code_block
 endfunction
 
-function! s:locate_range_code_block(from, to)
+function! s:locate_range_code_block(from, to, mode)
   let code_block = {'from': 0, 'to': 0, 'language': 'txt'}
-  if a:to > a:from
+  if (a:to > a:from) || (a:mode ==# 'V')
     let code_block['from'] = a:from
     let code_block['to'] = a:to
     let code_block['language'] = 'markdown'
@@ -84,7 +84,7 @@ function! s:locate_fenced_code_block(starting_from)
   return code_block
 endfunction
 
-command! -buffer -bang -nargs=0 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block('<bang>')
+command! -buffer -nargs=1 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block(<args>)
 
 let s:known_file_extensions = {
   \ 'abap': '.abap',
