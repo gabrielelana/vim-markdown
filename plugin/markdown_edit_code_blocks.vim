@@ -81,7 +81,7 @@ function! s:locate_fenced_code_block(starting_from)
   return code_block
 endfunction
 
-command! -buffer -nargs=1 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block(<args>)
+command! -nargs=1 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block(<args>)
 
 let s:known_file_extensions = {
   \ 'abap': '.abap',
