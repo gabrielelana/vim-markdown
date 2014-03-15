@@ -4,7 +4,7 @@
 
 # Highlights
 * Strong support for the Markdown flavour implemented by Github: what you see in Vim is what you get on Github (fenced code blocks, tables, check lists, emoji, ...)
-* Detects Jekyll files and automatically adds support for Liquid template engine
+* Detects Jekyll files and automatically adds support for Liquid template engine and other goodies
 
 
 # Why?
@@ -24,15 +24,19 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 # Documentation
 I would use this section until I have a proper documentation for this plugin
 
-## Motions
-* `]]` start of the next header
-* `[[` start of the previous header
+## Configuration
+* `let g:markdown_include_jekyll_support = 1` to load support to Jekyll files
 
 ## Advised Mappings
+Mappings are not forced to the user, but here are some convenient defaults
 ```viml
 nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
 vnoremap <buffer> <Leader>e :'<,'>MdEditCodeBlock<CR>
 ```
+
+## Motions
+* `]]` start of the next header
+* `[[` start of the previous header
 
 ## Editing
 * `i_<Tab>`/`i_<S-Tab>` on a list item it will indent/unindent the item
@@ -47,6 +51,7 @@ vnoremap <buffer> <Leader>e :'<,'>MdEditCodeBlock<CR>
 
 
 # TODO
+* `g:markdown_include_default_mappings` to load default mappings
 * Code Blocks
   * edit range code block
   * edit html code block

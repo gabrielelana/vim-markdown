@@ -648,4 +648,8 @@ hi def link markdownXmlElement              NonText
 hi def link markdownXmlEmptyElement         NonText
 hi def link markdownXmlEntities             Special
 
+if exists('g:markdown_include_jekyll_support') && g:markdown_include_jekyll_support
+  execute 'runtime! syntax/markdown_jekyll.vim'
+endif
+
 let b:current_syntax = "markdown"

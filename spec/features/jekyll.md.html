@@ -13,9 +13,8 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
-.Title { color: #c000c0; }
+.NonText { color: #8080ff; }
 .Special { color: #c000c0; }
-.Identifier { color: #008080; }
 -->
 </style>
 
@@ -27,34 +26,34 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Identifier">---</span>
-layout: post
-<span class="Title">title: Blogging Like a Hacker</span>
+<span class="Special">---</span>
+<span class="NonText">layout: post</span>
+<span class="NonText">title: Blogging Like a Hacker</span>
 <span class="Special">---</span>
 
-{% include footer.html %}
+<span class="Special">{%</span><span class="NonText"> include footer.html </span><span class="Special">%}</span>
 
-This is a Jekyll output tag {{ post.title }}
+This is a Jekyll output tag <span class="Special">{{</span><span class="NonText"> post.title </span><span class="Special">}}</span>
 
 The following are Jekyll output tag with escape
 
-{{ &quot;{{&quot; }} {{ &quot;{%&quot; }} {{ &quot;}}&quot; }} {{ &quot;%}&quot; }}
+<span class="Special">{{</span><span class="NonText"> &quot;{{&quot; </span><span class="Special">}}</span> <span class="Special">{{</span><span class="NonText"> &quot;{%&quot; </span><span class="Special">}}</span> <span class="Special">{{</span><span class="NonText"> &quot;}}&quot; </span><span class="Special">}}</span> <span class="Special">{{</span><span class="NonText"> &quot;%}&quot; </span><span class="Special">}}</span>
 
-{{ &quot;{%&quot; }} this %}
+<span class="Special">{{</span><span class="NonText"> &quot;{%&quot; </span><span class="Special">}}</span> this %}
 
-{{ &quot;{{&quot; }} this }}
+<span class="Special">{{</span><span class="NonText"> &quot;{{&quot; </span><span class="Special">}}</span> this }}
 
-{{ &quot;{{&quot; }} {{ '&quot;{%&quot;' }} }} this %}
+<span class="Special">{{</span><span class="NonText"> &quot;{{&quot; </span><span class="Special">}}</span> <span class="Special">{{</span><span class="NonText"> '&quot;{%&quot;' </span><span class="Special">}}</span> }} this %}
 
-{{ &quot;{{&quot; }} {{ '&quot;{{&quot;' }} }} this }}
+<span class="Special">{{</span><span class="NonText"> &quot;{{&quot; </span><span class="Special">}}</span> <span class="Special">{{</span><span class="NonText"> '&quot;{{&quot;' </span><span class="Special">}}</span> }} this }}
 
-{% comment %}
-This is a comment
-{% nocomment %}
+<span class="Special">{% comment %}</span>
+<span class="NonText">This is a comment</span>
+<span class="Special">{% nocomment %}</span>
 
-{% raw %}
-This is a raw
-{% noraw %}
+<span class="Special">{% raw %}</span>
+<span class="NonText">This is a raw</span>
+<span class="Special">{% noraw %}</span>
 </pre>
 </body>
 </html>

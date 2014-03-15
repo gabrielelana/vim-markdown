@@ -9,10 +9,12 @@ nnoremap <silent> <Leader>r :
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
   \   unlet! g:markdown_edit_code_blocks <BAR>
+  \   unlet! g:markdown_include_jekyll_support <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
   \   source ftplugin/markdown_edit_code_blocks.vim <BAR>
+  \   let g:markdown_include_jekyll_support = 1 <BAR>
   \ endif <CR>
 
 augroup MdAdvisedMappings
