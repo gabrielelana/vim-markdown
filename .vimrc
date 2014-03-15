@@ -9,7 +9,7 @@ nnoremap <silent> <Leader>r :
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
   \   unlet! g:markdown_edit_code_blocks_loaded <BAR>
-  \   unlet! b:markdown_include_default_mappings_loaded <BAR>
+  \   unlet! b:markdown_default_mappings_loaded <BAR>
   \   let g:markdown_include_jekyll_support = 0 <BAR>
   \   let g:markdown_include_default_mappings = 1 <BAR>
   \   source syntax/markdown.vim <BAR>
