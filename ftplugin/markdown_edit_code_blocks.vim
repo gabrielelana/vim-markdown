@@ -3,12 +3,16 @@ if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700
 endif
 let g:markdown_edit_code_blocks_loaded = 1
 
+  " TODO: extract search_block_around(up, down, do)
 " TODO: locate_html_code_block(starting_from)
 " TODO: locate_jekyll_front_matter_code_block(starting_from)
 
+
 function! s:edit_code_block(bang) range abort
-  " TODO: if a:firstline != a:lastline then we already have our range
-  let code_block = s:locate_fenced_code_block(a:firstline)
+  let code_block = s:locate_range_code_block(a:firstline, a:lastline)
+  if code_block['from'] == 0 || code_block['to'] == 0
+    let code_block = s:locate_fenced_code_block(a:firstline)
+  endif
   if code_block['from'] == 0 || code_block['to'] == 0
     echo 'Sorry, I did not find any suitable code block to edit'
     return
@@ -19,18 +23,14 @@ function! s:edit_code_block(bang) range abort
     let code_block['file_extension'] = s:known_file_extensions[code_block['language']]
   endif
   let code_block['file_path'] = tempname() . code_block['file_extension']
-  let code_block['content'] = getline(code_block['from']+1, code_block['to']-1)
+  let code_block['content'] = getline(code_block['from'], code_block['to'])
 
   call writefile(code_block['content'], code_block['file_path'])
   augroup MdReplaceEditedCodeBlock
     autocmd BufEnter <buffer> call s:replace_edited_code_block()
   augroup END
 
-  let code_block['back_to_position'] = getpos('.')
-  let code_block['back_to_position'][1] = code_block['from']
-  let code_block['back_to_position'][2] = 0
   let b:code_block = code_block
-
   execute 'split ' . code_block['file_path']
   autocmd BufLeave <buffer> wq
 endfunction
@@ -41,10 +41,10 @@ function! s:replace_edited_code_block()
   augroup END
   augroup! MdReplaceEditedCodeBlock
 
-  if b:code_block['to'] - b:code_block['from'] > 1
-    execute b:code_block['from']+1 . ',' b:code_block['to']-1 . ' delete _'
+  if b:code_block['to'] - b:code_block['from'] > 0
+    execute b:code_block['from'] . ',' b:code_block['to'] . ' delete _'
   endif
-  call append(b:code_block['from'], readfile(b:code_block['file_path']))
+  call append(b:code_block['from']-1, readfile(b:code_block['file_path']))
   call setpos('.', b:code_block['back_to_position'])
 
   execute 'silent bwipeout! ' . b:code_block['file_path']
@@ -52,21 +52,36 @@ function! s:replace_edited_code_block()
   unlet! b:code_block
 endfunction
 
+function! s:locate_range_code_block(from, to)
+  let code_block = {'from': 0, 'to': 0, 'language': 'txt'}
+  if a:to > a:from
+    let code_block['from'] = a:from
+    let code_block['to'] = a:to
+    let code_block['language'] = 'markdown'
+    let code_block['back_to_position'] = getpos('.')
+  endif
+  return code_block
+endfunction
+
 function! s:locate_fenced_code_block(starting_from)
-  " TODO: extract search_block_around(up, down, do)
+  let code_block = {'from': 0, 'to': 0, 'language': 'txt'}
   let initial_position = getpos('.')
   let search_position = copy(initial_position)
   let search_position[1] = a:starting_from
   let search_position[2] = 0
   cal setpos('.', search_position)
-  let code_block_from = search('^```\w\+\(\s.*$\|$\)', 'cbnW')
-  let code_block_to = search('^```$', 'cnW')
+  let code_block['from'] = search('^```\w\+\(\s.*$\|$\)', 'cbnW')
+  let code_block['to'] = search('^```$', 'cnW')
   call setpos('.', initial_position)
-  if code_block_from == 0 || code_block_to == 0
-    return {'from': 0, 'to': 0, 'language': 'txt'}
+  if code_block['from'] > 0 && code_block['to'] > 0
+    let code_block['language'] = substitute(getline(code_block['from']), '```', '', '')
+    let code_block['back_to_position'] = initial_position
+    let code_block['back_to_position'][1] = code_block['from']
+    let code_block['back_to_position'][2] = 0
+    let code_block['from'] = code_block['from'] + 1
+    let code_block['to'] = code_block['to'] - 1
   endif
-  let language = substitute(getline(code_block_from), '```', '', '')
-  return {'from': code_block_from, 'to': code_block_to, 'language': language}
+  return code_block
 endfunction
 
 command! -buffer -bang -nargs=0 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block('<bang>')
