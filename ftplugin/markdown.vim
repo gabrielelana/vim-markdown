@@ -1,6 +1,4 @@
-if exists("b:did_ftplugin")
-  finish
-endif
+if exists('b:did_ftplugin') | finish | endif
 
 setlocal textwidth=0
 setlocal ts=2 sw=2 expandtab smarttab

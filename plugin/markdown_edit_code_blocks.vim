@@ -1,7 +1,4 @@
-if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700
-  finish
-endif
-let g:markdown_edit_code_blocks_loaded = 1
+if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700 | finish | endif
 
 " TODO: extract search_block_around(up, down, do)
 " TODO: locate_html_code_block(starting_from)
@@ -297,3 +294,5 @@ let s:known_file_extensions = {
   \ 'wisp': '.wisp',
   \ 'xbase': '.prg',
 \ }
+
+let g:markdown_edit_code_blocks_loaded = 1

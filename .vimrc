@@ -9,19 +9,15 @@ nnoremap <silent> <Leader>r :
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
   \   unlet! g:markdown_edit_code_blocks_loaded <BAR>
-  \   unlet! g:markdown_include_jekyll_support <BAR>
+  \   unlet! b:markdown_include_default_mappings_loaded <BAR>
+  \   let g:markdown_include_jekyll_support = 0 <BAR>
+  \   let g:markdown_include_default_mappings = 1 <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
+  \   source plugin/markdown_edit_code_blocks.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
-  \   source ftplugin/markdown_edit_code_blocks.vim <BAR>
-  \   let g:markdown_include_jekyll_support = 1 <BAR>
+  \   source ftplugin/markdown_default_mappings.vim <BAR>
   \ endif <CR>
-
-augroup MdAdvisedMappings
-  autocmd!
-  autocmd FileType markdown nnoremap <buffer> <Leader>e :MdEditCodeBlock 'N'<CR>
-  autocmd FileType markdown vnoremap <buffer> <Leader>e :MdEditCodeBlock 'V'<CR>
-augroup END
 
 
 " display all the highgligh groups with relative colors

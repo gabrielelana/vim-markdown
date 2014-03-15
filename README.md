@@ -25,14 +25,13 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 I would use this section until I have a proper documentation for this plugin
 
 ## Configuration
-* `let g:markdown_include_jekyll_support = 1` to load support to Jekyll files
+* `let g:markdown_include_jekyll_support = 1` to load support to Jekyll files (default: 1)
+* `let g:markdown_include_default_mappings = 1` to load default mappings (default: 0)
 
-## Advised Mappings
-Mappings are not forced to the user, but here are some convenient defaults
-```viml
-nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
-vnoremap <buffer> <Leader>e :'<,'>MdEditCodeBlock<CR>
-```
+## Default Mappings
+All default mappings are local to markdown buffers
+* `NORMAL_MODE` `<Leader>e` edit the current code block in another buffer with a guessed file type
+* `VISUAL_MODE` `<Leader>e` edit the visual block in another buffer with markdown file type
 
 ## Motions
 * `]]` start of the next header
