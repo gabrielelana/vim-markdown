@@ -41,16 +41,16 @@ function! s:replace_edited_code_block()
   augroup END
   augroup! MdReplaceEditedCodeBlock
 
-  execute b:code_block['from']+1 . ',' b:code_block['to']-1 . ' delete _'
+  if b:code_block['to'] - b:code_block['from'] > 1
+    execute b:code_block['from']+1 . ',' b:code_block['to']-1 . ' delete _'
+  endif
   call append(b:code_block['from'], readfile(b:code_block['file_path']))
-  " XXX: it doesn't set the position???
   call setpos('.', b:code_block['back_to_position'])
 
   execute 'silent bwipeout! ' . b:code_block['file_path']
   call delete(b:code_block['file_path'])
   unlet! b:code_block
 endfunction
-
 
 function! s:locate_fenced_code_block(starting_from)
   " TODO: extract search_block_around(up, down, do)
