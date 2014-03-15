@@ -1,7 +1,7 @@
-if exists('g:markdown_edit_code_blocks') || &cp || v:version < 700
+if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700
   finish
 endif
-let g:markdown_edit_code_blocks = 1
+let g:markdown_edit_code_blocks_loaded = 1
 
 " TODO: locate_html_code_block(starting_from)
 " TODO: locate_jekyll_front_matter_code_block(starting_from)

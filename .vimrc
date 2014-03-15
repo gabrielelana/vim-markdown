@@ -8,7 +8,7 @@ nnoremap <silent> <Leader>r :
   \   syn clear <BAR>
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
-  \   unlet! g:markdown_edit_code_blocks <BAR>
+  \   unlet! g:markdown_edit_code_blocks_loaded <BAR>
   \   unlet! g:markdown_include_jekyll_support <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
