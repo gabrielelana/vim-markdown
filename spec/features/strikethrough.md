@@ -3,9 +3,9 @@
 ~~multiple line
 strike through~~
 
-the end could not be escaped ~~this is striked\~~
+The end could not be escaped ~~this is striked\~~
 
-the begin could be escaped \~~this is not striked~~
+The begin could be escaped \~~this is not striked~~
 
 * this is a list ~~with a strikethrough~~
 
