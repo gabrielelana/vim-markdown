@@ -5,6 +5,8 @@ strike through~~
 
 The end could not be escaped ~~this is striked\~~
 
+There is no escape in the middle ~~this is \~~ striked~~ so the end is not striked
+
 The begin could be escaped \~~this is not striked~~
 
 * this is a list ~~with a strikethrough~~
