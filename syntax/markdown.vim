@@ -11,41 +11,20 @@ syn spell toplevel
 syn sync minlines=342
 syn case ignore
 
-syn region markdownH1 matchgroup=markdownHeadingDelimiter start="^#"      end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH2 matchgroup=markdownHeadingDelimiter start="^##"     end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH3 matchgroup=markdownHeadingDelimiter start="^###"    end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH4 matchgroup=markdownHeadingDelimiter start="^####"   end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH5 matchgroup=markdownHeadingDelimiter start="^#####"  end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH6 matchgroup=markdownHeadingDelimiter start="^######" end="#*\s*$" display oneline contains=@markdownInline
 
-syn match markdownH1 "^.\+\n=\+$" display contains=@markdownInline,markdownHeadingUnderline
-syn match markdownH2 "^.\+\n-\+$" display contains=@markdownInline,markdownHeadingUnderline
-syn match markdownHeadingUnderline "^[=-]\+$" display contained
+" {{{ INLINE ELEMENTS
 
-syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
-syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
-  \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
-  \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
-
-syn match markdownRule "^\s*\*\s*\*\s*\*[[:space:]*]*$" display
-syn match markdownRule "^\s*-\s*-\s*-[[:space:]-]*$" display
-syn match markdownRule "^\s*_\s*_\s*_[[:space:]_]*$" display
-
-syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
-syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
-
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`" end="`" display keepend contains=@NoSpell
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" display keepend contains=@NoSpell
-syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$" contains=@NoSpell
-syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
-
-syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\|\n\)\{-}\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter,@markdownInline
-syn match markdownStrikeDelimiter "\~\~" contained
+syn cluster markdownInline contains=
+  \ markdownItalic,markdownBold,markdownBoldItalic,markdownStrike,markdownInlineCode,
+  \ markdownPullRequestLinkInText,markdownUrlLinkInText,markdownUserLinkInText,
+  \ markdownEmailLinkInText,markdownLinkContainer,markdownXmlComment,
+  \ markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
 
 syn region markdownItalic matchgroup=markdownInlineDelimiter contains=markdownItalic
   \ start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*"
 syn region markdownItalic matchgroup=markdownInlineDelimiter contains=markdownItalic
   \ start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_"
+
 syn region markdownBold matchgroup=markdownInlineDelimiter contains=markdownBold
   \ start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*"
 syn region markdownBold matchgroup=markdownInlineDelimiter contains=markdownBold
@@ -60,17 +39,21 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
 
+syn match markdownStrike "\%(\\\)\@<!\~\~\%(\S\)\@=\%(.\|\n\)\{-}\%(\S\)\@<=\~\~" contains=markdownStrikeDelimiter,@markdownInline
+syn match markdownStrikeDelimiter "\~\~" contained
+
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`" end="`" display keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" display keepend contains=@NoSpell
+
 syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/ display
 syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell display
 syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell display
 
+syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
+syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
+syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s\+[^>]\{-}\/>\|\s*\/>\)/ contains=@NoSpell
+syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
-" /\c\<                                           # case insensitive, beginning of a word
-" \%(\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\) # the schema is optional
-" \%((C*)\|\[C*\]\|{C*}\|C\)*                     # pair of parenthesis that surround a piece
-"                                                 # of an url or a piece of url, all optional
-" \%((C*)\|\[C*\]\|{C*}\|T*\)*                    # same as above but the terminal part of an
-"                                                 # url could not be punctuation
 let b:markdown_syntax_url =
   \ '\c'
   \ . '<\?'
@@ -106,9 +89,7 @@ let b:markdown_syntax_url =
   \ .   '[-A-Z0-9+&@#/%=~_|$]\+'
   \ . '\)'
   \ . '>\?'
-
 execute 'syn match markdownUrlLinkInText /' . b:markdown_syntax_url . '/ contains=@NoSpell display'
-
 
 " something encosed in square brackets
 " could not be preceded by a backslash
@@ -221,6 +202,26 @@ syn region markdownLinkTitleSingleQuoted start=/\s*'/ skip=/\\'/ end=/'\_s*/ dis
 syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ display
   \ keepend contained contains=@markdownInline
 
+" }}} INLINE ELEMENTS
+
+
+" {{{ ANCHORED BLOCKS
+
+syn region markdownH1 matchgroup=markdownHeadingDelimiter start="^#"      end="#*\s*$" display oneline contains=@markdownInline
+syn region markdownH2 matchgroup=markdownHeadingDelimiter start="^##"     end="#*\s*$" display oneline contains=@markdownInline
+syn region markdownH3 matchgroup=markdownHeadingDelimiter start="^###"    end="#*\s*$" display oneline contains=@markdownInline
+syn region markdownH4 matchgroup=markdownHeadingDelimiter start="^####"   end="#*\s*$" display oneline contains=@markdownInline
+syn region markdownH5 matchgroup=markdownHeadingDelimiter start="^#####"  end="#*\s*$" display oneline contains=@markdownInline
+syn region markdownH6 matchgroup=markdownHeadingDelimiter start="^######" end="#*\s*$" display oneline contains=@markdownInline
+
+syn match markdownH1 "^.\+\n=\+$" display contains=@markdownInline,markdownHeadingUnderline
+syn match markdownH2 "^.\+\n-\+$" display contains=@markdownInline,markdownHeadingUnderline
+syn match markdownHeadingUnderline "^[=-]\+$" display contained
+
+syn match markdownRule "^\s*\*\s*\*\s*\*[[:space:]*]*$" display
+syn match markdownRule "^\s*-\s*-\s*-[[:space:]-]*$" display
+syn match markdownRule "^\s*_\s*_\s*_[[:space:]_]*$" display
+
 execute 'syn match markdownLinkReference '
   \ . 'contains=markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted,@markdownInline '
   \ . 'display '
@@ -233,6 +234,25 @@ execute 'syn match markdownLinkReference '
   \ . '\)\?'
   \ . '/'
 
+syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
+syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
+
+syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$" contains=@NoSpell
+
+syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
+
+" }}} ANCHORED BLOCKS
+
+
+
+" {{{ NESTED BLOCKS
+
+syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
+syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
+  \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
+  \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
+
+" }}} NESTED BLOCKS
 
 
 
@@ -241,16 +261,13 @@ execute 'syn match markdownLinkReference '
 
 
 
-syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
-syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
-syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s\+[^>]\{-}\/>\|\s*\/>\)/ contains=@NoSpell
-syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
-syn cluster markdownInline contains=
-  \ markdownItalic,markdownBold,markdownBoldItalic,markdownStrike,markdownInlineCode,
-  \ markdownPullRequestLinkInText,markdownUrlLinkInText,markdownUserLinkInText,
-  \ markdownEmailLinkInText,markdownEmoticonsKeyword,markdownLinkContainer,
-  \ markdownXmlComment,markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
+
+
+
+
+
+
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
