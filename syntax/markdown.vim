@@ -42,8 +42,8 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
 syn match markdownStrike /\%(\\\)\@<!\~\~\%(\S\)\@=\_.\{-}\%(\S\)\@<=\~\~/ contains=markdownStrikeDelimiter,@markdownInline
 syn match markdownStrikeDelimiter /\~\~/ contained
 
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`" end="`" display keepend contains=@NoSpell
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" display keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/`/ end=/`/ display keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/`` \=/ end=/ \=``/ display keepend contains=@NoSpell
 
 syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/ display
 syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell display
@@ -207,20 +207,20 @@ syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ dis
 
 " {{{ ANCHORED BLOCKS
 
-syn region markdownH1 matchgroup=markdownHeadingDelimiter start="^#"      end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH2 matchgroup=markdownHeadingDelimiter start="^##"     end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH3 matchgroup=markdownHeadingDelimiter start="^###"    end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH4 matchgroup=markdownHeadingDelimiter start="^####"   end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH5 matchgroup=markdownHeadingDelimiter start="^#####"  end="#*\s*$" display oneline contains=@markdownInline
-syn region markdownH6 matchgroup=markdownHeadingDelimiter start="^######" end="#*\s*$" display oneline contains=@markdownInline
+syn region markdownH1 matchgroup=markdownHeadingDelimiter start=/^#/      end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH2 matchgroup=markdownHeadingDelimiter start=/^##/     end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH3 matchgroup=markdownHeadingDelimiter start=/^###/    end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH4 matchgroup=markdownHeadingDelimiter start=/^####/   end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH5 matchgroup=markdownHeadingDelimiter start=/^#####/  end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH6 matchgroup=markdownHeadingDelimiter start=/^######/ end=/#*\s*$/ display oneline contains=@markdownInline
 
-syn match markdownH1 "^.\+\n=\+$" display contains=@markdownInline,markdownHeadingUnderline
-syn match markdownH2 "^.\+\n-\+$" display contains=@markdownInline,markdownHeadingUnderline
-syn match markdownHeadingUnderline "^[=-]\+$" display contained
+syn match markdownH1 /^.\+\n=\+$/ display contains=@markdownInline,markdownHeadingUnderline
+syn match markdownH2 /^.\+\n-\+$/ display contains=@markdownInline,markdownHeadingUnderline
+syn match markdownHeadingUnderline /^[=-]\+$/ display contained
 
-syn match markdownRule "^\s*\*\s*\*\s*\*[[:space:]*]*$" display
-syn match markdownRule "^\s*-\s*-\s*-[[:space:]-]*$" display
-syn match markdownRule "^\s*_\s*_\s*_[[:space:]_]*$" display
+syn match markdownRule /^\s*\*\s*\*\s*\*[[:space:]*]*$/ display
+syn match markdownRule /^\s*-\s*-\s*-[[:space:]-]*$/ display
+syn match markdownRule /^\s*_\s*_\s*_[[:space:]_]*$/ display
 
 execute 'syn match markdownLinkReference '
   \ . 'contains=markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted,@markdownInline '
@@ -234,10 +234,10 @@ execute 'syn match markdownLinkReference '
   \ . '\)\?'
   \ . '/'
 
-syn match markdownBlockquote "^\s*>\%(.\+\n\)\+\n*" contains=markdownBlockquoteDelimiter
-syn match markdownBlockquoteDelimiter "^\%(\s\|>\)\+" contained
+syn match markdownBlockquote /^\s*>\%(.\+\n\)\+\n*/ contains=markdownBlockquoteDelimiter
+syn match markdownBlockquoteDelimiter /^\%(\s\|>\)\+/ contained
 
-syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start="^\s*```.*$" end="^\s*```\ze\s*$" contains=@NoSpell
+syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start=/^\s*```.*$/ end=/^\s*```\ze\s*$/ contains=@NoSpell
 
 syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
 
