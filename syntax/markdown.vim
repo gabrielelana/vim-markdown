@@ -247,10 +247,10 @@ syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contain
 
 " {{{ NESTED BLOCKS
 
-syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
 syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
   \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
   \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
+syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
 
 " }}} NESTED BLOCKS
 

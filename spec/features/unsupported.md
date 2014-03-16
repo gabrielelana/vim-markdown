@@ -13,3 +13,12 @@
   ```
 
   this is still the second item after code blocks
+
+
+
+
+
+
+After three leading space it's no more a list item but a code block
+
+    * This is not a list item but a code block
