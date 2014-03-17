@@ -46,13 +46,10 @@ All default mappings are local to markdown buffers
 # Known Bugs
 * `formatlistpat` doesn't work for ordered lists
 * avoid effect of `formatoptions` with horizontal rules (asterisks and dashes)
-* when back after editing a code block it doesn't go back to the saved position
 
 
 # TODO
-* `g:markdown_include_default_mappings` to load default mappings
 * Code Blocks
-  * edit range code block
   * edit html code block
   * edit jekyll front matter code block
   * explain in this file why I chose to avoid to highlight nested block elements
@@ -73,13 +70,9 @@ All default mappings are local to markdown buffers
   * `>` and `<` should properly indent/unindent list items
   * `i_<C-D>` and `i_<C-T>` should properly indent/unindent list items and quote lines
 * Define custom text objects for:
-  * list items
-  * check list items
-  * paragraph
-    * start of the next paragraph `}`
-    * start of the previous paragraph `{`
-  * other inline elements
-
-
-# Corner Cases Not Yet Supported
-* syntax support for fenced code blocks and code blocks in list items
+  * List items
+  * Check list items
+  * Paragraph
+    * Start of the next paragraph `}`
+    * Start of the previous paragraph `{`
+  * Other inline elements
