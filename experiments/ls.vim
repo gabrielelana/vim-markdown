@@ -16,8 +16,6 @@ syn match lsH1 /^.\+\n=\+$/ display contains=@lsInline,lsHeadingDelimiter
 syn match lsH2 /^.\+\n-\+$/ display contains=@lsInline,lsHeadingDelimiter
 syn match lsHeadingDelimiter /^[=-]\+$/ display contained
 
-" TODO: blockquotes
-
 " must be put *before* lsCodeBlock because if it's indented too much then it must become an lsCodeBlock
 syn region lsFencedCodeBlock matchgroup=lsFencedCodeBlockDelimiter start=/^\s*```.*$/ end=/^\s*```\ze\s*$/
 
@@ -56,6 +54,7 @@ for s:level in range(1, 42)
     \ .   'lsH5InListItemAtLevel' . (s:level) . ','
     \ .   'lsH6InListItemAtLevel' . (s:level) . ','
     \ .   'lsRuleInListItemAtLevel' . (s:level) . ','
+    \ .   'lsBlockquoteInListItemAtLevel' . (s:level) . ','
     \ .   'lsListItemAtLevel' . (s:level+1) . ','
     \ .   '@lsInline '
     \ . 'start=/^' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+\S\@=/ '
@@ -145,7 +144,17 @@ for s:level in range(1, 42)
   execute 'syn match lsRuleInListItemAtLevel' . (s:level) . ' '
     \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '\s*_\s*_\s*_[[:space:]_]*$/ display'
   execute 'hi def link lsRuleInListItemAtLevel' . (s:level) . ' Identifier'
-endfor
 
+  execute 'syn region lsBlockquoteInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained '
+    \ . 'contains=lsBlockquoteDelimiterInListItemAtLevel' . (s:level) . ',@NoSpell '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '\%(>\s\?\)\+\%(.\)\@=/ '
+    \ . 'end=/\n\n/'
+  execute 'syn match lsBlockquoteDelimiterInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained '
+    \ . '/^' . (s:content_indentation) . '\%(>\s\?\)\+/'
+  execute 'hi def link lsBlockquoteInListItemAtLevel' . (s:level) . ' Comment'
+  execute 'hi def link lsBlockquoteDelimiterInListItemAtLevel' . (s:level) . ' Delimiter'
+endfor
 hi def link lsItemDelimiter Special
 hi def link lsFencedCodeBlockInItemDelimiter Special
