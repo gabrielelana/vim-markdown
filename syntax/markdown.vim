@@ -234,7 +234,7 @@ execute 'syn match markdownLinkReference '
   \ . '\)\?'
   \ . '/'
 
-syn region markdownBlockquote matchgroup=markdownBlockquoteDelimiter start=/^\s*\%(>\s\?\)\+\%(.\)\@=/ end=/\n\n/ contains=markdownBlockquoteDelimiter,@NoSpell
+syn region markdownBlockquote start=/^\s*\%(>\s\?\)\+\%(.\)\@=/ end=/\n\n/ contains=markdownBlockquoteDelimiter,@NoSpell
 syn match markdownBlockquoteDelimiter /^\s*\%(>\s\?\)\+/ contained
 
 syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start=/^\s*```.*$/ end=/^\s*```\ze\s*$/ contains=@NoSpell
