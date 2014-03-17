@@ -65,11 +65,12 @@ syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
 let b:markdown_syntax_url =
   \ '\c'
+  \ . '\%(\W\)\@<='
   \ . '<\?'
   \ . '\%('
   \ .   '\%(\<\%(https\?\|ftp\|file\):\/\/\|www\.\|ftp\.\)'
   \ .   '\|'
-  \ .   '\/\%([^/]\)\@='
+  \ .   '\/\/\?'
   \ . '\)'
   \ . '\%('
   \ .   '&#\?[0-9A-Za-z]\{1,8};'

@@ -17,6 +17,8 @@ URL may be surrounded by parenthesis (http://example.com/foo()) but the surround
 
 Email addresses bill@microsoft.com get auto linked
 
+Path are supported /clean/code/that/works but they must be preceded by a non work because this /is a path and this/is not a path
+
 Pull requests and issues are linked #42
   could be preceded by symbols \#42
   could not be preceded by letters a#42 or numbers 3#42

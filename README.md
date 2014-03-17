@@ -70,9 +70,9 @@ All default mappings are local to markdown buffers
   * `>` and `<` should properly indent/unindent list items
   * `i_<C-D>` and `i_<C-T>` should properly indent/unindent list items and quote lines
 * Define custom text objects for:
-  * List items
-  * Check list items
-  * Paragraph
-    * Start of the next paragraph `}`
-    * Start of the previous paragraph `{`
-  * Other inline elements
+  * list items
+  * check list items
+  * paragraph
+    * start of the next paragraph `}`
+    * start of the previous paragraph `{`
+  * other inline elements
