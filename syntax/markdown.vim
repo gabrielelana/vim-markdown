@@ -256,11 +256,6 @@ syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contain
 
 " {{{ NESTED BLOCKS
 
-" syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
-"   \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
-"   \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
-" syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
-
 for s:level in range(1, 42)
   let s:content_indentation = '\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)'
   let s:level_indentation = '\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)'
