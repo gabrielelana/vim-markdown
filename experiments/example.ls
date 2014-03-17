@@ -67,6 +67,9 @@ Header
 
   ###### H6 in L1
 
+  Hello
+  ===
+
   * L2 list item
 
     # H1 in L2
@@ -82,6 +85,9 @@ Header
   ###### H6 in L1
 
 
+
+Hello
+===
 
 
 * L1

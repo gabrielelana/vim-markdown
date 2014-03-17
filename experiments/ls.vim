@@ -69,8 +69,7 @@ for s:level in range(1, 42)
     \ . 'contained '
     \ . '/\%(^\n\)\@<=\%(\%( \{' . (6+2*s:level)  . ',}\|\t\{' . (1+s:level) . ',}\).*\n\?\)\+$/'
 
-  " TODO: move before lsCodeBlockInListItemAtLevel and constain only minimum
-  " of spaces (ad also tabs)
+  " TODO: move before lsCodeBlockInListItemAtLevel and constain only minimum of spaces (ad also tabs)
   execute 'syn region lsFencedCodeBlockInListItemAtLevel' . (s:level) . ' '
     \ . 'contained '
     \ . 'matchgroup=lsFencedCodeBlockInItemDelimiter '
@@ -114,9 +113,17 @@ for s:level in range(1, 42)
     \ . 'start=/\%(^\n\)\@<=\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)######\%(\s\+\)\@=/ '
     \ . 'end=/#*\s*$/'
 
-  " syn match lsH1 /^.\+\n=\+$/ display contains=@lsInline,lsHeadingDelimiter
-  " syn match lsH2 /^.\+\n-\+$/ display contains=@lsInline,lsHeadingDelimiter
-  " syn match lsHeadingDelimiter /^[=-]\+$/ display contained
+  let s:content_indentation = '\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)'
+
+  execute 'syn match lsH1InListItemAtLevel' . (s:level) . ' '
+    \ 'display contained contains=@lsInline,lsHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
+    \ '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '=\+$/'
+  execute 'syn match lsH1InListItemAtLevel' . (s:level) . ' '
+    \ 'display contained contains=@lsInline,lsHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
+    \ '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '-\+$/'
+  execute 'syn match lsHeadingDelimiterInListItemAtLevel' . (s:level) . ' '.
+    \ 'display contained '
+    \ '/^' . (s:content_indentation) . '\%(-\+\|=\+\)$/'
 
   execute 'hi def link lsListItemAtLevel' . (s:level) . ' Statement'
   execute 'hi def link lsCodeBlockInListItemAtLevel' . (s:level) . ' String'
@@ -127,6 +134,7 @@ for s:level in range(1, 42)
   execute 'hi def link lsH4InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH5InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH6InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link lsHeadingDelimiterInListItemAtLevel' . (s:level) . ' Special'
 endfor
 
 hi def link lsItemDelimiter Special
