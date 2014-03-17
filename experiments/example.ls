@@ -1,3 +1,13 @@
+* L1
+* L1
+- L1
++ L1
+1. L2
+2. L2
+  1. L3
+  2. L3
+
+
 * this is a list item
   this is a list item
   this is an `inline`
@@ -72,10 +82,21 @@ Header
   ###### H6 in L1
 
 
+
+
 * L1
-* L1
-- L1
-+ L1
-1. L1
-2. L1
-  1. L1
+  * L2
+
+    # H1L2
+
+    * L3
+
+    # H1L2
+
+
+* L1-I1
+* L1-I2
+  * L2-I1
+  L2-I1
+
+  L1-I2

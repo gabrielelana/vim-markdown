@@ -16,6 +16,9 @@ syn match lsH1 /^.\+\n=\+$/ display contains=@lsInline,lsHeadingDelimiter
 syn match lsH2 /^.\+\n-\+$/ display contains=@lsInline,lsHeadingDelimiter
 syn match lsHeadingDelimiter /^[=-]\+$/ display contained
 
+" TODO: rules
+" TODO: blockquotes
+
 " must be put *before* lsCodeBlock because if it's indented too much then it must become an lsCodeBlock
 syn region lsFencedCodeBlock matchgroup=lsFencedCodeBlockDelimiter start=/^\s*```.*$/ end=/^\s*```\ze\s*$/
 
@@ -38,7 +41,9 @@ hi def link lsH6 Title
 
 for s:level in range(1, 42)
   execute 'syn region lsListItemAtLevel' . (s:level) . ' '
-    \ . 'matchgroup=lsItemDelimiter keepend '
+    \ . 'matchgroup=lsItemDelimiter '
+    \ . (s:level > 1 ? 'contained ' : '')
+    \ . 'keepend '
     \ . 'contains='
     \ .   'lsCodeBlockInListItemAtLevel' . (s:level) . ','
     \ .   'lsFencedCodeBlockInListItemAtLevel' . (s:level) . ','
@@ -51,7 +56,14 @@ for s:level in range(1, 42)
     \ .   'lsListItemAtLevel' . (s:level+1) . ','
     \ .   '@lsInline '
     \ . 'start=/^\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)\%([-*+]\|\d\.\)\s\+\S\@=/ '
-    \ . 'end=/\n\%(\n\n\)\@=\|\n\%(\n\S\)\@=\|\n\%(\s*\%([-*+]\|\d\.\)\s\+\S\)\@=/'
+    \ . 'end='
+    \ .   '/'
+    \ .     '\n\%(\n\n\)\@='
+    \ .     '\|'
+    \ .     '\n\%(\n\%( \{,' . (2*(s:level-1)) . '}\|\t\{,' . (s:level-1) . '}\)\S\)\@='
+    \ .     '\|'
+    \ .     '\n\%(\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)\%([-*+]\|\d\.\)\s\+\S\)\@='
+    \ .   '/'
 
   execute 'syn match lsCodeBlockInListItemAtLevel' . (s:level) . ' '
     \ . 'contained '
@@ -102,9 +114,9 @@ for s:level in range(1, 42)
     \ . 'start=/\%(^\n\)\@<=\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)######\%(\s\+\)\@=/ '
     \ . 'end=/#*\s*$/'
 
-" syn match lsH1 /^.\+\n=\+$/ display contains=@lsInline,lsHeadingDelimiter
-" syn match lsH2 /^.\+\n-\+$/ display contains=@lsInline,lsHeadingDelimiter
-" syn match lsHeadingDelimiter /^[=-]\+$/ display contained
+  " syn match lsH1 /^.\+\n=\+$/ display contains=@lsInline,lsHeadingDelimiter
+  " syn match lsH2 /^.\+\n-\+$/ display contains=@lsInline,lsHeadingDelimiter
+  " syn match lsHeadingDelimiter /^[=-]\+$/ display contained
 
   execute 'hi def link lsListItemAtLevel' . (s:level) . ' Statement'
   execute 'hi def link lsCodeBlockInListItemAtLevel' . (s:level) . ' String'
