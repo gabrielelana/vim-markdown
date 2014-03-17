@@ -41,6 +41,7 @@ hi def link lsH6 Title
 
 for s:level in range(1, 42)
   let s:content_indentation = '\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)'
+  let s:level_indentation = '\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)'
 
   execute 'syn region lsListItemAtLevel' . (s:level) . ' '
     \ . 'matchgroup=lsItemDelimiter '
@@ -57,14 +58,14 @@ for s:level in range(1, 42)
     \ .   'lsH6InListItemAtLevel' . (s:level) . ','
     \ .   'lsListItemAtLevel' . (s:level+1) . ','
     \ .   '@lsInline '
-    \ . 'start=/^\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)\%([-*+]\|\d\.\)\s\+\S\@=/ '
+    \ . 'start=/^' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+\S\@=/ '
     \ . 'end='
     \ .   '/'
     \ .     '\n\%(\n\n\)\@='
     \ .     '\|'
-    \ .     '\n\%(\n\%( \{,' . (2*(s:level-1)) . '}\|\t\{,' . (s:level-1) . '}\)\S\)\@='
+    \ .     '\n\%(\n' . (s:level_indentation) . '\S\)\@='
     \ .     '\|'
-    \ .     '\n\%(\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)\%([-*+]\|\d\.\)\s\+\S\)\@='
+    \ .     '\n\%(' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+\S\)\@='
     \ .   '/'
 
   execute 'syn match lsCodeBlockInListItemAtLevel' . (s:level) . ' '
