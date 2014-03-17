@@ -16,7 +16,6 @@ syn match lsH1 /^.\+\n=\+$/ display contains=@lsInline,lsHeadingDelimiter
 syn match lsH2 /^.\+\n-\+$/ display contains=@lsInline,lsHeadingDelimiter
 syn match lsHeadingDelimiter /^[=-]\+$/ display contained
 
-" TODO: rules
 " TODO: blockquotes
 
 " must be put *before* lsCodeBlock because if it's indented too much then it must become an lsCodeBlock
@@ -56,6 +55,7 @@ for s:level in range(1, 42)
     \ .   'lsH4InListItemAtLevel' . (s:level) . ','
     \ .   'lsH5InListItemAtLevel' . (s:level) . ','
     \ .   'lsH6InListItemAtLevel' . (s:level) . ','
+    \ .   'lsRuleInListItemAtLevel' . (s:level) . ','
     \ .   'lsListItemAtLevel' . (s:level+1) . ','
     \ .   '@lsInline '
     \ . 'start=/^' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+\S\@=/ '
@@ -67,10 +67,12 @@ for s:level in range(1, 42)
     \ .     '\|'
     \ .     '\n\%(' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+\S\)\@='
     \ .   '/'
+  execute 'hi def link lsListItemAtLevel' . (s:level) . ' Statement'
 
   execute 'syn match lsCodeBlockInListItemAtLevel' . (s:level) . ' '
     \ . 'contained '
     \ . '/\%(^\n\)\@<=\%(\%( \{' . (6+2*s:level)  . ',}\|\t\{' . (1+s:level) . ',}\).*\n\?\)\+$/'
+  execute 'hi def link lsCodeBlockInListItemAtLevel' . (s:level) . ' String'
 
   " TODO: move before lsCodeBlockInListItemAtLevel and constain only minimum of spaces (ad also tabs)
   execute 'syn region lsFencedCodeBlockInListItemAtLevel' . (s:level) . ' '
@@ -78,6 +80,7 @@ for s:level in range(1, 42)
     \ . 'matchgroup=lsFencedCodeBlockInItemDelimiter '
     \ . 'start=/^\z(\s\{' . (2*s:level) . ',' . (5+2*s:level) . '}\)*```.*$/ '
     \ . 'end=/^\z1*```\ze\s*$/'
+  execute 'hi def link lsFencedCodeBlockInListItemAtLevel' . (s:level) . ' String'
 
   execute 'syn region lsH1InListItemAtLevel' . (s:level) . ' '
     \ . 'contained display oneline '
@@ -115,27 +118,33 @@ for s:level in range(1, 42)
     \ . 'contains=@lsInline '
     \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '######\%(\s\+\)\@=/ '
     \ . 'end=/#*\s*$/'
-
-  execute 'syn match lsH1InListItemAtLevel' . (s:level) . ' '
-    \ 'display contained contains=@lsInline,lsHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
-    \ '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '=\+$/'
-  execute 'syn match lsH1InListItemAtLevel' . (s:level) . ' '
-    \ 'display contained contains=@lsInline,lsHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
-    \ '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '-\+$/'
-  execute 'syn match lsHeadingDelimiterInListItemAtLevel' . (s:level) . ' '.
-    \ 'display contained '
-    \ '/^' . (s:content_indentation) . '\%(-\+\|=\+\)$/'
-
-  execute 'hi def link lsListItemAtLevel' . (s:level) . ' Statement'
-  execute 'hi def link lsCodeBlockInListItemAtLevel' . (s:level) . ' String'
-  execute 'hi def link lsFencedCodeBlockInListItemAtLevel' . (s:level) . ' String'
   execute 'hi def link lsH1InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH2InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH3InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH4InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH5InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsH6InListItemAtLevel' . (s:level) . ' Title'
+
+  execute 'syn match lsH1InListItemAtLevel' . (s:level) . ' '
+    \ . 'display contained contains=@lsInline,lsHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '=\+$/'
+  execute 'syn match lsH1InListItemAtLevel' . (s:level) . ' '
+    \ . 'display contained contains=@lsInline,lsHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '-\+$/'
+  execute 'syn match lsHeadingDelimiterInListItemAtLevel' . (s:level) . ' '
+    \ . 'display contained '
+    \ . '/^' . (s:content_indentation) . '\%(-\+\|=\+\)$/'
+  execute 'hi def link lsH1InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link lsH2InListItemAtLevel' . (s:level) . ' Title'
   execute 'hi def link lsHeadingDelimiterInListItemAtLevel' . (s:level) . ' Special'
+
+  execute 'syn match lsRuleInListItemAtLevel' . (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '\s*\*\s*\*\s*\*[[:space:]*]*$/ display'
+  execute 'syn match lsRuleInListItemAtLevel' . (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '\s*-\s*-\s*-[[:space:]-]*$/ display'
+  execute 'syn match lsRuleInListItemAtLevel' . (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '\s*_\s*_\s*_[[:space:]_]*$/ display'
+  execute 'hi def link lsRuleInListItemAtLevel' . (s:level) . ' Identifier'
 endfor
 
 hi def link lsItemDelimiter Special
