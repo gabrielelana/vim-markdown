@@ -78,6 +78,10 @@ A single list delimiter followed by a newline is not a list item
 
 *
 
+A single list delimiter followed by a single space and a newline is a list item
+
+* 
+
 
 List with inline elements
 
