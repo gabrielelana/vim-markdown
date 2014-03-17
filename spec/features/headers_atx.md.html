@@ -14,6 +14,7 @@ pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
 .Title { color: #c000c0; }
+.Constant { color: #c00000; }
 .Special { color: #c000c0; }
 -->
 </style>
@@ -58,7 +59,9 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 
 This is # not an header, this is a normal paragraph and the hash must not be considered a delimiter
 
-<span class="Special">######</span><span class="Title"># Seven hashes is an H6 that begins with an hash character, the last hash must not be considered a delimiter</span>
+####### Seven hashes is an <span class="Special">`</span><span class="Constant">H6</span><span class="Special">`</span> that begins with an hash character for Dingus but for Github those are seven hashes, an header must have a mandatory space before any character
+
+######This is not an header on Github because it lacks the mandatory white space between the hashes (delimiter) and the first character of the header
 </pre>
 </body>
 </html>

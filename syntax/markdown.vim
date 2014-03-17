@@ -207,12 +207,12 @@ syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ dis
 
 " {{{ ANCHORED BLOCKS
 
-syn region markdownH1 matchgroup=markdownHeadingDelimiter start=/^#/      end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH2 matchgroup=markdownHeadingDelimiter start=/^##/     end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH3 matchgroup=markdownHeadingDelimiter start=/^###/    end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH4 matchgroup=markdownHeadingDelimiter start=/^####/   end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH5 matchgroup=markdownHeadingDelimiter start=/^#####/  end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH6 matchgroup=markdownHeadingDelimiter start=/^######/ end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH1 matchgroup=markdownHeadingDelimiter start=/^#\%(\s\+\)\@=/      end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH2 matchgroup=markdownHeadingDelimiter start=/^##\%(\s\+\)\@=/     end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH3 matchgroup=markdownHeadingDelimiter start=/^###\%(\s\+\)\@=/    end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH4 matchgroup=markdownHeadingDelimiter start=/^####\%(\s\+\)\@=/   end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH5 matchgroup=markdownHeadingDelimiter start=/^#####\%(\s\+\)\@=/  end=/#*\s*$/ display oneline contains=@markdownInline
+syn region markdownH6 matchgroup=markdownHeadingDelimiter start=/^######\%(\s\+\)\@=/ end=/#*\s*$/ display oneline contains=@markdownInline
 
 syn match markdownH1 /^.\+\n=\+$/ display contains=@markdownInline,markdownHeadingUnderline
 syn match markdownH2 /^.\+\n-\+$/ display contains=@markdownInline,markdownHeadingUnderline

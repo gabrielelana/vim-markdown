@@ -30,4 +30,6 @@
 
 This is # not an header, this is a normal paragraph and the hash must not be considered a delimiter
 
-####### Seven hashes is an H6 that begins with an hash character, the last hash must not be considered a delimiter
+####### Seven hashes is an `H6` that begins with an hash character for Dingus but for Github those are seven hashes, an header must have a mandatory space before any character
+
+######This is not an header on Github because it lacks the mandatory white space between the hashes (delimiter) and the first character of the header
