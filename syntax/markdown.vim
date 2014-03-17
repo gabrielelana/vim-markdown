@@ -42,8 +42,17 @@ syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
 syn match markdownStrike /\%(\\\)\@<!\~\~\%(\S\)\@=\_.\{-}\%(\S\)\@<=\~\~/ contains=markdownStrikeDelimiter,@markdownInline
 syn match markdownStrikeDelimiter /\~\~/ contained
 
+" Fenced code blocks in list items must be preceded by an empty line This is
+" made this way so that the second rule could eat up something that is not a
+" fenced code block like
+"
+"     * This is a list item
+"       ```ruby
+"       # this is not a fenced code block but it's a code block
+"       def ruby;
+"       ```
 syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/`/ end=/`/ display keepend contains=@NoSpell
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/`` \=/ end=/ \=``/ display keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/``\+/ end=/``\+/ display keepend contains=@NoSpell
 
 syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/ display
 syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell display
@@ -247,10 +256,131 @@ syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contain
 
 " {{{ NESTED BLOCKS
 
-syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
-  \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
-  \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
-syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
+" syn region markdownListItem transparent keepend contains=markdownListDelimiter,markdownListItem,@markdownInline
+"   \ start="^\z(\s*\)\%([-*+]\|\d\.\)\s\+"
+"   \ end="\n\%(^\z1\%([-*+]\|\d\.\)\s\+\|\n\S\)\@="
+" syn match markdownListDelimiter "^\s*\%([-*+]\|\d\.\)\s\+" contained
+
+for s:level in range(1, 42)
+  let s:content_indentation = '\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)'
+  let s:level_indentation = '\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)'
+
+  execute 'syn region markdownListItemAtLevel' . (s:level) . ' '
+    \ . 'matchgroup=markdownItemDelimiter '
+    \ . (s:level > 1 ? 'contained ' : '')
+    \ . 'keepend '
+    \ . 'contains='
+    \ .   'markdownCodeBlockInListItemAtLevel' . (s:level) . ','
+    \ .   'markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ','
+    \ .   'markdownH1InListItemAtLevel' . (s:level) . ','
+    \ .   'markdownH2InListItemAtLevel' . (s:level) . ','
+    \ .   'markdownH3InListItemAtLevel' . (s:level) . ','
+    \ .   'markdownH4InListItemAtLevel' . (s:level) . ','
+    \ .   'markdownH5InListItemAtLevel' . (s:level) . ','
+    \ .   'markdownH6InListItemAtLevel' . (s:level) . ','
+    \ .   'markdownRuleInListItemAtLevel' . (s:level) . ','
+    \ .   'markdownBlockquoteInListItemAtLevel' . (s:level) . ','
+    \ .   'markdownListItemAtLevel' . (s:level+1) . ','
+    \ .   '@markdownInline '
+    \ . 'start=/^' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+/ '
+    \ . 'end='
+    \ .   '/'
+    \ .     '\n\%(\n\n\)\@='
+    \ .     '\|'
+    \ .     '\n\%(\n' . (s:level_indentation) . '\S\)\@='
+    \ .     '\|'
+    \ .     '\n\%(' . (s:level_indentation) . '\%([-*+]\|\d\.\)\s\+\S\)\@='
+    \ .   '/'
+
+  execute 'syn region markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained contains=@NoSpell '
+    \ . 'matchgroup=markdownFencedCodeBlockInItemDelimiter '
+    \ . 'start=/\%(^\n\)\@<=\z(\s\{' . (2*s:level) . ',' . (5+2*s:level) . '}\)*```.*$/ '
+    \ . 'end=/^\z1*```\ze\s*$/'
+  execute 'hi def link markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ' String'
+
+  execute 'syn match markdownCodeBlockInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained contains=@NoSpell '
+    \ . '/\%(^\n\)\@<=\%(\%( \{' . (6+2*s:level)  . ',}\|\t\{' . (1+s:level) . ',}\).*\n\?\)\+$/'
+  execute 'hi def link markdownCodeBlockInListItemAtLevel' . (s:level) . ' String'
+
+  execute 'syn region markdownH1InListItemAtLevel' . (s:level) . ' '
+    \ . 'contained display oneline '
+    \ . 'matchgroup=markdownHeadingDelimiter '
+    \ . 'contains=@markdownInline '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '#\%(\s\+\)\@=/ '
+    \ . 'end=/#*\s*$/'
+  execute 'syn region markdownH2InListItemAtLevel' . (s:level) . ' '
+    \ . 'contained display oneline '
+    \ . 'matchgroup=markdownHeadingDelimiter '
+    \ . 'contains=@markdownInline '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '##\%(\s\+\)\@=/ '
+    \ . 'end=/#*\s*$/'
+  execute 'syn region markdownH3InListItemAtLevel' . (s:level) . ' '
+    \ . 'contained display oneline '
+    \ . 'matchgroup=markdownHeadingDelimiter '
+    \ . 'contains=@markdownInline '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '###\%(\s\+\)\@=/ '
+    \ . 'end=/#*\s*$/'
+  execute 'syn region markdownH4InListItemAtLevel' . (s:level) . ' '
+    \ . 'contained display oneline '
+    \ . 'matchgroup=markdownHeadingDelimiter '
+    \ . 'contains=@markdownInline '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '####\%(\s\+\)\@=/ '
+    \ . 'end=/#*\s*$/'
+  execute 'syn region markdownH5InListItemAtLevel' . (s:level) . ' '
+    \ . 'contained display oneline '
+    \ . 'matchgroup=markdownHeadingDelimiter '
+    \ . 'contains=@markdownInline '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '#####\%(\s\+\)\@=/ '
+    \ . 'end=/#*\s*$/'
+  execute 'syn region markdownH6InListItemAtLevel' . (s:level) . ' '
+    \ . 'contained display oneline '
+    \ . 'matchgroup=markdownHeadingDelimiter '
+    \ . 'contains=@markdownInline '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '######\%(\s\+\)\@=/ '
+    \ . 'end=/#*\s*$/'
+  execute 'hi def link markdownH1InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownH2InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownH3InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownH4InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownH5InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownH6InListItemAtLevel' . (s:level) . ' Title'
+
+  execute 'syn match markdownH1InListItemAtLevel' . (s:level) . ' '
+    \ . 'display contained contains=@markdownInline,markdownHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '=\+$/'
+  execute 'syn match markdownH1InListItemAtLevel' . (s:level) . ' '
+    \ . 'display contained contains=@markdownInline,markdownHeadingDelimiterInListItemAtLevel'. (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '.\+\n' . (s:content_indentation) . '-\+$/'
+  execute 'syn match markdownHeadingDelimiterInListItemAtLevel' . (s:level) . ' '
+    \ . 'display contained '
+    \ . '/^' . (s:content_indentation) . '\%(-\+\|=\+\)$/'
+  execute 'hi def link markdownH1InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownH2InListItemAtLevel' . (s:level) . ' Title'
+  execute 'hi def link markdownHeadingDelimiterInListItemAtLevel' . (s:level) . ' Special'
+
+  execute 'syn match markdownRuleInListItemAtLevel' . (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '*\*\s*\*\s*\*[[:space:]*]*$/ display'
+  execute 'syn match markdownRuleInListItemAtLevel' . (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '-\s*-\s*-[[:space:]-]*$/ display'
+  execute 'syn match markdownRuleInListItemAtLevel' . (s:level) . ' '
+    \ . '/\%(^\n\)\@<=' . (s:content_indentation) . '_\s*_\s*_[[:space:]_]*$/ display'
+  execute 'hi def link markdownRuleInListItemAtLevel' . (s:level) . ' Identifier'
+
+  execute 'syn region markdownBlockquoteInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained '
+    \ . 'contains=markdownBlockquoteDelimiterInListItemAtLevel' . (s:level) . ',@NoSpell '
+    \ . 'start=/\%(^\n\)\@<=' . (s:content_indentation) . '\%(>\s\?\)\+\%(.\)\@=/ '
+    \ . 'end=/\n\n/'
+  execute 'syn match markdownBlockquoteDelimiterInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained '
+    \ . '/^' . (s:content_indentation) . '\%(>\s\?\)\+/'
+  execute 'hi def link markdownBlockquoteInListItemAtLevel' . (s:level) . ' Comment'
+  execute 'hi def link markdownBlockquoteDelimiterInListItemAtLevel' . (s:level) . ' Delimiter'
+endfor
+hi def link markdownItemDelimiter Special
+hi def link markdownFencedCodeBlockInItemDelimiter Special
 
 " }}} NESTED BLOCKS
 

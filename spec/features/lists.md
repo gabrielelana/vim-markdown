@@ -57,22 +57,10 @@ List items on multiple lines aligned
 This is not part of the above list
 
 
-Leading space are supported
+Leading space are not allowed, well technically they are… in Dingus (the official markdown engine) leading spaces (up to 3) are allowed in list items but I chose to not allow it because it could lead to nasty situations like the following
 
-  * First item
-  * Second item
-
-
-Leading space with multiple list items
-
-  * This is the first item in the list
-    this is still the first item even if it's the second line
-  * This is the second item in the list
-    this is still the second item even if it's the second line
-    this is still the second item even if it's the third line
-
-    This is still the second item even if it's separated with a newline
-
+  * On Dingus this is a first level list item
+ * But this is a second level list item, even if its indentation it's lower than the line before… looking at the text don't tell me this is not confusing
 
 A single list delimiter followed by a newline is not a list item
 

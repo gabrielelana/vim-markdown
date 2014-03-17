@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/lists_with_fenced_codeblocks.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Constant { color: #c00000; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Special">```ruby</span>
+<span class="Constant"># This is a fenced code block</span>
+<span class="Constant">def ruby; end</span>
+<span class="Special">```</span>
+
+<span class="Constant">    ```ruby</span>
+<span class="Constant">    # This is not a fenced code block but a code block</span>
+<span class="Constant">    def ruby; end</span>
+<span class="Constant">    ```</span>
+
+<span class="Special">* </span>First level, first item
+  First level, first item with <span class="Special">`</span><span class="Constant">inline</span><span class="Special">`</span> element <span class="Special">``</span><span class="Constant">foo</span><span class="Special">``</span> <span class="Special">``</span><span class="Constant">foo</span><span class="Special">``</span>
+
+  Still first level, first item, the following it's not a fenced code block but an inline code block
+  <span class="Special">```</span><span class="Constant">ruby</span>
+<span class="Constant">  def ruby; end</span>
+<span class="Constant">  </span><span class="Special">```</span>
+
+  Still first level, first item, the following it's a fenced code block because it's preceded by an empty line
+
+<span class="Special">  ```ruby</span>
+<span class="Constant">  def ruby; end</span>
+<span class="Special">  ```</span>
+
+
+<span class="Special">* </span>First level, first item
+<span class="Special">  * </span>Second level, first item
+<span class="Special">    * </span>Third level, first item
+<span class="Special">      * </span>Fourth level, first item
+
+<span class="Special">        ```ruby</span>
+<span class="Constant">        # This is a fenced code block and not a code block even it has 8 leading spaces because it's contained in a fourth level list item</span>
+<span class="Constant">        def ruby; end</span>
+<span class="Special">        ```</span>
+
+
+<span class="Special">* </span>First level, first item
+
+<span class="Special">  ```ruby</span>
+<span class="Constant">  def ruby; end</span>
+<span class="Special">  ```</span>
+
+<span class="Special">    ```ruby</span>
+<span class="Constant">    def ruby; end</span>
+<span class="Special">    ```</span>
+
+<span class="Special">      ```ruby</span>
+<span class="Constant">      def ruby; end</span>
+<span class="Special">      ```</span>
+
+<span class="Constant">        ```ruby</span>
+<span class="Constant">        # This is not a fenced code block because it has 8 leading white spaces and so it's a code block</span>
+<span class="Constant">        def ruby; end</span>
+<span class="Constant">        ```</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

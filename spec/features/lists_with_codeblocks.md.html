@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/lists_with_codeblocks.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Constant { color: #c00000; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+
+<span class="Constant">    * this is not an item list this is a code block because it has 4 leading spaces</span>
+
+<span class="Special">* </span>First level, first item
+
+  Code blocks not contained in list items must have at least 4 leading spaces. Code blocks contained in list items must have at least 8 leading spaces for the first level and additional 2 leading spaces per level
+
+<span class="Constant">        This is a code block contained in a first level list item</span>
+
+<span class="Special">  * </span>Second level, first item
+
+        This is not a code block, it could be because it has 8 leading spaces but it's not because it's contained in a second level list item, the following it's a code block because it has 10 leading spaces (8+2*(level-1))
+
+<span class="Constant">          This is a code block contained in a second level list item</span>
+
+  Now we are back to the first level item so the following code block could be indented with 8 leading spaces
+
+<span class="Constant">        This is a code block contained in a first level list item</span>
+
+<span class="Special">  * </span>Second level, second item
+<span class="Special">    * </span>Third level, first item
+
+<span class="Constant">            This is a code block contained in a third level list item because it has 12 leading spaces (8+2*(level-1))</span>
+
+<span class="Special">  * </span>Second level, third item
+          This could be a code block because it has 10 leading spaces but it's not because it's not preceded by a mandatory blank line
+
+<span class="Constant">          This is a code block because it has 10 leading spaces and it's preceded by a blank line</span>
+
+
+
+<span class="Special">* </span>First level, third item
+
+<span class="Constant">          This is a code block, not a surprise</span>
+
+
+<span class="Constant">    This is a code block because two consecutive new lines terminates the list item so 4 leading spaces are enough for a code block</span>
+
+
+<span class="Special">* </span>First level, first item
+  First level, first item
+<span class="Special">* </span>First level, second item
+  First level, second item
+  First level, second item
+
+  First level, second item, a single blank line is not enough to terminate a list item
+
+      So this is not a code block even with 6 leading spaces
+
+<span class="Constant">        This is code block because 8 leading white spaces are needed as it's contained by a first level list item</span>
+
+
+
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

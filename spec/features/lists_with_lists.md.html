@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/lists_with_lists.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Special">* </span>First level, first item
+<span class="Special">  * </span>Second level, first item
+<span class="Special">    * </span>Third level, first item
+    still on the third level, first item
+
+    Back to the second level, first item, yes, the indentation it's the same as the last non blank line but this it's preceded with a blank line so it's not considered a continuation of the list item but another element ans since it's less indented than the list item it's not contained in it but in it's parent
+
+  Back to the first level, first item
+<span class="Special">  * </span>Second level, second item
+
+    Still on the third level, first item because the indentation is right for the third level
+
+<span class="Special">* </span>First level, first item
+<span class="Special">  * </span>Second level, first item
+<span class="Special">    * </span>Third level, first item
+<span class="Special">      * </span>Fourth level, first item
+this is still the fourth level, it's a continuation of the first line no matter what, a blank line it's needed to end the list item
+
+
+<span class="Special">* </span>First level, first item
+    * A third level could not be contained in a first level, again this is technically supported but I choose to not allow it both for the sake of simplicity and to avoid confusing situation: this would be considered not a third level but a second level with leading spaces until a certain point, after that it's considered as a continuation of the first item… as I said, confusing better to stick to simple and consistent rules
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

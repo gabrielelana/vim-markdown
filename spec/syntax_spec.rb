@@ -5,6 +5,10 @@ require_relative "spec_helper"
 features = [
   "jekyll",
   "lists",
+  "lists_with_lists",
+  "lists_with_codeblocks",
+  "lists_with_fenced_codeblocks",
+  "lists_with_anchored_elements",
   "autolinks",
   "blockquotes",
   "blockquotes_nested",
