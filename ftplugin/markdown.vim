@@ -17,9 +17,9 @@ setlocal iskeyword+=:,+,-
 setlocal complete+=k
 
 " replace common ascii emoticons with supported emoji
-iabbr :-) :smile:
-iabbr :-D :laughing:
-iabbr :-( :disappointed:
+iabbrev <buffer> :-) :smile:
+iabbrev <buffer> :-D :laughing:
+iabbrev <buffer> :-( :disappointed:
 
 function! s:MarkdownJumpToHeader(forward, visual)
   let pattern = '\v^#{1,6}.*$|^.+\n%(\-+|\=+)$'
