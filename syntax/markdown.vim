@@ -289,11 +289,21 @@ for s:level in range(1, 42)
     \ .     '\n\%(' . (s:indented_as_container) . '\%([-*+]\|\d\.\)\s\+\S\)\@='
     \ .   '/'
 
+  " fenced code blocks could have leading spaces after the base level indentation
+  " so at least it must be indented as content but could be indented more
+  " there's no upper limit to the indentation because the following rule on
+  " code blocks is going to take care of that
+  " TL;DR: don't swap markdownFencedCodeBlockInListItemAtLevel* with
+  " markdownCodeBlockInListItemAtLevel* :-)
   execute 'syn region markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ' '
     \ . 'contained contains=@NoSpell '
     \ . 'matchgroup=markdownFencedCodeBlockInItemDelimiter '
-    \ . 'start=/' . (s:preceded_by_separator) . '\z(\s\{' . (2*s:level) . ',' . (5+2*s:level) . '}\)*```.*$/ '
-    \ . 'end=/^\z1*```\ze\s*$/'
+    \ . 'start='
+    \ .   '/'
+    \ .     (s:preceded_by_separator)
+    \ .     '\z( \{' . (2*s:level) . ',}\|\t\{' . (s:level) . ',}\)*```.*$'
+    \ .   '/ '
+    \ . 'end=/^\z1```\s*$/'
   execute 'hi def link markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ' String'
 
   execute 'syn match markdownCodeBlockInListItemAtLevel' . (s:level) . ' '
