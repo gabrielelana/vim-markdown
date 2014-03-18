@@ -78,17 +78,31 @@ function! s:locate_fenced_code_block(starting_from)
   let search_position[1] = a:starting_from
   let search_position[2] = 0
   cal setpos('.', search_position)
-  let code_block['from'] = search('^\s*```\w\+\(\s.*$\|$\)', 'cbnW')
-  let code_block['to'] = search('^\s*```$', 'cnW')
-  call setpos('.', initial_position)
-  if code_block['from'] > 0 && code_block['to'] > 0
-    let code_block['language'] = substitute(getline(code_block['from']), '\s*```', '', '')
-    let code_block['indentation'] = substitute(getline(code_block['from']), '```.*$', '', '')
+
+  let start_code_block_backward = search('^\s*```\w\+\(\s.*$\|$\)', 'cbnW')
+  let end_code_block_backward = search('^\s*```\s*$', 'cbnW')
+  let end_code_block_forward = search('^\s*```\s*$', 'cnW')
+
+  let found_code_block =
+        \ start_code_block_backward > 0 &&
+        \ end_code_block_forward > 0
+  let between_two_code_blocks =
+        \ start_code_block_backward < end_code_block_backward &&
+        \ end_code_block_backward <= a:starting_from
+  let starting_inside_code_block =
+        \ found_code_block &&
+        \ !between_two_code_blocks &&
+        \ start_code_block_backward <= a:starting_from &&
+        \ end_code_block_forward >= a:starting_from
+
+  if starting_inside_code_block
+    let code_block['language'] = substitute(getline(start_code_block_backward), '\s*```', '', '')
+    let code_block['indentation'] = substitute(getline(start_code_block_backward), '```.*$', '', '')
     let code_block['back_to_position'] = initial_position
-    let code_block['back_to_position'][1] = code_block['from']
+    let code_block['back_to_position'][1] = start_code_block_backward
     let code_block['back_to_position'][2] = 0
-    let code_block['from'] = code_block['from'] + 1
-    let code_block['to'] = code_block['to'] - 1
+    let code_block['from'] = start_code_block_backward + 1
+    let code_block['to'] = end_code_block_forward - 1
   endif
   return code_block
 endfunction
