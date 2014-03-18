@@ -21,6 +21,7 @@ function! s:edit_code_block(mode) range abort
   endif
   let code_block['file_path'] = tempname() . code_block['file_extension']
   let code_block['content'] = getline(code_block['from'], code_block['to'])
+  let code_block['content'] = s:unindent(code_block['content'], code_block['indentation'])
 
   call writefile(code_block['content'], code_block['file_path'])
   augroup MdReplaceEditedCodeBlock
@@ -41,7 +42,9 @@ function! s:replace_edited_code_block()
   if b:code_block['to'] - b:code_block['from'] >= 0
     execute b:code_block['from'] . ',' b:code_block['to'] . ' delete _'
   endif
-  call append(b:code_block['from']-1, readfile(b:code_block['file_path']))
+  let content = readfile(b:code_block['file_path'])
+  let content = s:indent(l:content, b:code_block['indentation'])
+  call append(b:code_block['from']-1, content)
   call setpos('.', b:code_block['back_to_position'])
 
   execute 'silent bwipeout! ' . b:code_block['file_path']
@@ -49,8 +52,16 @@ function! s:replace_edited_code_block()
   unlet! b:code_block
 endfunction
 
+function! s:unindent(code, indentation)
+  return map(a:code, 'substitute(v:val, ''^' . a:indentation . ''', '''', ''g'')')
+endfunction
+
+function! s:indent(code, indentation)
+  return map(a:code, 'substitute(v:val, ''^'', ''' . a:indentation . ''', ''g'')')
+endfunction
+
 function! s:locate_range_code_block(from, to, mode)
-  let code_block = {'from': 0, 'to': 0, 'language': 'txt'}
+  let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': ''}
   if (a:to > a:from) || (a:mode ==# 'V')
     let code_block['from'] = a:from
     let code_block['to'] = a:to
@@ -61,17 +72,18 @@ function! s:locate_range_code_block(from, to, mode)
 endfunction
 
 function! s:locate_fenced_code_block(starting_from)
-  let code_block = {'from': 0, 'to': 0, 'language': 'txt'}
+  let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': ''}
   let initial_position = getpos('.')
   let search_position = copy(initial_position)
   let search_position[1] = a:starting_from
   let search_position[2] = 0
   cal setpos('.', search_position)
-  let code_block['from'] = search('^```\w\+\(\s.*$\|$\)', 'cbnW')
-  let code_block['to'] = search('^```$', 'cnW')
+  let code_block['from'] = search('^\s*```\w\+\(\s.*$\|$\)', 'cbnW')
+  let code_block['to'] = search('^\s*```$', 'cnW')
   call setpos('.', initial_position)
   if code_block['from'] > 0 && code_block['to'] > 0
-    let code_block['language'] = substitute(getline(code_block['from']), '```', '', '')
+    let code_block['language'] = substitute(getline(code_block['from']), '\s*```', '', '')
+    let code_block['indentation'] = substitute(getline(code_block['from']), '```.*$', '', '')
     let code_block['back_to_position'] = initial_position
     let code_block['back_to_position'][1] = code_block['from']
     let code_block['back_to_position'][2] = 0
