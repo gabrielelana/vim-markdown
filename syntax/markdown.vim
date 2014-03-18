@@ -63,6 +63,14 @@ syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ c
 syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s\+[^>]\{-}\/>\|\s*\/>\)/ contains=@NoSpell
 syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
+" case insensitive
+" preceded by something that is not a word
+" could be surrounded by angle brackets
+" could begin with / or // (path) or the url protocol
+" inside the url pairs of balanced parentheses are allowed
+" inside the url html entities are allowed
+" the end block is different because ?!:,. are not included in the url if they
+" appear at the end of the url
 let b:markdown_syntax_url =
   \ '\c'
   \ . '\%(\W\)\@<='
