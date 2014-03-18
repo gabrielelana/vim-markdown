@@ -21,6 +21,11 @@ iabbrev <buffer> :-) :smile:
 iabbrev <buffer> :-D :laughing:
 iabbrev <buffer> :-( :disappointed:
 
+" replace common punctuation
+iabbrev <buffer> ... …
+iabbrev <buffer> << «
+iabbrev <buffer> >> »
+
 function! s:MarkdownJumpToHeader(forward, visual)
   let pattern = '\v^#{1,6}.*$|^.+\n%(\-+|\=+)$'
   if a:visual
