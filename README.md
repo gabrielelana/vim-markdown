@@ -27,11 +27,11 @@ I would use this section until I have a proper documentation for this plugin
 ## Configuration
 * `let g:markdown_include_jekyll_support = 1` to load support to Jekyll files (default: 1)
 * `let g:markdown_include_default_mappings = 1` to load default mappings (default: 0)
+  * `let g:markdown_include_insert_mode_default_mappings = 1` to load also insert mode default mappings (default: 0)
 
 ## Default Mappings
 All default mappings are local to markdown buffers
-* `NORMAL_MODE` `<Leader>e` edit the current code block in another buffer with a guessed file type
-* `VISUAL_MODE` `<Leader>e` edit the visual block in another buffer with markdown file type
+* `<Leader>e` (`NORMAL_MODE`, `VISUAL_MODE`, `INSERT_MODE`) `:MdEditCodeBlock` edit the current code block in another buffer with a guessed file type. The guess is based on the start of the range for `VISUAL_MODE`. If it's not possibile to guess (you are not in a recognizable code block like a fenced code block) then the default is `markdown`. If it's not possibile to guess and the current range is a single line and the line is empty then a new code block is created. It's asked to the user the file type of the new code block. The default file type is `makrkdown`.
 
 ## Motions
 * `]]` start of the next header
