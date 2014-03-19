@@ -5,10 +5,10 @@ if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700 | fini
 " TODO: locate_jekyll_front_matter_code_block(starting_from)
 
 
-function! s:edit_code_block(mode) range abort
-  let code_block = s:locate_range_code_block(a:firstline, a:lastline, a:mode)
+function! s:edit_code_block() range abort
+  let code_block = s:locate_fenced_code_block(a:firstline)
   if code_block['from'] == 0 || code_block['to'] == 0
-    let code_block = s:locate_fenced_code_block(a:firstline)
+    let code_block = s:locate_range_code_block(a:firstline, a:lastline)
   endif
   if code_block['from'] == 0 || code_block['to'] == 0
     echo 'Sorry, I did not find any suitable code block to edit'
@@ -60,9 +60,9 @@ function! s:indent(code, indentation)
   return map(a:code, 'substitute(v:val, ''^'', ''' . a:indentation . ''', ''g'')')
 endfunction
 
-function! s:locate_range_code_block(from, to, mode)
+function! s:locate_range_code_block(from, to)
   let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': ''}
-  if (a:to > a:from) || (a:mode ==# 'V')
+  if a:to >= a:from
     let code_block['from'] = a:from
     let code_block['to'] = a:to
     let code_block['language'] = 'markdown'
@@ -107,7 +107,7 @@ function! s:locate_fenced_code_block(starting_from)
   return code_block
 endfunction
 
-command! -nargs=1 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block(<args>)
+command! -nargs=0 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block()
 
 let s:known_file_extensions = {
   \ 'abap': '.abap',
