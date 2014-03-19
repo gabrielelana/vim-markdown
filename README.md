@@ -7,7 +7,7 @@ A complete environment to create Markdown files with a syntax highlight that don
 * Complete syntax implementation: supports even proper nesting of all elements in list items, this is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
 * Code blocks and pieces of Markdown of the current file could be edited in a separate buffer and synchronized back when you finished
 * Automatically detects Jekyll files and adds support for Liquid template engine
-* This is a work in progress, more goodies and improvements are coming, stay tuned
+* This is a work in progress, more goodies and improvements are coming (see [TODO](#TODO)), stay tuned
 
 
 # Why?
@@ -73,6 +73,7 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 * `formatoptions` thinks that `*` in horizontal rules are list items
 
 
+<a name="TODO" />
 # TODO
 * Code Blocks
   * edit html code block
