@@ -14,6 +14,28 @@ A complete environment to create Markdown files with a syntax highlight that don
 I wanted a strong support for the Markdown flavour implemented by Github, I wanted a syntax highlight that would mirror the result I would find later on Github, I wanted a syntax highlight that would not break easily, I wanted a syntax highlight that I could rely on (aka rapid feedback), I wanted something more that a mere syntax highlight. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) unfortunately it's so loosely defined that there are *flavours* of Markdown that are subtly incompatible from each other, the [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
 
 
+# Installation
+If you use [Vundle](https://github.com/gmarik/vundle), add the following line to your `~/.vimrc`:
+
+    Bundle 'gabrielelana/vim-markdown'
+
+And then execute the following command in your shell:
+
+    $ vim +'BundleInstall! vim-markdown' +qall
+
+If you use [Pathogen](https://github.com/tpope/vim-pathogen), execute the following in your shell:
+
+    $ cd ~/.vim/bundle
+    $ git clone https://github.com/gabrielelana/vim-markdown.git
+
+If you are not using any package manager, download the [tarball](https://github.com/gabrielelana/vim-markdown/archive/master.tar.gz) and do this:
+
+    $ cp vim-markdown-master.tar.gz ~/.vim
+    $ cd ~/.vim
+    $ tar --strip-components=1 --overwrite -zxf vim-markdown-master.tar.gz
+    $ rm vim-markdown-master.tar.gz
+
+
 # Documentation
 I would use this section until I have a proper documentation
 
