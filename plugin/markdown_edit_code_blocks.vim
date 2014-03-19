@@ -11,7 +11,7 @@ function! s:edit_code_block() range abort
     let code_block = s:locate_range_code_block(a:firstline, a:lastline)
   endif
   if code_block['from'] == 0 || code_block['to'] == 0
-    echo 'Sorry, I did not find any suitable code block to edit'
+    echo 'Sorry, I did not find any suitable code block to edit or create'
     return
   endif
 
@@ -44,6 +44,7 @@ function! s:replace_edited_code_block()
   endif
   let content = readfile(b:code_block['file_path'])
   let content = s:indent(l:content, b:code_block['indentation'])
+  let content = s:surround_with_fenced_code_block(l:content, b:code_block)
   call append(b:code_block['from']-1, content)
   call setpos('.', b:code_block['back_to_position'])
 
@@ -60,19 +61,43 @@ function! s:indent(code, indentation)
   return map(a:code, 'substitute(v:val, ''^'', ''' . a:indentation . ''', ''g'')')
 endfunction
 
+function! s:surround_with_fenced_code_block(code, editing)
+  if !a:editing['surround_with_fenced_code_block'] | return a:code | endif
+  if a:editing['language'] =~# 'markdown' | return a:code | endif
+  let before =
+    \ (a:editing['make_room_before'] ? [''] : []) +
+    \ [a:editing['indentation'] . '```' . a:editing['language']]
+  let after =
+    \ [a:editing['indentation'] . '```'] +
+    \ (a:editing['make_room_after'] ? [''] : [])
+  return l:before + a:code + l:after
+endfunction
+
 function! s:locate_range_code_block(from, to)
-  let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': ''}
+  " TODO: extract initialize_code_block
+  let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': '', 'surround_with_fenced_code_block': 0}
   if a:to >= a:from
     let code_block['from'] = a:from
     let code_block['to'] = a:to
-    let code_block['language'] = 'markdown'
     let code_block['back_to_position'] = getpos('.')
+    let code_block['language'] = 'markdown'
+
+    if a:from == a:to && getline(a:from) =~ '^\s*$'
+      let code_block['surround_with_fenced_code_block'] = 1
+      let code_block['make_room_before'] = getline(a:from - 1) !~ '^\s*$'
+      let code_block['make_room_after'] = getline(a:to + 1) !~ '^\s*$'
+      let code_block['language'] = input('filetype? (default: markdown) ', '', 'filetype')
+      if code_block['language'] =~ '^\s*$'
+        let code_block['language'] = 'markdown'
+      endif
+    endif
   endif
   return code_block
 endfunction
 
 function! s:locate_fenced_code_block(starting_from)
-  let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': ''}
+  " TODO: extract initialize_code_block
+  let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': '', 'surround_with_fenced_code_block': 0}
   let initial_position = getpos('.')
   let search_position = copy(initial_position)
   let search_position[1] = a:starting_from
