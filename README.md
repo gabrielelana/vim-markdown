@@ -1,8 +1,8 @@
-# Github Flavoured Markdown for Vim
+# Github Flavored Markdown for Vim
 A complete environment to create Markdown files with a syntax highlight that don't suck!
 
 ## Features
-* Strong support for the Markdown flavour implemented by Github: what you see in Vim is what you get on Github
+* Strong support for the Markdown flavor implemented by Github: what you see in Vim is what you get on Github
 * Complete syntax implementation: supports even proper nesting of all elements in list items, this is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
 * Code blocks and pieces of Markdown of the current file could be edited in a separate buffer and synchronized back when you finished
   * Inside a ruby fenced code block with `<Leader>e` opens a temporary buffer with the right file type
@@ -15,7 +15,7 @@ A complete environment to create Markdown files with a syntax highlight that don
 
 
 ## Why?
-I wanted a strong support for the Markdown flavour implemented by Github, I wanted a syntax highlight that would mirror the result I would find later on Github, I wanted a syntax highlight that would not break easily, I wanted a syntax highlight that I could rely on (aka rapid feedback), I wanted something more that a mere syntax highlight. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) unfortunately it's so loosely defined that there are *flavours* of Markdown that are subtly incompatible from each other, the [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
+I wanted a strong support for the Markdown flavor implemented by Github, I wanted a syntax highlight that would mirror the result I would find later on Github, I wanted a syntax highlight that would not break easily, I wanted a syntax highlight that I could rely on (aka rapid feedback), I wanted something more that a mere syntax highlight. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) unfortunately it's so loosely defined that there are *flavors* of Markdown that are subtly incompatible from each other, the [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
 
 
 ## Installation
