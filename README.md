@@ -36,6 +36,14 @@ If you are not using any package manager, download the [tarball](https://github.
     $ rm vim-markdown-master.tar.gz
 
 
+# Self-Promotion
+Do you like this?
+* Star the repository on [GitHub](https://github.com/gabrielelana/vim-markdown)
+* Follow me on
+  * [Twitter](http://twitter.com/gabrielelana)
+  * [GitHub](https://github.com/gabrielelana)
+
+
 # Documentation
 I would use this section until I have a proper documentation
 
