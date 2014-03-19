@@ -37,7 +37,7 @@ If you are not using any package manager, download the [tarball](https://github.
 
 
 ## Self-Promotion
-Do you like this?
+If you like this plugin, then consider to:
 * Star the repository on [GitHub](https://github.com/gabrielelana/vim-markdown)
 * Follow me on
   * [Twitter](http://twitter.com/gabrielelana)
@@ -84,19 +84,19 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 <a name="TODO" />
 ## TODO
 * Code Blocks
-  * edit html code block
-  * edit jekyll front matter code block
-  * explain in this file why I chose to avoid to highlight nested block elements
+  * Edit html code block
+  * Edit jekyll front matter code block
+  * Explain in this file why I chose to avoid to highlight nested block elements
 * Check Lists (GFM)
-  * syntax highlight
-  * when on over check item `<Space>` will check/uncheck it
+  * Syntax highlight
+  * When on over check item `<Space>` will check/uncheck it
 * Tables (GFM)
-  * syntax highlight
-  * auto formatting tables if Tabular plugin is installed
+  * Syntax highlight
+  * Auto formatting tables if Tabular plugin is installed
 * Emoji (GFM)
-  * start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
-  * remove duplication between syntax keywords and dictionary completion
-  * more `iabbr`
+  * Start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
+  * Remove duplication between syntax keywords and dictionary completion
+  * More `iabbr`
 * Lists
   * `i_<BS>` on a list item with no text in it (freshly created) it will delete everything till the column 0
   * `<C-K>` on a list item it will swap it with the item above (if it exists)
@@ -104,9 +104,9 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
   * `>` and `<` should properly indent/unindent list items
   * `i_<C-D>` and `i_<C-T>` should properly indent/unindent list items and quote lines
 * Define custom text objects for:
-  * list items
-  * check list items
-  * paragraph
-    * start of the next paragraph `}`
-    * start of the previous paragraph `{`
-  * other inline elements
+  * List items
+  * Check list items
+  * Paragraph
+    * Start of the next paragraph `}`
+    * Start of the previous paragraph `{`
+  * Other inline elements
