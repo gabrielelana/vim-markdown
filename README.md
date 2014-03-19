@@ -4,9 +4,9 @@ A complete environment to create Markdown files with a syntax highlight that don
 ## Features
 * Strong support for the Markdown flavor implemented by Github: what you see in Vim is what you get on Github
 * Complete syntax implementation: supports even proper nesting of all elements in list items, this is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
-  * A simple example rendered with this plugin, headers are correctly highlighted in list items
+  * A simple example rendered with this plugin. Headers and the fenced code block in list items are correctly highlighted
     ![VimMarkdownRendering](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering.png)
-  * The same example rendered with the most popular Markdown syntax for Vim
+  * The same example rendered with the most popular Markdown plugins for Vim
     ![VimMarkdownRenderingComparison1](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering_comparison_1.png)
     ![VimMarkdownRenderingComparison2](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering_comparison_2.png)
 * Code blocks and pieces of Markdown of the current file could be edited in a separate buffer and synchronized back when you finished
