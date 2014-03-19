@@ -1,11 +1,15 @@
 # Github Flavoured Markdown for Vim
 A complete environment to create Markdown files with a syntax highlight that don't suck!
 
-
 ## Features
 * Strong support for the Markdown flavour implemented by Github: what you see in Vim is what you get on Github
 * Complete syntax implementation: supports even proper nesting of all elements in list items, this is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
 * Code blocks and pieces of Markdown of the current file could be edited in a separate buffer and synchronized back when you finished
+  * Fist with `<Leader>e` edit a ruby fenced code block opens a temporary buffer with the right file type
+  * Then select a range in visual mode and with `<Leader>e` opens a temporary buffer with file type `markdown` I call it *Focus Mode* because you can edit a portion of a Markdown file in isolation
+  * At last, on an empty line, with `<Leader>e` asks for a file type and them opens a temporary buffer with that file type
+  * You see that when you leave the temporary buffer the content syncs back to the main file
+  ![EditCodeBlock](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_edit_code_block.png)
 * Automatically detects Jekyll files and adds support for Liquid template engine
 * This is a work in progress, more goodies and improvements are coming (see [TODO](#TODO)), stay tuned
 
