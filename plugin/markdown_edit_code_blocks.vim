@@ -6,6 +6,10 @@ if exists('g:markdown_edit_code_blocks_loaded') || &cp || v:version < 700 | fini
 
 
 function! s:edit_code_block() range abort
+  if exists('b:markdown_temporary_buffer') && b:markdown_temporary_buffer
+    echo 'Sorry, you cannot edit a code block inside a temporary buffer'
+    return
+  endif
   let code_block = s:locate_fenced_code_block(a:firstline)
   if code_block['from'] == 0 || code_block['to'] == 0
     let code_block = s:locate_range_code_block(a:firstline, a:lastline)
@@ -30,6 +34,7 @@ function! s:edit_code_block() range abort
 
   let b:code_block = code_block
   execute 'split ' . code_block['file_path']
+  let b:markdown_temporary_buffer = 1
   autocmd BufLeave <buffer> wq
 endfunction
 
