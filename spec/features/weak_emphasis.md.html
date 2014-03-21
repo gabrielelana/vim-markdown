@@ -60,13 +60,13 @@ The usage of alternate delimiters must be idempotent, so all <span class="Specia
 
 The same delimiter could not be used twice <span class="Special">**</span><span class="Bold">foo</span><span class="Special">**</span> and <span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span> must not be highlighted as italic
 
-<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>_bar_ must be &quot;foo&quot; highlighted as italic followed by &quot;&lt;UNDERSCORE&gt;bar&lt;UNDERSCORE&gt;&quot; highlighted as normal
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>_bar_ must be &quot;foo&quot; highlighted as italic followed by &quot;{UNDERSCORE}bar{UNDERSCORE}&quot; highlighted as normal
 
 <span class="Special">_</span><span class="Italic">foo</span><span class="Special">_*</span><span class="Italic">bar</span><span class="Special">*</span> must be &quot;foo&quot; highlighted as italic followed by &quot;bar&quot; highlighted as italic
 
 <span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>b must be &quot;foo&quot; highlighted as italic followed by &quot;b&quot; highlighted as normal
 
-<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>bar_baz_ must be &quot;foo&quot; highlighted as italic followed by &quot;bar&lt;UNDERSCORE&gt;baz&lt;UNDERSCORE&gt;&quot; highlighted as normal
+<span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>bar_baz_ must be &quot;foo&quot; highlighted as italic followed by &quot;bar{UNDERSCORE}baz{UNDERSCORE}&quot; highlighted as normal
 
 <span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span>bar <span class="Special">_</span><span class="Italic">baz</span><span class="Special">_</span> must be &quot;foo&quot; and &quot;baz&quot; highlighted as italic and &quot;bar&quot; highlighted as normal
 
@@ -78,7 +78,7 @@ FOO_BAR must be normal
 
 FOO_BAR and BAR_FOO must be normal
 
-Unfortunately <span class="Special">_</span><span class="Italic">FOO</span><span class="Special">_</span>BAR doen't work but escaping \_FOO_BAR is always possible
+Unfortunately <span class="Special">_</span><span class="Italic">FOO</span><span class="Special">_</span>BAR doesn't work but escaping \_FOO_BAR is always possible
 
 </pre>
 </body>

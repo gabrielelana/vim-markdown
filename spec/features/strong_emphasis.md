@@ -7,7 +7,7 @@ This is __multiple words__ strong emphasis
 
 This is also **multiple words** strong emphasis
 
-This is __ not valid __ 
+This is __ not valid __
 
 **strong** emphasis could be the first word in the line
 
@@ -31,17 +31,17 @@ The usage of alternate delimiters must be idempotent, so all __foo__ **foo** __*
 
 The same delimiter could not be used twice ****foo*** and ____foo____ must be normal
 
-__foo____bar__ must be "foo" highlighted as bold followed by "<UNDERSCORE><UNDERSCORE>bar<UNDERSCORE><UNDERSCORE>" highlighted as normal
+__foo____bar__ must be "foo" highlighted as bold followed by "{UNDERSCORE}{UNDERSCORE}bar{UNDERSCORE}{UNDERSCORE}" highlighted as normal
 
 __foo__**bar** must be "foo" highlighted as bold followed by "bar" highlighted as bold
 
 __foo__b must be "foo" highlighted as bold followed by "b" highlighted as normal
 
-__foo__bar__baz__ must be "foo" highlighted as bold followed by "bar<UNDERSCORE>baz<UNDERSCORE>" highlighted as normal
+__foo__bar__baz__ must be "foo" highlighted as bold followed by "bar{UNDERSCORE}baz{UNDERSCORE}" highlighted as normal
 
 __foo__bar __baz__ must be "foo" and "baz" highlighted as bold and "bar" highlighted as normal
 
-Four underscore ____ or four asterisks **** must not be highlighted without something between
+Four underscore ____ or four asterisks **** must not be highlighted without something in between
 
 Spaces do not count for something so __ __ and ** ** must be normal
 
@@ -49,5 +49,5 @@ FOO__BAR must not be normal
 
 FOO__BAR and BAR__FOO must be normal
 
-Unfortunately __FOO__BAR doen't work but escaping \__FOO__BAR is always possible
+Unfortunately __FOO__BAR doesn't work but escaping \__FOO__BAR is always possible
 

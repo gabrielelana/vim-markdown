@@ -31,13 +31,13 @@ The usage of alternate delimiters must be idempotent, so all _foo_ *foo* _*foo*_
 
 The same delimiter could not be used twice **foo** and __foo__ must not be highlighted as italic
 
-_foo__bar_ must be "foo" highlighted as italic followed by "<UNDERSCORE>bar<UNDERSCORE>" highlighted as normal
+_foo__bar_ must be "foo" highlighted as italic followed by "{UNDERSCORE}bar{UNDERSCORE}" highlighted as normal
 
 _foo_*bar* must be "foo" highlighted as italic followed by "bar" highlighted as italic
 
 _foo_b must be "foo" highlighted as italic followed by "b" highlighted as normal
 
-_foo_bar_baz_ must be "foo" highlighted as italic followed by "bar<UNDERSCORE>baz<UNDERSCORE>" highlighted as normal
+_foo_bar_baz_ must be "foo" highlighted as italic followed by "bar{UNDERSCORE}baz{UNDERSCORE}" highlighted as normal
 
 _foo_bar _baz_ must be "foo" and "baz" highlighted as italic and "bar" highlighted as normal
 
@@ -49,5 +49,5 @@ FOO_BAR must be normal
 
 FOO_BAR and BAR_FOO must be normal
 
-Unfortunately _FOO_BAR doen't work but escaping \_FOO_BAR is always possible
+Unfortunately _FOO_BAR doesn't work but escaping \_FOO_BAR is always possible
 

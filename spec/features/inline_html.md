@@ -17,3 +17,13 @@ This is normal text
 * XML <i>element</i> in a list item
 
 # XML <i>element</i> in an header
+
+<div id="container">
+XML/HTML could contain *everything*
+
+    Like code blocks
+
+* Or
+* List
+* Items
+</div>

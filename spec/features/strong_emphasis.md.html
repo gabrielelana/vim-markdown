@@ -59,17 +59,17 @@ The usage of alternate delimiters must be idempotent, so all <span class="Specia
 
 The same delimiter could not be used twice ****foo*** and ____foo____ must be normal
 
-<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>__bar__ must be &quot;foo&quot; highlighted as bold followed by &quot;&lt;UNDERSCORE&gt;&lt;UNDERSCORE&gt;bar&lt;UNDERSCORE&gt;&lt;UNDERSCORE&gt;&quot; highlighted as normal
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>__bar__ must be &quot;foo&quot; highlighted as bold followed by &quot;{UNDERSCORE}{UNDERSCORE}bar{UNDERSCORE}{UNDERSCORE}&quot; highlighted as normal
 
 <span class="Special">__</span><span class="Bold">foo</span><span class="Special">__**</span><span class="Bold">bar</span><span class="Special">**</span> must be &quot;foo&quot; highlighted as bold followed by &quot;bar&quot; highlighted as bold
 
 <span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>b must be &quot;foo&quot; highlighted as bold followed by &quot;b&quot; highlighted as normal
 
-<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>bar__baz__ must be &quot;foo&quot; highlighted as bold followed by &quot;bar&lt;UNDERSCORE&gt;baz&lt;UNDERSCORE&gt;&quot; highlighted as normal
+<span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>bar__baz__ must be &quot;foo&quot; highlighted as bold followed by &quot;bar{UNDERSCORE}baz{UNDERSCORE}&quot; highlighted as normal
 
 <span class="Special">__</span><span class="Bold">foo</span><span class="Special">__</span>bar <span class="Special">__</span><span class="Bold">baz</span><span class="Special">__</span> must be &quot;foo&quot; and &quot;baz&quot; highlighted as bold and &quot;bar&quot; highlighted as normal
 
-Four underscore ____ or four asterisks **** must not be highlighted without something between
+Four underscore ____ or four asterisks **** must not be highlighted without something in between
 
 Spaces do not count for something so __ __ and ** ** must be normal
 
@@ -77,7 +77,7 @@ FOO__BAR must not be normal
 
 FOO__BAR and BAR__FOO must be normal
 
-Unfortunately <span class="Special">__</span><span class="Bold">FOO</span><span class="Special">__</span>BAR doen't work but escaping \__FOO__BAR is always possible
+Unfortunately <span class="Special">__</span><span class="Bold">FOO</span><span class="Special">__</span>BAR doesn't work but escaping \__FOO__BAR is always possible
 
 </pre>
 </body>
