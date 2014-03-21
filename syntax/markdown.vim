@@ -217,11 +217,11 @@ syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ dis
   \ keepend contained contains=@markdownInline
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
-syn match markdownXmlOpenTag /\c<[-A-Z0-9_$?!:,.]\+\s\+[^>]\{-}>/ contains=@NoSpell
+syn match markdownXmlOpenTag /\c<[-A-Z0-9_$?!:,.]\+\s\+[^>]\{-}\/\?>/ contains=@NoSpell
 syn match markdownXmlClosedTag /\c<\/[-A-Z0-9_$?!:,.]\+>/ contains=@NoSpell
 syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
-" }}} INLINE ELEMENTS
+" }}}
 
 
 " {{{ ANCHORED BLOCKS
@@ -260,8 +260,7 @@ syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start=/^\s*`
 
 syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
 
-" }}} ANCHORED BLOCKS
-
+" }}}
 
 
 " {{{ NESTED BLOCKS
@@ -398,22 +397,10 @@ endfor
 hi def link markdownItemDelimiter Special
 hi def link markdownFencedCodeBlockInItemDelimiter Special
 
-" }}} NESTED BLOCKS
+" }}}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+" {{{ EMOTICONS
 
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
 syn keyword markdownEmoticonKeyword :bowtie: :smile: :laughing: :blush: :smiley:
@@ -764,6 +751,11 @@ syn keyword markdownEmoticonKeyword :black_circle: :white_circle: :red_circle: :
 syn keyword markdownEmoticonKeyword :large_orange_diamond: :small_blue_diamond: :small_orange_diamond: :small_red_triangle: :small_red_triangle_down:
 syn keyword markdownEmoticonKeyword :shipit:
 
+" }}}
+
+
+" {{{ HIGHLIGHT DEFINITION
+
 hi def Italic                       term=italic cterm=italic gui=italic
 hi def Bold                         term=bold cterm=bold gui=bold
 hi def BoldItalic                   term=bold,italic cterm=bold,italic gui=bold,italic
@@ -813,8 +805,13 @@ hi def link markdownXmlOpenTag              NonText
 hi def link markdownXmlClosedTag            NonText
 hi def link markdownXmlEntities             Special
 
+" }}}
+
+
 if !exists('g:markdown_include_jekyll_support') || g:markdown_include_jekyll_support
   execute 'runtime! syntax/markdown_jekyll.vim'
 endif
 
 let b:current_syntax = "markdown"
+
+" vim: foldenable:foldmethod=marker
