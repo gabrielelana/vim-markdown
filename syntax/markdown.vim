@@ -7,6 +7,10 @@ if exists("b:current_syntax")
   finish
 endif
 
+if !exists('main_syntax')
+  let main_syntax = 'markdown'
+endif
+
 syn spell toplevel
 syn sync minlines=342
 syn case ignore
@@ -813,5 +817,8 @@ if !exists('g:markdown_include_jekyll_support') || g:markdown_include_jekyll_sup
 endif
 
 let b:current_syntax = "markdown"
+if main_syntax ==# 'markdown'
+  unlet main_syntax
+endif
 
 " vim: foldenable:foldmethod=marker
