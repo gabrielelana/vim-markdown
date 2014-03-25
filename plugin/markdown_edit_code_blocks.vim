@@ -10,9 +10,12 @@ function! s:edit_code_block() range abort
     echo 'Sorry, you cannot edit a code block inside a temporary buffer'
     return
   endif
-  let code_block = s:locate_fenced_code_block(a:firstline)
+  let code_block = s:locate_fenced_code_block(a:firstline, '`')
   if code_block['from'] == 0 || code_block['to'] == 0
     let code_block = s:locate_range_code_block(a:firstline, a:lastline)
+  endif
+  if code_block['from'] == 0 || code_block['to'] == 0
+    let code_block = s:locate_fenced_code_block(a:firstline, '\~')
   endif
   if code_block['from'] == 0 || code_block['to'] == 0
     echo 'Sorry, I did not find any suitable code block to edit or create'
@@ -100,7 +103,7 @@ function! s:locate_range_code_block(from, to)
   return code_block
 endfunction
 
-function! s:locate_fenced_code_block(starting_from)
+function! s:locate_fenced_code_block(starting_from, character_delimiter)
   " TODO: extract initialize_code_block
   let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': '', 'surround_with_fenced_code_block': 0}
   let initial_position = getpos('.')
@@ -109,9 +112,9 @@ function! s:locate_fenced_code_block(starting_from)
   let search_position[2] = 0
   cal setpos('.', search_position)
 
-  let start_code_block_backward = search('^\s*```\%(`*\)\w\+\(\s.*$\|$\)', 'cbnW')
-  let end_code_block_backward = search('^\s*```\%(`*\)\s*$', 'cbnW')
-  let end_code_block_forward = search('^\s*```\%(`*\)\s*$', 'cnW')
+  let start_code_block_backward = search('^\s*' . a:character_delimiter . '\{3,}\w\+\(\s.*$\|$\)', 'cbnW')
+  let end_code_block_backward = search('^\s*' . a:character_delimiter . '\{3,}\s*$', 'cbnW')
+  let end_code_block_forward = search('^\s*' . a:character_delimiter . '\{3,}\s*$', 'cnW')
 
   let found_code_block =
         \ start_code_block_backward > 0 &&
@@ -126,8 +129,8 @@ function! s:locate_fenced_code_block(starting_from)
         \ end_code_block_forward >= a:starting_from
 
   if starting_inside_code_block
-    let code_block['language'] = substitute(getline(start_code_block_backward), '\s*```', '', '')
-    let code_block['indentation'] = substitute(getline(start_code_block_backward), '```.*$', '', '')
+    let code_block['language'] = s:extract_language(start_code_block_backward, a:character_delimiter)
+    let code_block['indentation'] = s:extract_indentation(start_code_block_backward, a:character_delimiter)
     let code_block['back_to_position'] = initial_position
     let code_block['back_to_position'][1] = start_code_block_backward
     let code_block['back_to_position'][2] = 0
@@ -135,6 +138,14 @@ function! s:locate_fenced_code_block(starting_from)
     let code_block['to'] = end_code_block_forward - 1
   endif
   return code_block
+endfunction
+
+function! s:extract_language(start_at, character_delimiter)
+  return substitute(getline(a:start_at), '\s*' . a:character_delimiter . '\+', '', '')
+endfunction
+
+function! s:extract_indentation(start_at, character_delimiter)
+  return substitute(getline(a:start_at), a:character_delimiter . '\+.*$', '', '')
 endfunction
 
 command! -nargs=0 -range MdEditCodeBlock :<line1>,<line2>call s:edit_code_block()
