@@ -22,7 +22,7 @@ features = [
   "inline_html",
   "inline_links",
   "inline_references",
-  "code_blocks"
+  "codeblocks"
 ]
 
 describe "markdown syntax" do

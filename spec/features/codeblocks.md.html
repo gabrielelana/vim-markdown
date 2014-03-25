@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/codeblocks.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Constant { color: #c00000; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+This is inline <span class="Special">`</span><span class="Constant">code</span><span class="Special">`</span> with a single back tick
+
+This is inline <span class="Special">``</span><span class="Constant">code</span><span class="Special">``</span> with a double back tick
+
+The following is a generic block code with a triple tick
+<span class="Special">```</span>
+<span class="Constant">code</span>
+<span class="Special">```</span>
+
+The following is a fenced block code with a triple tick
+<span class="Special">```js</span>
+<span class="Constant">var foo = 'bar'</span>
+<span class="Special">```</span>
+
+A fenced code block must have at least 3 back ticks in the start delimiter but could have more
+<span class="Special">````````ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">```</span>
+
+A fenced code block must have at least 3 back ticks in the end delimiter but could have more
+<span class="Special">```ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">````````</span>
+
+A fenced code block could have at most 3 leading spaces in the start delimiter
+<span class="Special">   ```ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">```</span>
+
+A fenced code block could have at most 3 leading spaces in the end delimiter
+<span class="Special">```ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">   ```</span>
+
+A fenced code block could have at most 3 leading spaces in the start and in the end delimiter
+<span class="Special">  ```ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special"> ```</span>
+
+
+<span class="Constant">    this is a code block because it's indented with 4 spaces</span>
+<span class="Constant">    this should be a continuation</span>
+
+This line separates two blocks
+
+<span class="Constant">  this is a code block because it's indented with a \t</span>
+<span class="Constant">  this should be a continuation</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
