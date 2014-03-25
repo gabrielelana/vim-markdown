@@ -109,9 +109,9 @@ function! s:locate_fenced_code_block(starting_from)
   let search_position[2] = 0
   cal setpos('.', search_position)
 
-  let start_code_block_backward = search('^\s*```\w\+\(\s.*$\|$\)', 'cbnW')
-  let end_code_block_backward = search('^\s*```\s*$', 'cbnW')
-  let end_code_block_forward = search('^\s*```\s*$', 'cnW')
+  let start_code_block_backward = search('^\s*```\%(`*\)\w\+\(\s.*$\|$\)', 'cbnW')
+  let end_code_block_backward = search('^\s*```\%(`*\)\s*$', 'cbnW')
+  let end_code_block_forward = search('^\s*```\%(`*\)\s*$', 'cnW')
 
   let found_code_block =
         \ start_code_block_backward > 0 &&
