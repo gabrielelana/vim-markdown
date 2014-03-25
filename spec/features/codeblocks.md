@@ -47,3 +47,30 @@ This line separates two blocks
 
 	this is a code block because it's indented with a \t
 	this should be a continuation
+
+
+The following is not standard Markdown, officially it's not the Github Flavored Markdown either, it's inspired by the Kramdown Flavored Markdown. Even if not documented Github supports it and so do we
+
+~~~ruby
+foo = 'bar' if foo.empty?
+~~~
+
+~~~~~~~~ruby
+foo = 'bar' if foo.empty?
+~~~
+
+~~~ruby
+foo = 'bar' if foo.empty?
+~~~~~~~~
+
+   ~~~ruby
+foo = 'bar' if foo.empty?
+~~~
+
+~~~ruby
+foo = 'bar' if foo.empty?
+   ~~~
+
+  ~~~ruby
+foo = 'bar' if foo.empty?
+ ~~~

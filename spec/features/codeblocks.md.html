@@ -75,6 +75,33 @@ This line separates two blocks
 
 <span class="Constant">  this is a code block because it's indented with a \t</span>
 <span class="Constant">  this should be a continuation</span>
+
+
+The following is not standard Markdown, officially it's not the Github Flavored Markdown either, it's inspired by the Kramdown Flavored Markdown. Even if not documented Github supports it and so do we
+
+<span class="Special">~~~ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">~~~</span>
+
+<span class="Special">~~~~~~~~ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">~~~</span>
+
+<span class="Special">~~~ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">~~~~~~~~</span>
+
+<span class="Special">   ~~~ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">~~~</span>
+
+<span class="Special">~~~ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special">   ~~~</span>
+
+<span class="Special">  ~~~ruby</span>
+<span class="Constant">foo = 'bar' if foo.empty?</span>
+<span class="Special"> ~~~</span>
 </pre>
 </body>
 </html>

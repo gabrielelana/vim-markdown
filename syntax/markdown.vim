@@ -261,6 +261,7 @@ syn region markdownBlockquote start=/^\s*\%(>\s\?\)\+\%(.\)\@=/ end=/\n\n/ conta
 syn match markdownBlockquoteDelimiter /^\s*\%(>\s\?\)\+/ contained
 
 syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start=/^\s\{,3}```\%(`*\).*$/ end=/^\s\{,3}```\%(`*\)\s*$/ contains=@NoSpell
+syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start=/^\s\{,3}\~\~\~\%(\~*\).*$/ end=/^\s\{,3}\~\~\~\%(\~*\)\s*$/ contains=@NoSpell
 
 syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
 
@@ -316,6 +317,15 @@ for s:level in range(1, 42)
     \ .     '\z( \{' . (2*s:level) . ',}\|\t\{' . (s:level) . ',}\)*```\%(`*\).*$'
     \ .   '/ '
     \ . 'end=/^\z1```\%(`*\)\s*$/'
+  execute 'syn region markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ' '
+    \ . 'contained contains=@NoSpell '
+    \ . 'matchgroup=markdownFencedCodeBlockInItemDelimiter '
+    \ . 'start='
+    \ .   '/'
+    \ .     (s:preceded_by_separator)
+    \ .     '\z( \{' . (2*s:level) . ',}\|\t\{' . (s:level) . ',}\)*\~\~\~\%(\~*\).*$'
+    \ .   '/ '
+    \ . 'end=/^\z1\~\~\~\%(\~*\)\s*$/'
   execute 'hi def link markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ' String'
 
   execute 'syn match markdownCodeBlockInListItemAtLevel' . (s:level) . ' '
