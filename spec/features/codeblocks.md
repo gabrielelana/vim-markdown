@@ -1,6 +1,8 @@
 This is inline `code` with a single back tick
 
-This is inline ``code`` with a double back tick
+This is inline ``code`` with double back ticks
+
+This is inline ```code``` with triple back ticks. This is not standard Markdown but Github supports it and so do we. Actually Github allows an arbitrary number of backs ticks around inline `````codeblocks````` the only constraint is that they should be ```even```` the remainder, in this case the last back tick, should not be highlighted
 
 The following is a generic block code with a triple tick
 ```
