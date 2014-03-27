@@ -100,7 +100,6 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
   * Command to check/uncheck task with relative mappings in command/insert/visual mode
   * Command to turn list items in task items with relative mappings in command/insert/visual mode
 * Tables (GFM)
-  * Syntax highlight
   * Auto formatting tables if Tabular plugin is installed
 * Emoji (GFM)
   * Start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
