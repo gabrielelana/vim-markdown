@@ -221,7 +221,7 @@ syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ dis
   \ keepend contained contains=@markdownInline
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
-syn match markdownXmlOpenTag /\c<[-A-Z0-9_$?!:,.]\+\s\+[^>]\{-}\/\?>/ contains=@NoSpell
+syn match markdownXmlOpenTag /\c<[-A-Z0-9_$?!:,.]\+\%(\s\+[^>]\{-}\)\?\/\?>/ contains=@NoSpell
 syn match markdownXmlClosedTag /\c<\/[-A-Z0-9_$?!:,.]\+>/ contains=@NoSpell
 syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
