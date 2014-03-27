@@ -13,9 +13,9 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
+.Italic { font-style: italic; }
 .Bold { font-weight: bold; }
 .Special { color: #c000c0; }
-.Italic { font-style: italic; }
 -->
 </style>
 
@@ -53,8 +53,8 @@ that span multiple lines
 _ because the start delimiter must be followed by something (not the end of line)
 
 The following is not a weak emphasis *
-that span multiple lines
-<span class="Special">* </span>because the start delimiter must be followed by something (not the end of line)
+that span multiple
+lines* because the start delimiter must be followed by something (not the end of line)
 
 The usage of alternate delimiters must be idempotent, so all <span class="Special">_</span><span class="Italic">foo</span><span class="Special">_</span> <span class="Special">*</span><span class="Italic">foo</span><span class="Special">*</span> <span class="Special">_*</span><span class="Italic">foo</span><span class="Special">*_</span> <span class="Special">*_</span><span class="Italic">foo</span><span class="Special">_*</span> must be &quot;foo&quot; highlighted as italic
 

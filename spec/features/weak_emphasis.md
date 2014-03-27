@@ -24,8 +24,8 @@ that span multiple lines
 _ because the start delimiter must be followed by something (not the end of line)
 
 The following is not a weak emphasis *
-that span multiple lines
-* because the start delimiter must be followed by something (not the end of line)
+that span multiple
+lines* because the start delimiter must be followed by something (not the end of line)
 
 The usage of alternate delimiters must be idempotent, so all _foo_ *foo* _*foo*_ *_foo_* must be "foo" highlighted as italic
 
