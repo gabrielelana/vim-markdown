@@ -43,7 +43,7 @@ describe "markdown syntax" do
       end
       master_syntax = Nokogiri::HTML(IO.read(master))
       source_syntax = Nokogiri::HTML(IO.read(filename))
-      expect(master_syntax.css("#vimCodeElement").first.to_s).to eq(source_syntax.css("#vimCodeElement").first.to_s)
+      expect(source_syntax.css("#vimCodeElement").first.to_s).to eq(master_syntax.css("#vimCodeElement").first.to_s)
     end
   end
 end
