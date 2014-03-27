@@ -275,16 +275,6 @@ let s:markdown_table_header_rows_separator = ''
   \ .   '\|'
   \ .   '\s*-\{3,}\s*|\s*'
   \ . '\)'
-let s:markdown_table_header_rows_separator = ''
-  \ . '\%('
-  \ .   '\s*|\?\%(\s*-\{3,}\s*|\)\+\s*-\{3,}\s*|\?\s*'
-  \ .   '\|'
-  \ .   '\s*|\s*-\{3,}\s*|\s*'
-  \ .   '\|'
-  \ .   '\s*|\s*-\{3,}\s*'
-  \ .   '\|'
-  \ .   '\s*-\{3,}\s*|\s*'
-  \ . '\)'
 execute 'syn match markdownTable '
   \ . 'transparent contains=markdownTableHeader,markdownTableDelimiter,@markdownInline '
   \ . '/'
@@ -302,9 +292,6 @@ execute 'syn match markdownTableDelimiter contained '
   \ . '/' . s:markdown_table_header_rows_separator . '/'
 execute 'syn match markdownTableHeader contained contains=@markdownInline '
   \ . '/\%(|\?\s*\)\@<=[^|]\+\%(.*\n' . s:markdown_table_header_rows_separator . '\)\@=/'
-
-hi def link markdownTableDelimiter Delimiter
-hi def link markdownTableHeader Bold
 
 " }}}
 
@@ -837,6 +824,9 @@ hi def link markdownCodeDelimiter           Delimiter
 hi def link markdownInlineCode              String
 hi def link markdownFencedCodeBlock         String
 hi def link markdownCodeBlock               String
+
+hi def link markdownTableDelimiter          Delimiter
+hi def link markdownTableHeader             Bold
 
 hi def link markdownStrike                  NonText
 hi def link markdownStrikeDelimiter         Delimiter
