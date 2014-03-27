@@ -265,6 +265,47 @@ syn region markdownFencedCodeBlock matchgroup=markdownCodeDelimiter start=/^\s\{
 
 syn match markdownCodeBlock /\%(^\n\)\@<=\%(\%(\s\{4,}\|\t\+\).*\n\)\+$/ contains=@NoSpell
 
+let s:markdown_table_header_rows_separator = ''
+  \ . '\%('
+  \ .   '\s*|\?\%(\s*-\{3,}\s*|\)\+\s*-\{3,}\s*|\?\s*'
+  \ .   '\|'
+  \ .   '\s*|\s*-\{3,}\s*|\s*'
+  \ .   '\|'
+  \ .   '\s*|\s*-\{3,}\s*'
+  \ .   '\|'
+  \ .   '\s*-\{3,}\s*|\s*'
+  \ . '\)'
+let s:markdown_table_header_rows_separator = ''
+  \ . '\%('
+  \ .   '\s*|\?\%(\s*-\{3,}\s*|\)\+\s*-\{3,}\s*|\?\s*'
+  \ .   '\|'
+  \ .   '\s*|\s*-\{3,}\s*|\s*'
+  \ .   '\|'
+  \ .   '\s*|\s*-\{3,}\s*'
+  \ .   '\|'
+  \ .   '\s*-\{3,}\s*|\s*'
+  \ . '\)'
+execute 'syn match markdownTable '
+  \ . 'transparent contains=markdownTableHeader,markdownTableDelimiter,@markdownInline '
+  \ . '/'
+  \ .   '^\s*\n'
+  \ .   '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
+  \ .   s:markdown_table_header_rows_separator . '\n'
+  \ .   '\%('
+  \ .     '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
+  \ .   '\)*'
+  \ .   '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
+  \ .   '$'
+  \ . '/'
+syn match markdownTableDelimiter /|/ contained
+execute 'syn match markdownTableDelimiter contained '
+  \ . '/' . s:markdown_table_header_rows_separator . '/'
+execute 'syn match markdownTableHeader contained contains=@markdownInline '
+  \ . '/\%(|\?\s*\)\@<=[^|]\+\%(.*\n' . s:markdown_table_header_rows_separator . '\)\@=/'
+
+hi def link markdownTableDelimiter Delimiter
+hi def link markdownTableHeader Bold
+
 " }}}
 
 

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/tables.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.NonText { color: #8080ff; }
+.Underlined { color: #c000c0; text-decoration: underline; }
+.Bold { font-weight: bold; }
+.Special { color: #c000c0; }
+.Italic { font-style: italic; }
+.Identifier { color: #008080; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+Tables with at least two columns at least must have pipes to separate columns
+
+<span class="Bold">  Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span>
+<span class="Special">  ---|---</span>
+  Row-1-Column-1<span class="Special">|</span>Row-1-Column-2
+
+<span class="Bold">  Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span>
+<span class="Special">  ---|---</span>
+  Row-1-Column-1<span class="Special">|</span>Row-1-Column-2
+  Row-2-Column-1<span class="Special">|</span>Row-2-Column-2
+
+<span class="Bold">  </span><span class="Special">|</span><span class="Bold">Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span>
+<span class="Special">  |---|---</span>
+  <span class="Special">|</span>Row-1-Column-1<span class="Special">|</span>Row-1-Column-2
+
+<span class="Bold">  Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span><span class="Special">|</span>
+<span class="Special">  ---|---|</span>
+  Row-1-Column-1<span class="Special">|</span>Row-1-Column-2<span class="Special">|</span>
+
+<span class="Bold">  </span><span class="Special">|</span><span class="Bold">Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span><span class="Special">|</span>
+<span class="Special">  |---|---|</span>
+  <span class="Special">|</span>Row-1-Column-1<span class="Special">|</span>Row-1-Column-2<span class="Special">|</span>
+
+
+Between dashes and pipes spaces are allowed
+
+<span class="Bold">  Header-1       </span><span class="Special">|</span><span class="Bold"> Header-2</span>
+<span class="Special">    ---          | ---</span>
+  Row-1-Column-1 <span class="Special">|</span> Row-1-Column-2
+
+
+Tables could contain inline elements
+
+<span class="Bold">  </span><span class="Underlined">www.example.com</span><span class="Bold"> </span><span class="Special">|</span><span class="Bold"> Header-2</span>
+<span class="Special">    ---          | ---</span>
+  <span class="Special">~~</span><span class="NonText">Row-1-Column-1</span><span class="Special">~~</span> <span class="Special">|</span> <span class="Special">*</span><span class="Italic">Row-1-Column-2</span><span class="Special">*</span>
+
+
+Tables with single column at least should have a pipes on one side
+
+<span class="Bold">  </span><span class="Special">|</span><span class="Bold">Header-1</span>
+<span class="Special">  |---</span>
+  <span class="Special">|</span>Row-1-Column-1
+
+<span class="Bold">  Header-1</span><span class="Special">|</span>
+<span class="Special">  ---|</span>
+  Row-1-Column-1<span class="Special">|</span>
+
+<span class="Bold">  </span><span class="Special">|</span><span class="Bold">Header-1</span><span class="Special">|</span>
+<span class="Special">  |---|</span>
+  <span class="Special">|</span>Row-1-Column-1<span class="Special">|</span>
+
+  So this is not not a table with one column but some stings and a separator (it's not an header because it doesn't begin at the first column)
+
+  Header-1
+<span class="Identifier">  ---</span>
+  Row-1-Column-1
+
+
+Surprisingly tables could have as many leading spaces as wanted, they never turn as code blocks
+
+<span class="Bold">            Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span>
+<span class="Special">            ---|---</span>
+            Row-1-Column-1<span class="Special">|</span>Row-1-Column-2
+
+<span class="Bold">      Header-1</span><span class="Special">|</span><span class="Bold">Header-2</span>
+<span class="Special">  ---|---</span>
+            Row-1-Column-1<span class="Special">|</span>Row-1-Column-2
+
+
+Tables should be preceded by an empty line, so the following is not a table
+
+  Not an empty line
+  Header-1|Header-2
+  ---|---
+  Row-1-Column-1|Row-1-Column-2
+
+
+The separator between header and the rows should have at least 3 dashes, so the following is not a table
+
+  Header-1|Header-2
+  --|---
+  Row-1-Column-1|Row-1-Column-2
+
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
