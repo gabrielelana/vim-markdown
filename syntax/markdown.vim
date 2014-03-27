@@ -308,6 +308,7 @@ for s:level in range(1, 42)
     \ . (s:level > 1 ? 'contained ' : '')
     \ . 'keepend '
     \ . 'contains='
+    \ .   'markdownTableInListItemAtLevel' . (s:level) . ','
     \ .   'markdownCodeBlockInListItemAtLevel' . (s:level) . ','
     \ .   'markdownFencedCodeBlockInListItemAtLevel' . (s:level) . ','
     \ .   'markdownH1InListItemAtLevel' . (s:level) . ','
@@ -435,6 +436,22 @@ for s:level in range(1, 42)
     \ . '/^' . (s:indented_as_content) . '\%(>\s\?\)\+/'
   execute 'hi def link markdownBlockquoteInListItemAtLevel' . (s:level) . ' Comment'
   execute 'hi def link markdownBlockquoteDelimiterInListItemAtLevel' . (s:level) . ' Delimiter'
+
+  " the only constraint here is that the table begins at least at the same
+  " level as the list item's content, se we could reuse the previous syntactic
+  " elements, we could do that because tables could have arbitrary indentation
+  execute 'syn match markdownTableInListItemAtLevel' . (s:level) . ' '
+    \ . 'transparent contains=markdownTableHeader,markdownTableDelimiter,@markdownInline '
+    \ . '/'
+    \ .   '^\s*\n'
+    \ .   (s:indented_as_content) . '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
+    \ .   s:markdown_table_header_rows_separator . '\n'
+    \ .   '\%('
+    \ .     '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
+    \ .   '\)*'
+    \ .   '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
+    \ .   '$'
+    \ . '/'
 endfor
 hi def link markdownItemDelimiter Special
 hi def link markdownFencedCodeBlockInItemDelimiter Special

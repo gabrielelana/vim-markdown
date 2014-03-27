@@ -7,6 +7,7 @@ features = [
   "lists",
   "lists_with_tasks",
   "lists_with_lists",
+  "lists_with_tables",
   "lists_with_codeblocks",
   "lists_with_fenced_codeblocks",
   "lists_with_anchored_elements",
