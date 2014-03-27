@@ -97,7 +97,6 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
   * Edit jekyll front matter code block
   * Explain in this file why I chose to avoid to highlight nested block elements
 * Check Lists (GFM)
-  * Syntax highlight
   * When on over check item `<Space>` will check/uncheck it
 * Tables (GFM)
   * Syntax highlight

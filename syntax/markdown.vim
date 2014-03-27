@@ -292,7 +292,7 @@ for s:level in range(1, 42)
     \ .   'markdownBlockquoteInListItemAtLevel' . (s:level) . ','
     \ .   'markdownListItemAtLevel' . (s:level+1) . ','
     \ .   '@markdownInline '
-    \ . 'start=/^' . (s:indented_as_container) . '\%([-*+]\|\d\.\)\s\+/ '
+    \ . 'start=/^' . (s:indented_as_container) . '\%([-*+]\|\d\.\)\%(\s\+\[[ x]\]\)\?\s\+/ '
     \ . 'end='
     \ .   '/'
     \ .     '\n\%(\n\n\)\@='

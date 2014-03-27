@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/code/vim-markdown/spec/features/lists_with_tasks.md.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Constant { color: #c00000; }
+.Special { color: #c000c0; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+Stars
+<span class="Special">* [ ] </span>First tasks item
+<span class="Special">* [x] </span>Second tasks item
+<span class="Special">* [ ] </span>Third tasks item
+
+
+Dashes
+<span class="Special">- [x] </span>First tasks item
+<span class="Special">- [ ] </span>Second tasks item
+<span class="Special">- [x] </span>Third tasks item
+
+
+Pluses
+<span class="Special">+ [x] </span>First tasks item
+<span class="Special">+ [x] </span>Second tasks item
+<span class="Special">+ [ ] </span>Third tasks item
+
+
+Ordered
+<span class="Special">1. [ ] </span>First tasks item
+<span class="Special">2. [x] </span>Second tasks item
+<span class="Special">3. [x] </span>Third tasks item
+
+<span class="Special">* </span>[] This is not a task list item because the space between the brackets is mandatory for a non completed task
+<span class="Special">* </span>[*] This is not a task list item because the <span class="Special">`</span><span class="Constant">x</span><span class="Special">`</span> is the only allowed character to mark a task as done
+<span class="Special">* </span>[ ]This is not a task list item because the space after the brackets is mandatory
+<span class="Special">* </span>[x]This is not a task list item because the space after the brackets is mandatory
+
+Aside from that task lists behaves in the same way as the simple lists
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
