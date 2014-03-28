@@ -29,6 +29,21 @@ Between dashes and pipes spaces are allowed
   Row-1-Column-1 | Row-1-Column-2
 
 
+Tables with alignment hints (left, right and center)
+
+  Header-1       | Header-2
+  :--------------|:--------------
+  Row-1-Column-1 | Row-1-Column-2
+
+  Header-1       | Header-2
+  --------------:|--------------:
+  Row-1-Column-1 | Row-1-Column-2
+
+  Header-1       | Header-2
+  :-------------:|:-------------:
+  Row-1-Column-1 | Row-1-Column-2
+
+
 Tables could contain inline elements
 
   www.example.com | Header-2
