@@ -72,6 +72,12 @@ Tables with single column at least should have a pipes on one side
   Row-1-Column-1
 
 
+Tables could have only headers
+
+  Header-1|Header-2
+  ---|---
+
+
 Surprisingly tables could have as many leading spaces as wanted, they never turn as code blocks
 
             Header-1|Header-2

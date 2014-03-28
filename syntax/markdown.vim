@@ -284,7 +284,6 @@ execute 'syn match markdownTable '
   \ .   '\%('
   \ .     '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
   \ .   '\)*'
-  \ .   '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
   \ .   '$'
   \ . '/'
 syn match markdownTableDelimiter /|/ contained
@@ -449,7 +448,6 @@ for s:level in range(1, 42)
     \ .   '\%('
     \ .     '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
     \ .   '\)*'
-    \ .   '\s*|\?\%([^|]\+|\)*[^|]\+|\?\s*\n'
     \ .   '$'
     \ . '/'
 endfor

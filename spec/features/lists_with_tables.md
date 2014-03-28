@@ -31,3 +31,6 @@
       Header-1|Header-2
       ---|---
       Row-1-Column-1|Row-1-Column-2
+
+      Header-1|Header-2
+      ---|---
