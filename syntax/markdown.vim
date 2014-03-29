@@ -22,7 +22,7 @@ syn cluster markdownInline contains=
   \ markdownItalic,markdownBold,markdownBoldItalic,markdownStrike,markdownInlineCode,
   \ markdownPullRequestLinkInText,markdownUrlLinkInText,markdownUserLinkInText,
   \ markdownEmailLinkInText,markdownLinkContainer,markdownXmlComment,
-  \ markdownXmlOpenTag,markdownXmlClosedTag,markdownXmlEntities
+  \ markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
 
 syn region markdownItalic matchgroup=markdownInlineDelimiter contains=markdownItalic
   \ start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*"
@@ -221,8 +221,8 @@ syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ dis
   \ keepend contained contains=@markdownInline
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
-syn match markdownXmlOpenTag /\c<[-A-Z0-9_$?!:,.]\+\%(\s\+[^>]\{-}\)\?\/\?>/ contains=@NoSpell
-syn match markdownXmlClosedTag /\c<\/[-A-Z0-9_$?!:,.]\+>/ contains=@NoSpell
+syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
+syn match markdownXmlEmptyElement /\c<\([-A-Z0-9_$?!:,.]\+\)\%(\s\+[^>]\{-}\/>\|\s*\/>\)/ contains=@NoSpell
 syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
 " }}}
@@ -861,8 +861,8 @@ hi def link markdownEmoticonKeyword         Statement
 hi def link markdownRule                    Identifier
 
 hi def link markdownXmlComment              NonText
-hi def link markdownXmlOpenTag              NonText
-hi def link markdownXmlClosedTag            NonText
+hi def link markdownXmlElement              NonText
+hi def link markdownXmlEmptyElement         NonText
 hi def link markdownXmlEntities             Special
 
 " }}}

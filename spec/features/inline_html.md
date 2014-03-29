@@ -19,7 +19,7 @@ This is normal text
 # XML <i>element</i> in an header
 
 <div id="container">
-XML/HTML could contain *everything*
+XML/HTML could not contain *everything*
 
     Like code blocks
 
