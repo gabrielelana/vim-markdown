@@ -17,6 +17,7 @@ nnoremap <silent> <Leader>r :
   \   source plugin/markdown_edit_code_blocks.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
   \   source ftplugin/markdown_default_mappings.vim <BAR>
+  \   source ftplugin/markdown_fold.vim <BAR>
   \ endif <CR>
 
 
