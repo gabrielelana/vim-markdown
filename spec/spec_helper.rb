@@ -17,6 +17,7 @@ Vimrunner::RSpec.configure do |config|
     vim.command "runtime ftdetect/markdown.vim"
     vim.command "runtime ftplugin/markdown.vim"
     vim.command "set nospell"
+    vim.command "set nofoldenable"
     vim
   end
 end
