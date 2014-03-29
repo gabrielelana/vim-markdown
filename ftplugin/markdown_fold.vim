@@ -43,18 +43,20 @@ function! MarkdownFolds(lnum)
     return 's1'
   endif
 
+  let current_line_syntax_group = synIDattr(synID(a:lnum + 1, 1, 1), 'name')
   let prev_line_syntax_group = synIDattr(synID(a:lnum - 1, 1, 1), 'name')
   if match(currentline, '^\s\{4,}') >= 0
-    if prev_line_syntax_group !=# 'markdownCodeBlock'
-      return 'a1'
-    endif
-    if next_line_syntax_group !=# 'markdownCodeBlock'
-      return 's1'
+    if current_line_syntax_group ==# 'markdownCodeBlock'
+      if prev_line_syntax_group !=# 'markdownCodeBlock'
+        return 'a1'
+      endif
+      if next_line_syntax_group !=# 'markdownCodeBlock'
+        return 's1'
+      endif
     endif
     return '='
   endif
 
-  let nextline = getline(a:lnum + 1)
   if (match(currentline, '^.*$') >= 0)
     if (match(nextline, '^=\+$') >= 0)
       return '>1'
