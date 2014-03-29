@@ -1,11 +1,3 @@
-function! FirstSyntaxGroupInStack(lnum, cnum)
-  let stack = synstack(a:lnum, a:cnum)
-  if len(stack) > 0
-    return synIDattr(stack[0], 'name')
-  endif
-  return ''
-endfunction
-
 
 function! MarkdownFolds(lnum)
   let currentline = getline(a:lnum)
@@ -43,7 +35,7 @@ function! MarkdownFolds(lnum)
     return 's1'
   endif
 
-  let current_line_syntax_group = synIDattr(synID(a:lnum + 1, 1, 1), 'name')
+  let current_line_syntax_group = synIDattr(synID(a:lnum, 1, 1), 'name')
   let prev_line_syntax_group = synIDattr(synID(a:lnum - 1, 1, 1), 'name')
   if match(currentline, '^\s\{4,}') >= 0
     if current_line_syntax_group ==# 'markdownCodeBlock'
@@ -67,6 +59,14 @@ function! MarkdownFolds(lnum)
   endif
 
   return '='
+endfunction
+
+function! FirstSyntaxGroupInStack(lnum, cnum)
+  let stack = synstack(a:lnum, a:cnum)
+  if len(stack) > 0
+    return synIDattr(stack[0], 'name')
+  endif
+  return ''
 endfunction
 
 setlocal foldmethod=expr
