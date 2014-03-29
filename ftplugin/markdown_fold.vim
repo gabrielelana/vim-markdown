@@ -1,16 +1,17 @@
 
-function! MarkdownFolds()
-  let currentline = getline(v:lnum)
-  if match(currentline, '^#\{1,6}') >= 0
+function! MarkdownFolds(lnum)
+  let is_inside_a_list_item = synIDattr(synstack(a:lnum, 1)[0], 'name') =~ '^markdownListItem'
+  if is_inside_a_list_item
+    return '='
+  endif
+
+  let currentline = getline(a:lnum)
+  if match(currentline, '^#\{1,6}\s') >= 0
     let header_level = strlen(substitute(currentline, '^\(#\{1,6}\).*', '\1', ''))
     return '>' . header_level
   endif
 
-  let nextline = getline(v:lnum + 1)
-  let current_line_syntax_group = synIDattr(synID(v:lnum, 1, 1), 'name')
-  let next_line_syntax_group = synIDattr(synID(v:lnum + 1, 1, 1), 'name')
-  let prev_line_syntax_group = synIDattr(synID(v:lnum - 1, 1, 1), 'name')
-
+  let next_line_syntax_group = synIDattr(synID(a:lnum + 1, 1, 1), 'name')
   if match(currentline, '^\s*```') >= 0
     if next_line_syntax_group ==# 'markdownFencedCodeBlock'
       return 'a1'
@@ -18,6 +19,7 @@ function! MarkdownFolds()
     return 's1'
   endif
 
+  let prev_line_syntax_group = synIDattr(synID(a:lnum - 1, 1, 1), 'name')
   if match(currentline, '^\s\{4,}') >= 0
     if prev_line_syntax_group !=# 'markdownCodeBlock'
       return 'a1'
@@ -28,6 +30,7 @@ function! MarkdownFolds()
     return '='
   endif
 
+  let nextline = getline(a:lnum + 1)
   if (match(currentline, '^.*$') >= 0)
     if (match(nextline, '^=\+$') >= 0)
       return '>1'
@@ -37,11 +40,11 @@ function! MarkdownFolds()
     endif
   endif
 
-  return "="
+  return '='
 endfunction
 
 setlocal foldmethod=expr
-setlocal foldexpr=MarkdownFolds()
+setlocal foldexpr=MarkdownFolds(v:lnum)
 
 " function! MarkdownFoldText()
 "   let foldsize = (v:foldend-v:foldstart)
