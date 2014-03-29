@@ -17,7 +17,7 @@ function! MarkdownFolds(lnum)
     return '='
   endif
 
-  let is_inside_a_list_item = synIDattr(synstack(a:lnum, 1)[0], 'name') =~ '^markdownListItem'
+  let is_inside_a_list_item = FirstSyntaxGroupInStack(a:lnum, 1) =~ '^markdownListItem'
   if is_inside_a_list_item
     return '='
   endif
