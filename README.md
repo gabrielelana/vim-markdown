@@ -93,7 +93,6 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 
 <a name="TODO" />
 ## TODO
-* Improve performance, something in the last changes had an impact on performance
 * Folding
   * Fold HTML blocks
   * Skip empty lines in lists to be able to fold list items separated by empty lines as an unique list
