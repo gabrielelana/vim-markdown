@@ -15,6 +15,7 @@ A complete environment to create Markdown files with a syntax highlight that don
   * At last, on an empty line, with `<Leader>e` asks for a file type and then opens a temporary buffer with that file type
   * You see that when you leave the temporary buffer the content syncs back to the main file
   ![EditCodeBlock](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_edit_code_block.gif)
+* Folding for: headers, code blocks, html blocks and lists
 * Automatically detects Jekyll files and adds support for Liquid template engine
 * This is a work in progress, more goodies and improvements are coming (see [TODO](#TODO)), stay tuned
 
@@ -92,6 +93,14 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 
 <a name="TODO" />
 ## TODO
+* Improve performance, something in the last changes had an impact on performance
+* Folding
+  * Fold HTML blocks
+  * Skip empty lines in lists to be able to fold list items separated by empty lines as an unique list
+  * Always consider the first non space character of the line when check for syntax group
+  * Always use `synstack` to check the syntax group of a position
+  * Move folding method in a better place
+  * Write specs for the whole thing
 * Code Blocks
   * Edit html code block
   * Edit jekyll front matter code block
