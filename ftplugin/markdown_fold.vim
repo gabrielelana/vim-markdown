@@ -1,32 +1,37 @@
 
-function! MarkdownFolds(lnum)
+function! MdFoldOfLine(lnum)
   let currentline = getline(a:lnum)
   let nextline = getline(a:lnum + 1)
 
+  " an empty line is not going to change the indentation level
   if match(currentline, '^\s*$') >= 0
     return '='
   endif
 
-  if FirstSyntaxGroupInStack(a:lnum, 1) =~# '^markdownListItem'
-    if FirstSyntaxGroupInStack(a:lnum - 1, 1) !~# '^markdownListItem'
+  " folding lists
+  if s:first_syntax_group_in_stack(a:lnum, 1) =~# '^markdownListItem'
+    if s:first_syntax_group_in_stack(a:lnum - 1, 1) !~# '^markdownListItem'
       return 'a1'
     endif
-    if FirstSyntaxGroupInStack(a:lnum + 1, 1) !~# '^markdownListItem'
+    if s:first_syntax_group_in_stack(a:lnum + 1, 1) !~# '^markdownListItem'
       return 's1'
     endif
     return '='
   endif
 
-  let is_inside_a_list_item = FirstSyntaxGroupInStack(a:lnum, 1) =~ '^markdownListItem'
+  " we are not going to fold things inside list items, too hairy
+  let is_inside_a_list_item = s:first_syntax_group_in_stack(a:lnum, 1) =~ '^markdownListItem'
   if is_inside_a_list_item
     return '='
   endif
 
+  " folding atx headers
   if match(currentline, '^#\{1,6}\s') >= 0
     let header_level = strlen(substitute(currentline, '^\(#\{1,6}\).*', '\1', ''))
     return '>' . header_level
   endif
 
+  " folding fenced code blocks
   let next_line_syntax_group = synIDattr(synID(a:lnum + 1, 1, 1), 'name')
   if match(currentline, '^\s*```') >= 0
     if next_line_syntax_group ==# 'markdownFencedCodeBlock'
@@ -35,6 +40,7 @@ function! MarkdownFolds(lnum)
     return 's1'
   endif
 
+  " folding code blocks
   let current_line_syntax_group = synIDattr(synID(a:lnum, 1, 1), 'name')
   let prev_line_syntax_group = synIDattr(synID(a:lnum - 1, 1, 1), 'name')
   if match(currentline, '^\s\{4,}') >= 0
@@ -49,6 +55,7 @@ function! MarkdownFolds(lnum)
     return '='
   endif
 
+  " folding setex headers
   if (match(currentline, '^.*$') >= 0)
     if (match(nextline, '^=\+$') >= 0)
       return '>1'
@@ -61,7 +68,7 @@ function! MarkdownFolds(lnum)
   return '='
 endfunction
 
-function! FirstSyntaxGroupInStack(lnum, cnum)
+function! s:first_syntax_group_in_stack(lnum, cnum)
   let stack = synstack(a:lnum, a:cnum)
   if len(stack) > 0
     return synIDattr(stack[0], 'name')
@@ -70,7 +77,7 @@ function! FirstSyntaxGroupInStack(lnum, cnum)
 endfunction
 
 setlocal foldmethod=expr
-setlocal foldexpr=MarkdownFolds(v:lnum)
+setlocal foldexpr=MdFoldOfLine(v:lnum)
 
 " function! MarkdownFoldText()
 "   let foldsize = (v:foldend-v:foldstart)
