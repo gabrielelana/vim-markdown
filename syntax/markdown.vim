@@ -12,7 +12,7 @@ if !exists('main_syntax')
 endif
 
 syn spell toplevel
-syn sync minlines=342
+syn sync fromstart
 syn case ignore
 
 
