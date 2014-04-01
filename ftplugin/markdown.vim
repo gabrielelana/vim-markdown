@@ -1,5 +1,7 @@
 if exists('b:did_ftplugin') | finish | endif
 
+" {{{ OPTIONS
+
 setlocal textwidth=0
 setlocal ts=2 sw=2 expandtab smarttab
 setlocal comments=b:*,b:-,b:+,n:> commentstring=>\ %s
@@ -26,7 +28,12 @@ iabbrev <buffer> ... …
 iabbrev <buffer> << «
 iabbrev <buffer> >> »
 
-function! s:MarkdownJumpToHeader(forward, visual)
+" }}}
+
+
+" {{{ FUNCTIONS
+
+function! s:JumpToHeader(forward, visual)
   let pattern = '\v^#{1,6}.*$|^.+\n%(\-+|\=+)$'
   if a:visual
     normal! gv
@@ -39,7 +46,7 @@ function! s:MarkdownJumpToHeader(forward, visual)
   execute 'silent normal! ' . direction . pattern . "\n"
 endfunction
 
-function! s:MarkdownIndent(indent)
+function! s:Indent(indent)
   if getline('.') =~ '\v^\s*%([-*+]|\d\.)\s*$'
     if a:indent
       normal >>
@@ -68,21 +75,28 @@ function! s:IsAnEmptyQuote()
   return getline('.') =~ '\v^\s*(\s?\>)+\s*$'
 endfunction
 
-" Jumping Around
-noremap <silent> <buffer> <script> ]] :call <SID>MarkdownJumpToHeader(1, 0)<CR>
-noremap <silent> <buffer> <script> [[ :call <SID>MarkdownJumpToHeader(0, 0)<CR>
-vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>MarkdownJumpToHeader(1, 1)<CR>
-vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>MarkdownJumpToHeader(0, 1)<CR>
+" }}}
+
+
+" {{{ MAPPINGS
+
+" Jumping around
+noremap <silent> <buffer> <script> ]] :call <SID>JumpToHeader(1, 0)<CR>
+noremap <silent> <buffer> <script> [[ :call <SID>JumpToHeader(0, 0)<CR>
+vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>JumpToHeader(1, 1)<CR>
+vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>JumpToHeader(0, 1)<CR>
 noremap <silent> <buffer> <script> ][ <nop>
 noremap <silent> <buffer> <script> [] <nop>
 
-" Indenting Things
+" Indenting things
 inoremap <silent> <buffer> <script> <expr> <Tab>
-  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>MarkdownIndent(1)<CR>' : '<Tab>'
+  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(1)<CR>' : '<Tab>'
 inoremap <silent> <buffer> <script> <expr> <S-Tab>
-  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>MarkdownIndent(0)<CR>' : '<Tab>'
+  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(0)<CR>' : '<Tab>'
 
-" List Items
+" Remove empty list items when press <CR> and the list item is empty
 inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
+
+" }}}
 
 let b:did_ftplugin = 1
