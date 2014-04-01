@@ -9,14 +9,13 @@ nnoremap <silent> <Leader>r :
   \   unlet! b:did_ftplugin <BAR>
   \   unlet! b:current_syntax <BAR>
   \   unlet! g:markdown_edit_code_blocks_loaded <BAR>
-  \   unlet! b:markdown_default_mappings_loaded <BAR>
   \   let g:markdown_include_jekyll_support = 0 <BAR>
-  \   let g:markdown_include_default_mappings = 1 <BAR>
+  \   let g:markdown_enable_mappings = 1 <BAR>
+  \   let g:markdown_enable_insert_mode_mappings = 1 <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
   \   source plugin/markdown_edit_code_blocks.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
-  \   source ftplugin/markdown_default_mappings.vim <BAR>
   \   source ftplugin/markdown_fold.vim <BAR>
   \ endif <CR>
 

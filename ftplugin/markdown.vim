@@ -1,5 +1,28 @@
 if exists('b:did_ftplugin') | finish | endif
 
+" {{{ CONFIGURATION
+
+if !exists('g:markdown_enable_mappings')
+  " make it compatible with previous configuration value
+  if exists('g:markdown_include_default_mappings')
+    let g:markdown_enable_mappings = g:markdown_include_default_mappings
+  else
+    let g:markdown_enable_mappings = 1
+  endif
+endif
+
+if !exists('g:markdown_enable_insert_mode_mappings')
+  " make it compatible with previous configuration value
+  if exists('g:markdown_include_insert_mode_default_mappings')
+    let g:markdown_enable_insert_mode_mappings = g:markdown_include_insert_mode_default_mappings
+  else
+    let g:markdown_enable_insert_mode_mappings = 0
+  endif
+endif
+
+" }}}
+
+
 " {{{ OPTIONS
 
 setlocal textwidth=0
@@ -96,6 +119,16 @@ inoremap <silent> <buffer> <script> <expr> <S-Tab>
 
 " Remove empty list items when press <CR> and the list item is empty
 inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
+
+" Leader mappings
+if g:markdown_enable_mappings
+  nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
+  vnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
+
+  if g:markdown_enable_insert_mode_mappings
+    inoremap <buffer> <Leader>e <Esc>:MdEditCodeBlock<CR>
+  endif
+endif
 
 " }}}
 
