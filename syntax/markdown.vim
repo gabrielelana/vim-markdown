@@ -300,7 +300,7 @@ execute 'syn match markdownTableHeader contained contains=@markdownInline '
 for s:level in range(1, 16)
   let s:indented_as_content = '\%( \{' . (2*s:level) . '}\|\t\{' . (s:level) . '}\)'
   let s:indented_as_container = '\%( \{' . (2*(s:level-1)) . '}\|\t\{' . (s:level-1) . '}\)'
-  let s:preceded_by_separator = '\%(^\s*\n\)\@<='
+  let s:preceded_by_separator = '^\s*\n'
 
   execute 'syn region markdownListItemAtLevel' . (s:level) . ' '
     \ . 'matchgroup=markdownItemDelimiter '
