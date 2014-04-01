@@ -1,5 +1,5 @@
 
-function! MdFoldOfLine(lnum)
+function! markdown#FoldLevelOfLine(lnum)
   let currentline = getline(a:lnum)
   let nextline = getline(a:lnum + 1)
 
@@ -9,18 +9,18 @@ function! MdFoldOfLine(lnum)
   endif
 
   " folding lists
-  if s:first_syntax_group_in_stack(a:lnum, 1) =~# '^markdownListItem'
-    if s:first_syntax_group_in_stack(a:lnum - 1, 1) !~# '^markdownListItem'
+  if s:SyntaxGroupOfLineIs(a:lnum, '^markdownListItem')
+    if s:SyntaxGroupOfLineIs(a:lnum - 1, '^markdownListItem')
       return 'a1'
     endif
-    if s:first_syntax_group_in_stack(a:lnum + 1, 1) !~# '^markdownListItem'
+    if s:SyntaxGroupOfLineIs(a:lnum + 1, '^markdownListItem')
       return 's1'
     endif
     return '='
   endif
 
   " we are not going to fold things inside list items, too hairy
-  let is_inside_a_list_item = s:first_syntax_group_in_stack(a:lnum, 1) =~ '^markdownListItem'
+  let is_inside_a_list_item = s:SyntaxGroupOfLineIs(a:lnum, '^markdownListItem')
   if is_inside_a_list_item
     return '='
   endif
@@ -68,19 +68,10 @@ function! MdFoldOfLine(lnum)
   return '='
 endfunction
 
-function! s:first_syntax_group_in_stack(lnum, cnum)
+function! s:SyntaxGroupOfLineIs(lnum, pattern)
   let stack = synstack(a:lnum, a:cnum)
   if len(stack) > 0
-    return synIDattr(stack[0], 'name')
+    return synIDattr(stack[0], 'name') =~# a:pattern
   endif
-  return ''
+  return 0
 endfunction
-
-setlocal foldmethod=expr
-setlocal foldexpr=MdFoldOfLine(v:lnum)
-
-" function! MarkdownFoldText()
-"   let foldsize = (v:foldend-v:foldstart)
-"   return getline(v:foldstart).' ('.foldsize.' lines)'
-" endfunction
-" setlocal foldtext=MarkdownFoldText()

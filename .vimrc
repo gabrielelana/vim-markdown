@@ -12,11 +12,12 @@ nnoremap <silent> <Leader>r :
   \   let g:markdown_include_jekyll_support = 0 <BAR>
   \   let g:markdown_enable_mappings = 1 <BAR>
   \   let g:markdown_enable_insert_mode_mappings = 1 <BAR>
+  \   let g:markdown_enable_folding = 0 <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
+  \   source autoload/markdown.vim <BAR>
   \   source plugin/markdown_edit_code_blocks.vim <BAR>
   \   source ftplugin/markdown.vim <BAR>
-  \   source ftplugin/markdown_fold.vim <BAR>
   \ endif <CR>
 
 

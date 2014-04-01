@@ -2,6 +2,11 @@ if exists('b:did_ftplugin') | finish | endif
 
 " {{{ CONFIGURATION
 
+if !exists('g:markdown_enable_folding')
+  echo 'SET FOLDING'
+  let g:markdown_enable_folding = 0
+endif
+
 if !exists('g:markdown_enable_mappings')
   " make it compatible with previous configuration value
   if exists('g:markdown_include_default_mappings')
@@ -50,6 +55,12 @@ iabbrev <buffer> :-( :disappointed:
 iabbrev <buffer> ... …
 iabbrev <buffer> << «
 iabbrev <buffer> >> »
+
+" Folding
+if g:markdown_enable_folding
+  setlocal foldmethod=expr
+  setlocal foldexpr=markdown#FoldLevelOfLine(v:lnum)
+endif
 
 " }}}
 
