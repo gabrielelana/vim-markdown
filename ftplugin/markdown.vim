@@ -114,6 +114,9 @@ endfunction
 
 " {{{ MAPPINGS
 
+" Commands
+command! -nargs=0 -range MarkdownEditBlock :<line1>,<line2>call markdown#EditBlock()
+
 " Jumping around
 noremap <silent> <buffer> <script> ]] :call <SID>JumpToHeader(1, 0)<CR>
 noremap <silent> <buffer> <script> [[ :call <SID>JumpToHeader(0, 0)<CR>
@@ -133,11 +136,11 @@ inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O
 
 " Leader mappings
 if g:markdown_enable_mappings
-  nnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
-  vnoremap <buffer> <Leader>e :MdEditCodeBlock<CR>
+  nnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
+  vnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
 
   if g:markdown_enable_insert_mode_mappings
-    inoremap <buffer> <Leader>e <Esc>:MdEditCodeBlock<CR>
+    inoremap <buffer> <Leader>e <Esc>:MarkdownEditBlock<CR>
   endif
 endif
 
