@@ -877,4 +877,4 @@ if main_syntax ==# 'markdown'
   unlet main_syntax
 endif
 
-" vim: foldenable:foldmethod=marker
+" vim: fen:fdm=marker

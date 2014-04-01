@@ -31,22 +31,22 @@ setlocal comments=b:*,b:-,b:+,n:> commentstring=>\ %s
 setlocal formatoptions+=tcrqon formatoptions-=wa
 setlocal formatlistpat="^\s*\d\.\s\+"
 
-" enable spelling and completion based on dictionary words
+" Enable spelling and completion based on dictionary words
 if &spelllang !~# '^\s*$'
   setlocal spell
 endif
 
-" custom dictionary for emoji
+" Custom dictionary for emoji
 execute 'setlocal dictionary+=' . expand('<sfile>:p:h:h') . '/dict/emoticons.dict'
 setlocal iskeyword+=:,+,-
 setlocal complete+=k
 
-" replace common ascii emoticons with supported emoji
+" Replace common ascii emoticons with supported emoji
 iabbrev <buffer> :-) :smile:
 iabbrev <buffer> :-D :laughing:
 iabbrev <buffer> :-( :disappointed:
 
-" replace common punctuation
+" Replace common punctuation
 iabbrev <buffer> ... …
 iabbrev <buffer> << «
 iabbrev <buffer> >> »
@@ -133,3 +133,5 @@ endif
 " }}}
 
 let b:did_ftplugin = 1
+
+" vim: fen:fdm=marker
