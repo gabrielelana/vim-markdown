@@ -3,7 +3,6 @@ if exists('b:did_ftplugin') | finish | endif
 " {{{ CONFIGURATION
 
 if !exists('g:markdown_enable_folding')
-  echo 'SET FOLDING'
   let g:markdown_enable_folding = 0
 endif
 
