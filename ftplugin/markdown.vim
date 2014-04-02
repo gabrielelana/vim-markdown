@@ -133,13 +133,19 @@ inoremap <silent> <buffer> <script> <expr> <S-Tab>
 " Remove empty list items when press <CR> and the list item is empty
 inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
 
+" Format tables
+inoremap <silent> <buffer> <Bar>       <Bar><Esc>:call markdown#FormatTable()<CR>a
+
 " Leader mappings
 if g:markdown_enable_mappings
   nnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
   vnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
 
+  nnoremap <silent> <buffer> <Leader>ft  :call markdown#FormatTable()<CR>
+
   if g:markdown_enable_insert_mode_mappings
     inoremap <buffer> <Leader>e <Esc>:MarkdownEditBlock<CR>
+    inoremap <silent> <buffer> <Leader>ft  <Esc>:call markdown#FormatTable()<CR>a
   endif
 endif
 

@@ -439,4 +439,44 @@ let s:known_file_extensions = {
 
 " }}}
 
+" {{{ FORMAT
+function! markdown#FormatTable()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    let separator_line_number = search('^\s*|\s*-\{3,}', 'cbnW')
+
+    call s:ShrinkTableHeaderSeparator(separator_line_number)
+    Tabularize/|/l1
+    call s:ExpandTableHeaderSeparator(separator_line_number)
+    normal! 0
+
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+function! s:ShrinkTableHeaderSeparator(separator_line_number)
+  if a:separator_line_number > 0
+    let separator_line = getline(a:separator_line_number)
+    let separator_line = substitute(separator_line, '-\+', '---', 'g')
+    call setline(a:separator_line_number, separator_line)
+  endif
+endfunction
+
+function! s:ExpandTableHeaderSeparator(separator_line_number)
+  if a:separator_line_number > 0
+    let separator_line = getline(a:separator_line_number)
+    let separator_line = substitute(
+      \ separator_line,
+      \ '|\([^|]*\)',
+      \ '\="| " . repeat("-", strlen(submatch(1)) - 2) . " "',
+      \ 'g')
+    let separator_line = substitute(separator_line, '\s*$', '', '')
+    call setline(a:separator_line_number, separator_line)
+  endif
+endfunction
+" }}}
+
+
 " vim: fen:fdm=marker

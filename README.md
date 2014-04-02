@@ -16,6 +16,7 @@ A complete environment to create Markdown files with a syntax highlight that don
   * You see that when you leave the temporary buffer the content syncs back to the main file
   ![EditCodeBlock](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_edit_code_block.gif)
 * Folding for: headers, code blocks, html blocks and lists
+* Format tables automatically (require [`Tabular`](https://github.com/godlygeek/tabular) plugin)
 * Automatically detects Jekyll files and adds support for Liquid template engine
 * This is a work in progress, more goodies and improvements are coming (see [TODO](#TODO)), stay tuned
 
@@ -65,16 +66,18 @@ I would use this section until I have a proper documentation
 
 ### Default Mappings
 All default mappings are local to markdown buffers
-* `<Leader>e` (`NORMAL_MODE`, `VISUAL_MODE`, `INSERT_MODE`) `:MdEditCodeBlock` edit the current code block in another buffer with a guessed file type. The guess is based on the start of the range for `VISUAL_MODE`. If it's not possibile to guess (you are not in a recognizable code block like a fenced code block) then the default is `markdown`. If it's not possibile to guess and the current range is a single line and the line is empty then a new code block is created. It's asked to the user the file type of the new code block. The default file type is `markdown`.
+* `<Leader>ft` (`NORMAL_MODE`, `INSERT_MODE`) format the current table
+* `<Leader>e` (`NORMAL_MODE`, `VISUAL_MODE`, `INSERT_MODE`) `:MarkdownEditCodeBlock` edit the current code block in another buffer with a guessed file type. The guess is based on the start of the range for `VISUAL_MODE`. If it's not possibile to guess (you are not in a recognizable code block like a fenced code block) then the default is `markdown`. If it's not possibile to guess and the current range is a single line and the line is empty then a new code block is created. It's asked to the user the file type of the new code block. The default file type is `markdown`.
 
 ### Motions
 * `]]` start of the next header
 * `[[` start of the previous header
 
 ### While Editing in Insert Mode
-* `i_<Tab>`/`i_<S-Tab>` on a list item it will indent/unindent the item
-* `i_<Tab>`/`i_<S-Tab>` on a blockquote it will increase/decrease the quote level
-* `i_<Enter>` on a list item with no text in it (freshly created) it will delete everything till the column 0
+* `|` in a table triggers the format command
+* `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item
+* `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
+* `<Enter>` on a list item with no text in it (freshly created) it will delete everything till the column 0
 
 
 ## Development
