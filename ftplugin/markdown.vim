@@ -136,6 +136,9 @@ inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O
 " Format tables
 inoremap <silent> <buffer> <Bar>       <Bar><Esc>:call markdown#FormatTable()<CR>a
 
+" Switch status of things
+nnoremap <silent> <buffer> <Space>     :call markdown#SwitchStatus()<CR>
+
 " Leader mappings
 if g:markdown_enable_mappings
   nnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
