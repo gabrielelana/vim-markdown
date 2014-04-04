@@ -10,7 +10,7 @@ nnoremap <silent> <Leader>r :
   \   unlet! b:current_syntax <BAR>
   \   let g:markdown_enable_mappings = 1 <BAR>
   \   let g:markdown_enable_insert_mode_mappings = 1 <BAR>
-  \   let g:markdown_include_jekyll_support = 0 <BAR>
+  \   let g:markdown_include_jekyll_support = 1 <BAR>
   \   let g:markdown_enable_folding = 0 <BAR>
   \   source syntax/markdown.vim <BAR>
   \   source syntax/markdown_jekyll.vim <BAR>
