@@ -20,7 +20,7 @@ nnoremap <silent> <Leader>r :
 
 nnoremap <silent><buffer> <Leader>k :
   \ let b:kramdown_input = expand('%:p') <BAR>
-  \ let b:kramdown_output = expand('%:p:h') . '/.tmp/kramdown.html' <BAR>
+  \ let b:kramdown_output = tempname() . '.html' <BAR>
   \ call system('bundle exec kramdown ' . shellescape(b:kramdown_input) . ' > ' . shellescape(b:kramdown_output)) <BAR>
   \ execute 'split ' . b:kramdown_output
   \ <CR>
