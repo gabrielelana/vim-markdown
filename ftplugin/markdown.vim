@@ -2,6 +2,10 @@ if exists('b:did_ftplugin') | finish | endif
 
 " {{{ CONFIGURATION
 
+if !exists('g:markdown_flavor')
+  let g:markdown_flavor = 'github'
+endif
+
 if !exists('g:markdown_enable_folding')
   let g:markdown_enable_folding = 0
 endif

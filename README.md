@@ -1,4 +1,4 @@
-# Github Flavored Markdown for Vim
+# Markdown for Vim
 A complete environment to create Markdown files with a syntax highlight that don't sucks!
 
 ## Features
@@ -101,12 +101,6 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 
 <a name="TODO" />
 ## TODO
-* Folding
-  * Fold HTML blocks
-  * Always consider the first non space character of the line when check for syntax group
-  * Always use `synstack` to check the syntax group of a position
-  * Write specs for the whole thing
-  * Support `foldtext` option
 * Code Blocks
   * Edit html code block
   * Edit jekyll front matter code block
@@ -133,3 +127,9 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
     * Start of the next paragraph `}`
     * Start of the previous paragraph `{`
   * Other inline elements
+* Folding
+  * Fold HTML blocks
+  * Always consider the first non space character of the line when check for syntax group
+  * Always use `synstack` to check the syntax group of a position
+  * Write specs for the whole thing
+  * Support `foldtext` option
