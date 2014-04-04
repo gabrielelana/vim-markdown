@@ -18,6 +18,12 @@ nnoremap <silent> <Leader>r :
   \   source ftplugin/markdown.vim <BAR>
   \ endif <CR>
 
+nnoremap <silent><buffer> <Leader>k :
+  \ let b:kramdown_input = expand('%:p') <BAR>
+  \ let b:kramdown_output = expand('%:p:h') . '/.tmp/kramdown.html' <BAR>
+  \ call system('bundle exec kramdown ' . shellescape(b:kramdown_input) . ' > ' . shellescape(b:kramdown_output)) <BAR>
+  \ execute 'split ' . b:kramdown_output
+  \ <CR>
 
 " display all the highgligh groups with relative colors
 nnoremap <silent> <Leader>g :source $VIMRUNTIME/syntax/hitest.vim<CR>
