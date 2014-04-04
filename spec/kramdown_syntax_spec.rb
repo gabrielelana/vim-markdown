@@ -3,39 +3,17 @@ require "nokogiri"
 require_relative "spec_helper"
 
 features = [
-  "jekyll",
-  "lists",
-  "lists_with_tasks",
-  "lists_with_lists",
-  "lists_with_tables",
-  "lists_with_codeblocks",
-  "lists_with_fenced_codeblocks",
-  "lists_with_anchored_elements",
-  "autolinks",
-  "blockquotes",
-  "blockquotes_nested",
-  "combined_emphasis",
-  "contained_emphasis",
-  "strikethrough",
-  "headers_atx",
-  "headers_setext",
-  "strong_emphasis",
-  "weak_emphasis",
-  "inline_html",
-  "inline_links",
-  "inline_references",
-  "codeblocks",
-  "tables"
+  "kramdown/headers_with_id"
 ]
 
-describe "markdown syntax" do
-
+describe "kramdown markdown syntax" do
   let(:filename) {"syntax.html"}
 
   features.each do |feature|
     source = File.expand_path("./features/#{feature}.md", File.dirname(__FILE__))
     master = source + ".html"
-    it "should support #{feature.gsub("_", " ")}" do
+    it "should support #{feature.split(/\//).last.gsub("_", " ")}" do
+      vim.command "let g:markdown_flavor=kramdown"
       vim.edit source
       vim.command "TOhtml | w #{filename}"
       if not File.exists?(master) or ENV["GENERATE_GOLDEN_MASTER"]
