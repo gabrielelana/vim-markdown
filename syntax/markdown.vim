@@ -230,20 +230,35 @@ syn match markdownXmlEntities /&#\?[0-9A-Za-z]\{1,8};/ contains=@NoSpell
 
 " {{{ ANCHORED BLOCKS
 
-syn region markdownH1 matchgroup=markdownHeadingDelimiter start=/^#\%(\s\+\)\@=/      end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH2 matchgroup=markdownHeadingDelimiter start=/^##\%(\s\+\)\@=/     end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH3 matchgroup=markdownHeadingDelimiter start=/^###\%(\s\+\)\@=/    end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH4 matchgroup=markdownHeadingDelimiter start=/^####\%(\s\+\)\@=/   end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH5 matchgroup=markdownHeadingDelimiter start=/^#####\%(\s\+\)\@=/  end=/#*\s*$/ display oneline contains=@markdownInline
-syn region markdownH6 matchgroup=markdownHeadingDelimiter start=/^######\%(\s\+\)\@=/ end=/#*\s*$/ display oneline contains=@markdownInline
-
-syn match markdownH1 /^.\+\n=\+$/ display contains=@markdownInline,markdownHeadingUnderline
-syn match markdownH2 /^.\+\n-\+$/ display contains=@markdownInline,markdownHeadingUnderline
-syn match markdownHeadingUnderline /^[=-]\+$/ display contained
-
 syn match markdownRule /^\s*\*\s*\*\s*\*[[:space:]*]*$/ display
 syn match markdownRule /^\s*-\s*-\s*-[[:space:]-]*$/ display
 syn match markdownRule /^\s*_\s*_\s*_[[:space:]_]*$/ display
+
+if g:markdown_flavor ==? 'github'
+  syn region markdownH1 matchgroup=markdownHeadingDelimiter start=/^#\%(\s\+\)\@=/      end=/#*\s*$/ display oneline contains=@markdownInline
+  syn region markdownH2 matchgroup=markdownHeadingDelimiter start=/^##\%(\s\+\)\@=/     end=/#*\s*$/ display oneline contains=@markdownInline
+  syn region markdownH3 matchgroup=markdownHeadingDelimiter start=/^###\%(\s\+\)\@=/    end=/#*\s*$/ display oneline contains=@markdownInline
+  syn region markdownH4 matchgroup=markdownHeadingDelimiter start=/^####\%(\s\+\)\@=/   end=/#*\s*$/ display oneline contains=@markdownInline
+  syn region markdownH5 matchgroup=markdownHeadingDelimiter start=/^#####\%(\s\+\)\@=/  end=/#*\s*$/ display oneline contains=@markdownInline
+  syn region markdownH6 matchgroup=markdownHeadingDelimiter start=/^######\%(\s\+\)\@=/ end=/#*\s*$/ display oneline contains=@markdownInline
+
+  syn match markdownH1 /^.\+\n=\+$/ display contains=@markdownInline,markdownHeadingUnderline
+  syn match markdownH2 /^.\+\n-\+$/ display contains=@markdownInline,markdownHeadingUnderline
+  syn match markdownHeadingUnderline /^[=-]\+$/ display contained
+endif
+
+if g:markdown_flavor ==? 'kramdown'
+  syn match markdownHeaderContainer /^#\{1,6}.\+$/ display transparent
+    \ contains=@markdownInline,markdownHeader,markdownHeaderId,markdownHeadingDelimiter
+  syn match markdownHeader /\%(^#\+\)\@<=\%([^#]\+\%(#\+\s*\%($\|{\)\)\@=\|[^{]\{-}\%({\)\@=\|#$\)/
+
+  syn match markdownHeader /^.\+\n=\+$/ display contains=@markdownInline,markdownHeadingUnderline,markdownHeaderId
+  syn match markdownHeader /^.\+\n-\+$/ display contains=@markdownInline,markdownHeadingUnderline,markdownHeaderId
+  syn match markdownHeadingUnderline /^[=-]\+$/ display contained
+
+  syn match markdownHeaderId /{[^}]\+}\s*$/ display contained
+  syn match markdownHeadingDelimiter /#\+\%(.\+\)\@=/ display contained
+endif
 
 execute 'syn match markdownLinkReference '
   \ . 'contains=markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted,@markdownInline '
@@ -847,16 +862,20 @@ hi def link markdownStrike                  NonText
 hi def link markdownStrikeDelimiter         Delimiter
 hi def link markdownBlockquote              Comment
 hi def link markdownBlockquoteDelimiter     Delimiter
-hi def link markdownHeadingDelimiter        Delimiter
-hi def link markdownHeadingUnderline        Delimiter
 hi def link markdownInlineDelimiter         Delimiter
 hi def link markdownListDelimiter           Delimiter
+
+hi def link markdownHeaderId                Delimiter
+hi def link markdownHeadingDelimiter        Delimiter
+hi def link markdownHeadingUnderline        Delimiter
+hi def link markdownHeader                  Title
 hi def link markdownH1                      Title
 hi def link markdownH2                      Title
 hi def link markdownH3                      Title
 hi def link markdownH4                      Title
 hi def link markdownH5                      Title
 hi def link markdownH6                      Title
+
 hi def link markdownEmoticonKeyword         Statement
 hi def link markdownRule                    Identifier
 

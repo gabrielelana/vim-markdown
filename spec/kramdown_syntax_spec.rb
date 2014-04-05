@@ -13,7 +13,7 @@ describe "kramdown markdown syntax" do
     source = File.expand_path("./features/#{feature}.md", File.dirname(__FILE__))
     master = source + ".html"
     it "should support #{feature.split(/\//).last.gsub("_", " ")}" do
-      vim.command "let g:markdown_flavor=kramdown"
+      vim.command "let g:markdown_flavor='kramdown'"
       vim.edit source
       vim.command "TOhtml | w #{filename}"
       if not File.exists?(master) or ENV["GENERATE_GOLDEN_MASTER"]

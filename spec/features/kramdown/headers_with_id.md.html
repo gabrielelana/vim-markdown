@@ -14,6 +14,7 @@ pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
 .Title { color: #c000c0; }
+.Constant { color: #c00000; }
 .Special { color: #c000c0; }
 -->
 </style>
@@ -26,12 +27,27 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Title">Hello        {#id-1}</span>
+<span class="Title">Hello        </span><span class="Special">{#id-1}</span>
 <span class="Special">-----</span>
 
-<span class="Special">#</span><span class="Title"> Hello      {#id-2}</span>
+<span class="Title">Hello        </span><span class="Special">{#id-2}</span>
+<span class="Special">=====</span>
 
-<span class="Special">#</span><span class="Title"> Hello #    {#id-3}</span>
+<span class="Special">#</span><span class="Title"> Header With Identifier </span><span class="Special">{#id-3}</span>
+
+<span class="Special">#</span><span class="Title"> Header With Trailing Hashes and Identifier </span><span class="Special">#</span> <span class="Special">{#id-4}</span>
+
+<span class="Special">#</span><span class="Title"> Trailing Hashes could be as many as you want </span><span class="Special">#######</span> <span class="Special">{#id-5}</span>
+
+<span class="Special">#</span><span class="Title"> Header With Hashes # In Text and Identifier </span><span class="Special">{#id-6}</span>
+
+The following should a level 1 header with a <span class="Special">`</span><span class="Constant">#</span><span class="Special">`</span> character for content
+
+<span class="Special">#</span><span class="Title">#</span>
+
+The following should a level 2 header with a <span class="Special">`</span><span class="Constant">#</span><span class="Special">`</span> character for content
+
+<span class="Special">##</span><span class="Title">#</span>
 </pre>
 </body>
 </html>
