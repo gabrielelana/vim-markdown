@@ -101,6 +101,16 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
 
 <a name="TODO" />
 ## TODO
+* Kramdown Syntax
+  * Block Inline Attributes
+  * Span Inline Attributes
+  * Fenced Code Blocks with Inline Attributes
+  * Definition Lists
+  * Tables
+  * Math Blocks
+  * Footnotes
+  * Abbreviations
+  * End of Block Marker
 * Code Blocks
   * Edit html code block
   * Edit jekyll front matter code block
