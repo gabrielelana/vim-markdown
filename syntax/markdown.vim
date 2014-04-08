@@ -11,6 +11,10 @@ if !exists('main_syntax')
   let main_syntax = 'markdown'
 endif
 
+if !exists('g:markdown_flavor')
+  let g:markdown_flavor = 'github'
+endif
+
 syn spell toplevel
 syn sync fromstart
 syn case ignore
