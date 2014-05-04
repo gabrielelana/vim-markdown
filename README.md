@@ -112,14 +112,8 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
   * Abbreviations
   * End of Block Marker
 * Code Blocks
-  * Edit html code block
   * Edit jekyll front matter code block
   * Explain in this file why I chose to avoid to highlight nested block elements
-* Task Lists (GFM)
-  * Command to check/uncheck task with relative mappings in command/insert/visual mode
-  * Command to turn list items in task items with relative mappings in command/insert/visual mode
-* Tables (GFM)
-  * Auto formatting tables if Tabular plugin is installed
 * Emoji (GFM)
   * Start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
   * Remove duplication between syntax keywords and dictionary completion
