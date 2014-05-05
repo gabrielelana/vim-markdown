@@ -14,8 +14,9 @@ pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
 .Italic { font-style: italic; }
-.Bold { font-weight: bold; }
+.Constant { color: #c00000; }
 .Special { color: #c000c0; }
+.Bold { font-weight: bold; }
 -->
 </style>
 
@@ -47,6 +48,10 @@ Weak <span class="Special">*</span><span class="Italic">emphasis</span>
 
 Weak <span class="Special">_</span><span class="Italic">emphasis</span>
 <span class="Italic">could span</span><span class="Special">_</span> multiple lines
+
+Weak <span class="Special">_</span><span class="Italic">emphasis </span><span class="Special">`</span><span class="Constant">could</span><span class="Special">`</span><span class="Italic"> contain</span><span class="Special">_</span> inline code
+
+Weak <span class="Special">_</span><span class="Italic">emphasis </span><span class="Special">**</span><span class="Bold">could</span><span class="Special">**</span><span class="Italic"> contain</span><span class="Special">_</span> strong emphasis
 
 The following is not a weak emphasis _
 that span multiple lines

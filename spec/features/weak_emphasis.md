@@ -19,6 +19,10 @@ could span* multiple lines
 Weak _emphasis
 could span_ multiple lines
 
+Weak _emphasis `could` contain_ inline code
+
+Weak _emphasis **could** contain_ strong emphasis
+
 The following is not a weak emphasis _
 that span multiple lines
 _ because the start delimiter must be followed by something (not the end of line)

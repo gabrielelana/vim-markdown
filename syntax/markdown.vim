@@ -28,24 +28,32 @@ syn cluster markdownInline contains=
   \ markdownEmailLinkInText,markdownLinkContainer,markdownXmlComment,
   \ markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
 
-syn region markdownItalic matchgroup=markdownInlineDelimiter contains=markdownItalic
+syn region markdownItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*"
-syn region markdownItalic matchgroup=markdownInlineDelimiter contains=markdownItalic
+  \ contains=@markdownInline
+syn region markdownItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_"
+  \ contains=@markdownInline
 
-syn region markdownBold matchgroup=markdownInlineDelimiter contains=markdownBold
+syn region markdownBold matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*"
-syn region markdownBold matchgroup=markdownInlineDelimiter contains=markdownBold
+  \ contains=@markdownInline
+syn region markdownBold matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|\*\*\|^\)\@<=__\%(\s\|_\|$\)\@!" end="\%(\s\|__\)\@<!__"
+  \ contains=@markdownInline
 
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|_\|^\)\@<=\*\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*\*\*"
+  \ contains=@markdownInline
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|\*\|^\)\@<=___\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!___"
+  \ contains=@markdownInline
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
+  \ contains=@markdownInline
 syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
   \ start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
+  \ contains=@markdownInline
 
 syn match markdownStrike /\%(\\\)\@<!\~\~\%(\S\)\@=\_.\{-}\%(\S\)\@<=\~\~/ contains=markdownStrikeDelimiter,@markdownInline
 syn match markdownStrikeDelimiter /\~\~/ contained
