@@ -24,7 +24,7 @@ if !exists('g:markdown_enable_insert_mode_mappings')
   if exists('g:markdown_include_insert_mode_default_mappings')
     let g:markdown_enable_insert_mode_mappings = g:markdown_include_insert_mode_default_mappings
   else
-    let g:markdown_enable_insert_mode_mappings = 0
+    let g:markdown_enable_insert_mode_mappings = 1
   endif
 endif
 
@@ -120,31 +120,33 @@ endfunction
 " Commands
 command! -nargs=0 -range MarkdownEditBlock :<line1>,<line2>call markdown#EditBlock()
 
-" Jumping around
-noremap <silent> <buffer> <script> ]] :call <SID>JumpToHeader(1, 0)<CR>
-noremap <silent> <buffer> <script> [[ :call <SID>JumpToHeader(0, 0)<CR>
-vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>JumpToHeader(1, 1)<CR>
-vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>JumpToHeader(0, 1)<CR>
-noremap <silent> <buffer> <script> ][ <nop>
-noremap <silent> <buffer> <script> [] <nop>
-
-" Indenting things
-inoremap <silent> <buffer> <script> <expr> <Tab>
-  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(1)<CR>' : '<Tab>'
-inoremap <silent> <buffer> <script> <expr> <S-Tab>
-  \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(0)<CR>' : '<Tab>'
-
-" Remove empty list items when press <CR> and the list item is empty
-inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
-
-" Format tables
-inoremap <silent> <buffer> <Bar>       <Bar><Esc>:call markdown#FormatTable()<CR>a
-
-" Switch status of things
-nnoremap <silent> <buffer> <Space>     :call markdown#SwitchStatus()<CR>
-
-" Leader mappings
 if g:markdown_enable_mappings
+  " Jumping around
+  noremap <silent> <buffer> <script> ]] :call <SID>JumpToHeader(1, 0)<CR>
+  noremap <silent> <buffer> <script> [[ :call <SID>JumpToHeader(0, 0)<CR>
+  vnoremap <silent> <buffer> <script> ]] :<C-u>call <SID>JumpToHeader(1, 1)<CR>
+  vnoremap <silent> <buffer> <script> [[ :<C-u>call <SID>JumpToHeader(0, 1)<CR>
+  noremap <silent> <buffer> <script> ][ <nop>
+  noremap <silent> <buffer> <script> [] <nop>
+
+  if g:markdown_enable_insert_mode_mappings
+    " Indenting things
+    inoremap <silent> <buffer> <script> <expr> <Tab>
+      \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(1)<CR>' : '<Tab>'
+    inoremap <silent> <buffer> <script> <expr> <S-Tab>
+      \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(0)<CR>' : '<Tab>'
+
+    " Remove empty list items when press <CR> and the list item is empty
+    inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
+
+    " Format tables
+    inoremap <silent> <buffer> <Bar> <Bar><Esc>:call markdown#FormatTable()<CR>a
+  endif
+
+  " Switch status of things
+  nnoremap <silent> <buffer> <Space>     :call markdown#SwitchStatus()<CR>
+
+  " Leader mappings
   nnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
   vnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
 

@@ -61,8 +61,8 @@ I would use this section until I have a proper documentation
 ### Configuration
 * `let g:markdown_include_jekyll_support = 1` to load support to Jekyll files (default: 1)
 * `let g:markdown_enable_folding = 1` to use the fold expression `markdown#FoldLevelOfLine` to fold markdown files, this is disabled by default because it's a huge performance hit even when folding is disabled with `nofoldenable` option (default: 0)
-* `let g:markdown_enable_mappings = 1` to load default leader mappings (default: 1)
-  * `let g:markdown_enable_insert_mode_mappings = 1` to load also insert mode leader mappings (default: 0)
+* `let g:markdown_enable_mappings = 1` to load default mappings (default: 1)
+  * `let g:markdown_enable_insert_mode_mappings = 1` to load also insert mode mappings (default: 1)
 
 ### Default Mappings
 All default mappings are local to markdown buffers
