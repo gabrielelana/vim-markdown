@@ -87,12 +87,28 @@ function! markdown#EditBlock() range abort
     echo 'Sorry, you cannot edit a code block inside a temporary buffer'
     return
   endif
-  let code_block = s:LocateFencedCodeBlock(a:firstline, '`')
+  " Github fenced code blocks like ```ruby
+  let code_block = s:LocateFencedCodeBlock(a:firstline,
+    \ '^\s*`\{3,}\(\w\+\)\%(\s.*$\|$\)',
+    \ '^\s*`\{3,}\s*$'
+    \ )
   if code_block['from'] == 0 || code_block['to'] == 0
-    let code_block = s:LocateRangeBlock(a:firstline, a:lastline)
+    " Github fenced code blocks alternate style like ~~~ruby
+    let code_block = s:LocateFencedCodeBlock(a:firstline,
+      \ '^\s*\~\{3,}\(\w\+\)\%(\s.*$\|$\)',
+      \ '^\s*\~\{3,}\s*$'
+      \ )
   endif
   if code_block['from'] == 0 || code_block['to'] == 0
-    let code_block = s:LocateFencedCodeBlock(a:firstline, '\~')
+    " Liquid fenced code blocks {% highlight ruby %}
+    " (since we support some liquid/jekyll tags, why not?)
+    let code_block = s:LocateFencedCodeBlock(a:firstline,
+      \ '^\s*{%\s*highlight\s\+\(\w\+\)\s*%}\%(\s.*$\|$\)',
+      \ '^\s*{%\s*endhighlight\s*%}\%(\s.*$\|$\)'
+      \ )
+  endif
+  if code_block['from'] == 0 || code_block['to'] == 0
+    let code_block = s:LocateRangeBlock(a:firstline, a:lastline)
   endif
   if code_block['from'] == 0 || code_block['to'] == 0
     echo 'Sorry, I did not find any suitable code block to edit or create'
@@ -180,7 +196,7 @@ function! s:LocateRangeBlock(from, to)
   return code_block
 endfunction
 
-function! s:LocateFencedCodeBlock(starting_from, character_delimiter)
+function! s:LocateFencedCodeBlock(starting_from, upper_delimiter, lower_delimiter)
   " TODO: extract initialize_code_block
   let code_block = {'from': 0, 'to': 0, 'language': 'txt', 'indentation': '', 'surround': 0}
   let initial_position = getpos('.')
@@ -189,9 +205,9 @@ function! s:LocateFencedCodeBlock(starting_from, character_delimiter)
   let search_position[2] = 0
   cal setpos('.', search_position)
 
-  let start_code_block_backward = search('^\s*' . a:character_delimiter . '\{3,}\w\+\(\s.*$\|$\)', 'cbnW')
-  let end_code_block_backward = search('^\s*' . a:character_delimiter . '\{3,}\s*$', 'cbnW')
-  let end_code_block_forward = search('^\s*' . a:character_delimiter . '\{3,}\s*$', 'cnW')
+  let start_code_block_backward = search(a:upper_delimiter, 'cbnW')
+  let end_code_block_backward = search(a:lower_delimiter, 'cbnW')
+  let end_code_block_forward = search(a:lower_delimiter, 'cnW')
 
   let found_code_block =
         \ start_code_block_backward > 0 &&
@@ -206,8 +222,8 @@ function! s:LocateFencedCodeBlock(starting_from, character_delimiter)
         \ end_code_block_forward >= a:starting_from
 
   if starting_inside_code_block
-    let code_block['language'] = s:ExtractLanguage(start_code_block_backward, a:character_delimiter)
-    let code_block['indentation'] = s:ExtractIndentation(start_code_block_backward, a:character_delimiter)
+    let code_block['language'] = s:ExtractLanguage(start_code_block_backward, a:upper_delimiter)
+    let code_block['indentation'] = s:ExtractIndentation(start_code_block_backward)
     let code_block['back_to_position'] = initial_position
     let code_block['back_to_position'][1] = start_code_block_backward
     let code_block['back_to_position'][2] = 0
@@ -217,12 +233,12 @@ function! s:LocateFencedCodeBlock(starting_from, character_delimiter)
   return code_block
 endfunction
 
-function! s:ExtractLanguage(start_at, character_delimiter)
-  return substitute(getline(a:start_at), '\s*' . a:character_delimiter . '\+', '', '')
+function! s:ExtractLanguage(start_at, upper_delimiter)
+  return substitute(getline(a:start_at), a:upper_delimiter, '\1', '')
 endfunction
 
-function! s:ExtractIndentation(start_at, character_delimiter)
-  return substitute(getline(a:start_at), a:character_delimiter . '\+.*$', '', '')
+function! s:ExtractIndentation(start_at)
+  return substitute(getline(a:start_at), '\(^\s*\).\+$', '\1', '')
 endfunction
 
 let s:known_file_extensions = {

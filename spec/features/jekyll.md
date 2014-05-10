@@ -21,8 +21,12 @@ The following are Jekyll output tag with escape
 
 {% comment %}
 This is a comment
-{% nocomment %}
+{% endcomment %}
 
 {% raw %}
 This is a raw
-{% noraw %}
+{% endraw %}
+
+{% highlight ruby %}
+puts "This is some ruby code ;-)"
+{% endhighlight %}
