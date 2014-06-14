@@ -24,7 +24,7 @@ if !exists('g:markdown_enable_insert_mode_mappings')
   if exists('g:markdown_include_insert_mode_default_mappings')
     let g:markdown_enable_insert_mode_mappings = g:markdown_include_insert_mode_default_mappings
   else
-    let g:markdown_enable_insert_mode_mappings = 1
+    let g:markdown_enable_insert_mode_mappings = 0
   endif
 endif
 
