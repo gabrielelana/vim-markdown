@@ -905,5 +905,3 @@ let b:current_syntax = "markdown"
 if main_syntax ==# 'markdown'
   unlet main_syntax
 endif
-
-" vim: fen:fdm=marker

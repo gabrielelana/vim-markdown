@@ -519,5 +519,3 @@ function! markdown#SwitchStatus()
   endif
 endfunction
 " }}}
-
-" vim: fen:fdm=marker

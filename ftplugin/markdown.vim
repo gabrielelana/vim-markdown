@@ -161,5 +161,3 @@ endif
 " }}}
 
 let b:did_ftplugin = 1
-
-" vim: fen:fdm=marker
