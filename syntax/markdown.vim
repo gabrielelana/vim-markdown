@@ -117,7 +117,6 @@ let b:markdown_syntax_url =
 execute 'syn match markdownUrlLinkInText /' . b:markdown_syntax_url . '/ contains=@NoSpell display'
 
 syn match markdownPullRequestLinkInText /\%(\w\)\@<!#\d\+/ display
-syn match markdownAnchorsLinkInText /\%(\w\|#\)\@<!#[-A-Z0-9+&~_$?!:,.]\+/ display
 syn match markdownUserLinkInText /\%(\w\)\@<!@[[:alnum:]._\/-]\+/ contains=@NoSpell display
 syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell display
 
@@ -849,7 +848,6 @@ hi def link markdownBold                    Bold
 hi def link markdownBoldItalic              BoldItalic
 
 hi def link markdownPullRequestLinkInText   Underlined
-hi def link markdownAnchorsLinkInText       Underlined
 hi def link markdownUserLinkInText          Underlined
 hi def link markdownUrlLinkInText           Underlined
 hi def link markdownEmailLinkInText         Underlined
