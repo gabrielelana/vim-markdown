@@ -24,8 +24,12 @@ if !exists('g:markdown_enable_insert_mode_mappings')
   if exists('g:markdown_include_insert_mode_default_mappings')
     let g:markdown_enable_insert_mode_mappings = g:markdown_include_insert_mode_default_mappings
   else
-    let g:markdown_enable_insert_mode_mappings = 0
+    let g:markdown_enable_insert_mode_mappings = 1
   endif
+endif
+
+if !exists('g:markdown_enable_insert_mode_leader_mappings')
+    let g:markdown_enable_insert_mode_leader_mappings = 0
 endif
 
 " }}}
@@ -149,10 +153,10 @@ if g:markdown_enable_mappings
   " Leader mappings
   nnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
   vnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
-
   nnoremap <silent> <buffer> <Leader>ft  :call markdown#FormatTable()<CR>
 
-  if g:markdown_enable_insert_mode_mappings
+  " Insert Mode mappings
+  if g:markdown_enable_insert_mode_leader_mappings
     inoremap <buffer> <Leader>e <Esc>:MarkdownEditBlock<CR>
     inoremap <silent> <buffer> <Leader>ft  <Esc>:call markdown#FormatTable()<CR>a
   endif

@@ -59,19 +59,25 @@ If you like this plugin, then consider to:
 I would use this section until I have a proper documentation
 
 ### Configuration
-* `let g:markdown_include_jekyll_support = 1` to load support to Jekyll files (default: 1)
-* `let g:markdown_enable_folding = 1` to use the fold expression `markdown#FoldLevelOfLine` to fold markdown files, this is disabled by default because it's a huge performance hit even when folding is disabled with `nofoldenable` option (default: 0)
-* `let g:markdown_enable_mappings = 1` to load default mappings (default: 1)
-  * `let g:markdown_enable_insert_mode_mappings = 1` to load also insert mode mappings (default: 1)
+* `let g:markdown_include_jekyll_support = 0` to enable/disable support for Jekyll files (default: 1)
+* `let g:markdown_enable_folding = 1` to enable/disable the fold expression `markdown#FoldLevelOfLine` to fold markdown files, this is disabled by default because it's a huge performance hit even when folding is disabled with `nofoldenable` option (default: 0)
+* `let g:markdown_enable_mappings = 0` to enable/disable default mappings (default: `1`)
+  * `let g:markdown_enable_insert_mode_mappings = 0` to enable/disable insert mode mappings (default: `1`)
+  * `let g:markdown_enable_insert_mode_leader_mappings = 1` to enable/disable insert mode leader mappings (default: `0`)
 
-### Default Mappings
-All default mappings are local to markdown buffers
+### Default Mappings (normal and visual mode)
+_mappings are local to markdown buffers_
 * `<Space>` (`NORMAL_MODE`) switch status of things:
   * A list item `* item` becomes a check list item `* [ ] item`
   * A check list item `* [ ] item` becomes a checked list item `* [x] item`
   * A checked list item `* [x] item` becomes a list item `* item`
-* `<Leader>ft` (`NORMAL_MODE`, `INSERT_MODE`) format the current table
-* `<Leader>e` (`NORMAL_MODE`, `VISUAL_MODE`, `INSERT_MODE`) `:MarkdownEditCodeBlock` edit the current code block in another buffer with a guessed file type. The guess is based on the start of the range for `VISUAL_MODE`. If it's not possibile to guess (you are not in a recognizable code block like a fenced code block) then the default is `markdown`. If it's not possibile to guess and the current range is a single line and the line is empty then a new code block is created. It's asked to the user the file type of the new code block. The default file type is `markdown`.
+* `<Leader>ft` (`NORMAL_MODE`) format the current table
+* `<Leader>e` (`NORMAL_MODE`, `VISUAL_MODE`) `:MarkdownEditCodeBlock` edit the current code block in another buffer with a guessed file type. The guess is based on the start of the range for `VISUAL_MODE`. If it's not possibile to guess (you are not in a recognizable code block like a fenced code block) then the default is `markdown`. If it's not possibile to guess and the current range is a single line and the line is empty then a new code block is created. It's asked to the user the file type of the new code block. The default file type is `markdown`.
+
+### Optional Mappings (insert mode)
+_mappings are local to markdown buffers_
+* `<Leader>ft` (`INSERT_MODE`) same as `NORMAL_MODE` `<Leader>ft` with an additional mapping for `INSERT_MODE`
+* `<Leader>e` (`INSERT_MODE`) same as `NORMAL_MODE` and `VISUAL_MODE` `<leader>e` with an additional mapping for `INSERT_MODE`
 
 ### Motions
 * `]]` start of the next header
