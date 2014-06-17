@@ -32,7 +32,23 @@ If you use [Vundle](https://github.com/gmarik/vundle), add the following line to
 
 And then execute the following command in your shell:
 
-    $ vim +'BundleInstall! vim-markdown' +qall
+    $ vim +'PluginInstall! vim-markdown' +qall
+
+You can update to the latest version with the following command in your shell:
+
+    $ vim +PluginUpdate
+
+If you use [NeoBundle](https://github.com/Shougo/neobundle.vim), add the following line to your `~/.vimrc`:
+
+    NeoBundle 'gabrielelana/vim-markdown'
+
+And then execute the following command in your shell:
+
+    $ vim +NeoBundleInstall +qall
+
+You can update to the latest version with the following command in your shell:
+
+    $ vim +NeoBundleInstall! +qall
 
 If you use [Pathogen](https://github.com/tpope/vim-pathogen), execute the following in your shell:
 
