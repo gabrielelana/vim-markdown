@@ -1,3 +1,4 @@
+require "rspec"
 require "vimrunner"
 require "vimrunner/rspec"
 
@@ -19,5 +20,24 @@ Vimrunner::RSpec.configure do |config|
     vim.command "set nospell"
     vim.command "set nofoldenable"
     vim
+  end
+end
+
+RSpec.configure do |config|
+  require_relative "support/vim"
+  config.include Support::Vim
+  config.after(:each) do
+    if File.exists? source
+      File.delete source
+    end
+  end
+end
+
+RSpec::Matchers.define :have_content do |expected|
+  match do |source|
+    File.read(source).match(expected)
+  end
+  failure_message_for_should do |source|
+    "expected file '#{source}' to match '#{expected}' but contains:\n'#{File.read(source)}'"
   end
 end

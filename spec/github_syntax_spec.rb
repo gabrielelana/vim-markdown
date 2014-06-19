@@ -1,4 +1,3 @@
-require "rspec"
 require "nokogiri"
 require_relative "spec_helper"
 
