@@ -32,6 +32,10 @@ if !exists('g:markdown_enable_insert_mode_leader_mappings')
     let g:markdown_enable_insert_mode_leader_mappings = 0
 endif
 
+if !exists('g:markdown_drop_empty_blockquotes')
+    let g:markdown_drop_empty_blockquotes = 0
+endif
+
 " }}}
 
 
@@ -140,8 +144,13 @@ if g:markdown_enable_mappings
     inoremap <silent> <buffer> <script> <expr> <S-Tab>
       \ <SID>IsAnEmptyListItem() \|\| <SID>IsAnEmptyQuote() ? '<C-O>:call <SID>Indent(0)<CR>' : '<Tab>'
 
-    " Remove empty list items when press <CR> and the list item is empty
+    " Remove empty list items when press <CR>
     inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyListItem() ? '<C-O>:normal 0D<CR>' : '<CR>'
+
+    " Remove empty quote when press <CR>
+    if g:markdown_drop_empty_blockquotes
+      inoremap <silent> <buffer> <script> <expr> <CR> <SID>IsAnEmptyQuote() ? '<C-O>:normal 0D<CR>' : '<CR>'
+    endif
 
     " Format tables
     inoremap <silent> <buffer> <Bar> <Bar><Esc>:call markdown#FormatTable()<CR>a
