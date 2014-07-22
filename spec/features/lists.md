@@ -24,6 +24,10 @@ Ordered
 2. Second item
 3. Third item
 
+10. Index with more than one digit item
+11. Index with more than one digit item
+12. Index with more than one digit item
+
 Nesting
 
 * First item first level
@@ -68,7 +72,7 @@ A single list delimiter followed by a newline is not a list item
 
 A single list delimiter followed by a single space and a newline is a list item
 
-* 
+*
 
 
 List with inline elements

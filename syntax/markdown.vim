@@ -346,14 +346,14 @@ for s:level in range(1, 16)
     \ .   'markdownBlockquoteInListItemAtLevel' . (s:level) . ','
     \ .   'markdownListItemAtLevel' . (s:level+1) . ','
     \ .   '@markdownInline '
-    \ . 'start=/^' . (s:indented_as_container) . '\%([-*+]\|\d\.\)\%(\s\+\[[ x]\]\)\?\s\+/ '
+    \ . 'start=/^' . (s:indented_as_container) . '\%([-*+]\|\d\+\.\)\%(\s\+\[[ x]\]\)\?\s\+/ '
     \ . 'end='
     \ .   '/'
     \ .     '\n\%(\n\n\)\@='
     \ .     '\|'
     \ .     '\n\%(\n' . (s:indented_as_container) . '\S\)\@='
     \ .     '\|'
-    \ .     '\n\%(' . (s:indented_as_container) . '\%([-*+]\|\d\.\)\s\+\S\)\@='
+    \ .     '\n\%(' . (s:indented_as_container) . '\%([-*+]\|\d\+\.\)\s\+\S\)\@='
     \ .   '/'
 
   " fenced code blocks could have leading spaces after the base level indentation
