@@ -273,7 +273,7 @@ if g:markdown_flavor ==? 'kramdown'
 endif
 
 execute 'syn match markdownLinkReference '
-  \ . 'contains=markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted,@markdownInline '
+  \ . 'contains=@NoSpell '
   \ . 'display '
   \ . '/'
   \ . '^\s\{,3}'
@@ -859,7 +859,7 @@ hi def link markdownLinkTitleSingleQuoted   Bold
 hi def link markdownLinkTitleDoubleQuoted   Bold
 hi def link markdownLinkUrlContainer        Delimiter
 hi def link markdownLinkTextContainer       Delimiter
-hi def link markdownLinkReference           Bold
+hi def link markdownLinkReference           NonText
 
 hi def link markdownCodeDelimiter           Delimiter
 hi def link markdownInlineCode              String
