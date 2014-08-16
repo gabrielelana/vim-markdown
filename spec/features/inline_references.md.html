@@ -13,8 +13,8 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
+.NonText { color: #8080ff; }
 .Underlined { color: #c000c0; text-decoration: underline; }
-.Bold { font-weight: bold; }
 .Special { color: #c000c0; }
 -->
 </style>
@@ -34,7 +34,7 @@ Reference <span class="Special">[</span><span class="Underlined">bar</span><span
 Reference <span class="Special">[</span><span class="Underlined">bar</span><span class="Special">]</span>
 <span class="Special">[</span><span class="Underlined">1</span><span class="Special">]</span>
 
-<span class="Bold">[1]: </span><span class="Underlined">/url/</span><span class="Bold"> &quot;Title&quot;</span>
+<span class="NonText">[1]: /url/ &quot;Title&quot;</span>
 
 
 With <span class="Special">[</span><span class="Underlined">embedded [brackets]</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
@@ -42,40 +42,40 @@ With quoted <span class="Special">[</span><span class="Underlined">embedded \[br
 With quoted <span class="Special">[</span><span class="Underlined">embedded \[ brackets</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
 With quoted <span class="Special">[</span><span class="Underlined">embedded \] brackets</span><span class="Special">][</span><span class="Underlined">b</span><span class="Special">]</span>
 
-<span class="Bold">[b]: </span><span class="Underlined">/url/</span>
+<span class="NonText">[b]: /url/</span>
 
 Indented <span class="Special">[</span><span class="Underlined">once</span><span class="Special">][]</span> times
 Indented <span class="Special">[</span><span class="Underlined">twice</span><span class="Special">][]</span> times
 Indented <span class="Special">[</span><span class="Underlined">thrice</span><span class="Special">][]</span> times
 Indented <span class="Special">[</span><span class="Underlined">four</span><span class="Special">][]</span> times must not a reference, must be a code block
 
-<span class="Bold"> [once]: </span><span class="Underlined">/url</span>
-<span class="Bold">  [twice]: </span><span class="Underlined">/url</span>
-<span class="Bold">   [thrice]: </span><span class="Underlined">/url</span>
-<span class="Bold">    [four]: </span><span class="Underlined">/url</span>
+<span class="NonText"> [once]: /url</span>
+<span class="NonText">  [twice]: /url</span>
+<span class="NonText">   [thrice]: /url</span>
+<span class="NonText">    [four]: /url</span>
 
 With <span class="Special">[</span><span class="Underlined">angle brackets</span><span class="Special">][]</span>
 And <span class="Special">[</span><span class="Underlined">without</span><span class="Special">][]</span>
 
-<span class="Bold">[angle brackets]: </span><span class="Underlined">&lt;<a href="http://example.com/">http://example.com/</a>&gt;</span><span class="Bold"> &quot;Angle Brackets&quot;</span>
-<span class="Bold">[without]: </span><span class="Underlined"><a href="http://example.com/">http://example.com/</a></span><span class="Bold"> &quot;Without angle brackets.&quot;</span>
+<span class="NonText">[angle brackets]: &lt;<a href="http://example.com/">http://example.com/</a>&gt; &quot;Angle Brackets&quot;</span>
+<span class="NonText">[without]: <a href="http://example.com/">http://example.com/</a> &quot;Without angle brackets.&quot;</span>
 
 With <span class="Special">[</span><span class="Underlined">line</span>
 <span class="Underlined">breaks</span><span class="Special">][]</span>
 
-<span class="Bold">[line breaks]: </span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Bold"> &quot;Yes this works&quot;</span>
+<span class="NonText">[line breaks]: <a href="http://example.com">http://example.com</a> &quot;Yes this works&quot;</span>
 
-<span class="Bold">[short ref]</span>
+<span class="NonText">[short ref]</span>
 
-<span class="Bold">[short</span>
-<span class="Bold">ref]</span>
+<span class="NonText">[short</span>
+<span class="NonText">ref]</span>
 
-<span class="Bold">[short ref]: </span><span class="Underlined"><a href="http://example.com">http://example.com</a></span><span class="Bold"> &quot;No more hanging empty bracket!&quot;</span>
+<span class="NonText">[short ref]: <a href="http://example.com">http://example.com</a> &quot;No more hanging empty bracket!&quot;</span>
 
-<span class="Bold">[a ref]</span>
+<span class="NonText">[a ref]</span>
 
-<span class="Bold">[a ref]: </span><span class="Underlined"><a href="http://example.com">http://example.com</a></span>
-<span class="Bold">    &quot;Title on next line.&quot;</span>
+<span class="NonText">[a ref]: <a href="http://example.com">http://example.com</a></span>
+<span class="NonText">    &quot;Title on next line.&quot;</span>
 </pre>
 </body>
 </html>
