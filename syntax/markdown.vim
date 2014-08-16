@@ -67,8 +67,8 @@ syn match markdownStrikeDelimiter /\~\~/ contained
 "       # this is not a fenced code block but it's a code block
 "       def ruby;
 "       ```
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`/ end=/`/ display keepend contains=@NoSpell
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`\z(`\+\)/ end=/`\z1/ display keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`/ end=/`/ keepend contains=@NoSpell
+syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`\z(`\+\)/ end=/`\z1/ keepend contains=@NoSpell
 
 " case insensitive
 " preceded by something that is not a word
