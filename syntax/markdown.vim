@@ -136,12 +136,13 @@ let b:markdown_syntax_square_brackets_block =
   \ .   '\\\[.\{-\}\\\]'
   \ .   '\|'
   \ .   '\n\%(\n\)\@!'
-  \ .   '\|[^\[\]]*'
+  \ .   '\|'
+  \ .   '[^\[\]]\+'
   \ .   '\|'
   \ .   '\\\['
   \ .   '\|'
   \ .   '\\\]'
-  \ . '\)\+'
+  \ . '\)*'
   \ . '\]'
 
 " something encosed in round brackets
@@ -150,7 +151,7 @@ let b:markdown_syntax_square_brackets_block =
 " could contain pairs of escaped round brackets
 " could contain no more than two consecutive newlines
 " could contain single round brackets escaped
-" could not contain unbalanced round brackets like 'a [ b \] c'
+" could not contain unbalanced round brackets like 'a ( b \) c'
 " could not contain nested round brackets
 let b:markdown_syntax_round_brackets_block =
   \ '\%(\\\)\@<!('
@@ -161,12 +162,12 @@ let b:markdown_syntax_round_brackets_block =
   \ .   '\|'
   \ .   '\n\%(\n\)\@!'
   \ .   '\|'
-  \ .   '[^()]*'
+  \ .   '[^()]\+'
   \ .   '\|'
   \ .   '\\('
   \ .   '\|'
   \ .   '\\)'
-  \ . '\)\+'
+  \ . '\)*'
   \ . ')'
 
 execute 'syn match markdownLinkContainer '
