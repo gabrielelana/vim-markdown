@@ -36,6 +36,9 @@ breaks][]
 
 [line breaks]: http://example.com "Yes this works"
 
+---
+The following should be supported but they are not... In GFM and Kramdown link references could omit the second pair of square brackets, with a programming language is possible to check if something between square brackets has a related link definition an so to be interpreted as link reference but here it would be impossible
+
 [short ref]
 
 [short

@@ -39,6 +39,7 @@ Link with newline between URL and title it's ok [link](http://example.com
 
 # This is [link](http://github.com) in a title
 
+[Link](http://example.com) at beginning of the line. Bug: this was considered as link definition
 
 
 ---

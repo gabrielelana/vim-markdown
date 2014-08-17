@@ -278,10 +278,8 @@ execute 'syn match markdownLinkReference '
   \ . '/'
   \ . '^\s\{,3}'
   \ . b:markdown_syntax_square_brackets_block
-  \ . '\%('
-  \ .   ':.*'
-  \ .   '\%(\n\%\(\n\)\@!.*$\)\?'
-  \ . '\)\?'
+  \ . ':.*'
+  \ . '\%(\n\%\(\n\)\@!.*$\)*'
   \ . '/'
 
 syn region markdownBlockquote start=/^\s*\%(>\s\?\)\+\%(.\)\@=/ end=/\n\n/ contains=markdownBlockquoteDelimiter,@NoSpell

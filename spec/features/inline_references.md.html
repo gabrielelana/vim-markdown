@@ -16,6 +16,7 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 .NonText { color: #8080ff; }
 .Underlined { color: #c000c0; text-decoration: underline; }
 .Special { color: #c000c0; }
+.Identifier { color: #008080; }
 -->
 </style>
 
@@ -65,14 +66,17 @@ With <span class="Special">[</span><span class="Underlined">line</span>
 
 <span class="NonText">[line breaks]: <a href="http://example.com">http://example.com</a> &quot;Yes this works&quot;</span>
 
-<span class="NonText">[short ref]</span>
+<span class="Identifier">---</span>
+The following should be supported but they are not... In GFM and Kramdown link references could omit the second pair of square brackets, with a programming language is possible to check if something between square brackets has a related link definition an so to be interpreted as link reference but here it would be impossible
 
-<span class="NonText">[short</span>
-<span class="NonText">ref]</span>
+[short ref]
+
+[short
+ref]
 
 <span class="NonText">[short ref]: <a href="http://example.com">http://example.com</a> &quot;No more hanging empty bracket!&quot;</span>
 
-<span class="NonText">[a ref]</span>
+[a ref]
 
 <span class="NonText">[a ref]: <a href="http://example.com">http://example.com</a></span>
 <span class="NonText">    &quot;Title on next line.&quot;</span>
