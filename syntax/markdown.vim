@@ -156,26 +156,34 @@ let b:markdown_syntax_square_brackets_block = ''
 " something encosed in round brackets
 " could not be preceded by a backslash
 " could contain pairs of round brackets
-" could contain pairs of escaped round brackets
 " could contain no more than two consecutive newlines
-" could contain single round brackets escaped
+" could contain single round brackets (open or closed) escaped
 " could not contain unbalanced round brackets like 'a ( b \) c'
 " could not contain nested round brackets
-let b:markdown_syntax_round_brackets_block =
-  \ '\%(\\\)\@<!('
-  \ . '\%('
-  \ .   '(.\{-\})'
-  \ .   '\|'
-  \ .   '\\(.\{-\}\\)'
-  \ .   '\|'
-  \ .   '\n\%(\n\)\@!'
-  \ .   '\|'
-  \ .   '[^()]\+'
-  \ .   '\|'
-  \ .   '\\('
-  \ .   '\|'
-  \ .   '\\)'
-  \ . '\)*'
+let b:markdown_syntax_allowed_characters_in_round_brackets = '[^()]*'
+let b:markdown_syntax_round_brackets_block = ''
+  \ . '\%(\\\)\@<!('
+  \ .   '\%('
+  \ .     b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .     '\|'
+  \ .     b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .     '('
+  \ .       b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .     ')'
+  \ .     b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .   '\)'
+  \ .   '\%('
+  \ .     '\n\%(\n\)\@!'
+  \ .     '\%('
+  \ .       b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .       '\|'
+  \ .       b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .       '('
+  \ .         b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .       ')'
+  \ .       b:markdown_syntax_allowed_characters_in_round_brackets
+  \ .     '\)'
+  \ .   '\)*'
   \ . ')'
 
 execute 'syn match markdownLinkContainer '
