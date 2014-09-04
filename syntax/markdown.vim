@@ -123,26 +123,34 @@ syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/
 " something encosed in square brackets
 " could not be preceded by a backslash
 " could contain pairs of square brackets
-" could contain pairs of escaped square brackets
 " could contain no more than two consecutive newlines
-" could contain single square brackets escaped
+" could contain single square brackets (open or closed) escaped
 " could not contain unbalanced square brackets like 'a [ b \] c'
 " could not contain nested square brackets
-let b:markdown_syntax_square_brackets_block =
-  \ '\%(\\\)\@<!\['
-  \ . '\%('
-  \ .   '\[.\{-\}\]'
-  \ .   '\|'
-  \ .   '\\\[.\{-\}\\\]'
-  \ .   '\|'
-  \ .   '\n\%(\n\)\@!'
-  \ .   '\|'
-  \ .   '[^\[\]]\+'
-  \ .   '\|'
-  \ .   '\\\['
-  \ .   '\|'
-  \ .   '\\\]'
-  \ . '\)*'
+let b:markdown_syntax_allowed_characters_in_square_brackets = '\%([^\[\]]\|\\\[\|\\\]\)*'
+let b:markdown_syntax_square_brackets_block = ''
+  \ . '\%(\\\)\@<!\['
+  \ .   '\%('
+  \ .     b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .     '\|'
+  \ .     b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .     '\['
+  \ .       b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .     '\]'
+  \ .     b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .   '\)'
+  \ .   '\%('
+  \ .     '\n\%(\n\)\@!'
+  \ .     '\%('
+  \ .       b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .       '\|'
+  \ .       b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .       '\['
+  \ .         b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .       '\]'
+  \ .       b:markdown_syntax_allowed_characters_in_square_brackets
+  \ .     '\)'
+  \ .   '\)*'
   \ . '\]'
 
 " something encosed in round brackets
