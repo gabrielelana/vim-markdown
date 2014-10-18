@@ -35,8 +35,11 @@ nnoremap <silent> <Leader>h :echo
       \ "lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " tells you more information about the highlighting group of the item under cursor
+let s:cpo_save = &cpo
 source .hilinks.vim
 nnoremap <silent> <Leader>t :HLT!<CR>
+let &cpo = s:cpo_save
+unlet s:cpo_save
 
 if filereadable(expand("./.session.vim"))
   execute "source " . expand("./.session.vim")
