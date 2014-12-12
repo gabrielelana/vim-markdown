@@ -1,5 +1,5 @@
 # Markdown for Vim
-A complete environment to create Markdown files with a syntax highlight that don't sucks!
+A complete environment to create Markdown files with a syntax highlight that doesn't suck!
 
 ## Features
 * Strong support for the Markdown flavor implemented by Github: what you see in Vim is what you get on Github
