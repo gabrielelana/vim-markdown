@@ -20,6 +20,8 @@ syn sync fromstart
 syn case ignore
 
 
+syn match nonascii /[^\x00-\x7F]/ contains=@NoSpell containedin=ALL
+
 " {{{ INLINE ELEMENTS
 
 syn cluster markdownInline contains=
