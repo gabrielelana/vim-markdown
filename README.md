@@ -80,6 +80,7 @@ I would use this section until I have a proper documentation
 * `let g:markdown_enable_mappings = 0` to enable/disable default mappings (default: `1`)
   * `let g:markdown_enable_insert_mode_mappings = 0` to enable/disable insert mode mappings (default: `1`)
   * `let g:markdown_enable_insert_mode_leader_mappings = 1` to enable/disable insert mode leader mappings (default: `0`)
+* `let g:markdown_enable_spell_checking = 0` to enable/disable spell checking (default: `1`)
 
 ### Default Mappings (normal and visual mode)
 _mappings are local to markdown buffers_
