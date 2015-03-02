@@ -36,6 +36,10 @@ if !exists('g:markdown_drop_empty_blockquotes')
     let g:markdown_drop_empty_blockquotes = 0
 endif
 
+if !exists('g:markdown_mapping_switch_status')
+  let g:markdown_mapping_switch_status = '<space>'
+endif
+
 if !exists('g:markdown_enable_spell_checking')
   let g:markdown_enable_spell_checking = 1
 endif
@@ -161,7 +165,7 @@ if g:markdown_enable_mappings
   endif
 
   " Switch status of things
-  nnoremap <silent> <buffer> <Space>     :call markdown#SwitchStatus()<CR>
+  execute 'nnoremap <silent> <buffer> ' . g:markdown_mapping_switch_status . ' :call markdown#SwitchStatus()<CR>'
 
   " Leader mappings
   nnoremap <buffer> <Leader>e :MarkdownEditBlock<CR>
