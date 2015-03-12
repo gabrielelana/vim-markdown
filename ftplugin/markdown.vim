@@ -61,7 +61,7 @@ if &spelllang !~# '^\s*$' && g:markdown_enable_spell_checking
 endif
 
 " Custom dictionary for emoji
-execute 'setlocal dictionary+=' . expand('<sfile>:p:h:h') . '/dict/emoticons.dict'
+execute 'setlocal dictionary+=' . shellescape(expand('<sfile>:p:h:h')) . '/dict/emoticons.dict'
 setlocal iskeyword+=:,+,-
 setlocal complete+=k
 
