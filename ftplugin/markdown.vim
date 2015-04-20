@@ -104,10 +104,9 @@ function! s:Indent(indent)
     if a:indent
       normal >>
     else
-      call setline('.', substitute(getline('.'), '^\*\s*$', '', ''))
       normal <<
     endif
-    call setline('.', substitute(getline('.'), '\*\s*$', '* ', ''))
+    call setline('.', substitute(getline('.'), '\([-*+]\|\d\.\)\s*$', '\1 ', ''))
     normal $
   elseif getline('.') =~ '\v^\s*(\s?\>)+\s*$'
     if a:indent
