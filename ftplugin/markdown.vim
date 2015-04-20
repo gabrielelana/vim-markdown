@@ -44,6 +44,10 @@ if !exists('g:markdown_enable_spell_checking')
   let g:markdown_enable_spell_checking = 1
 endif
 
+if !exists('g:markdown_enable_input_abbreviations')
+  let g:markdown_enable_input_abbreviations = 1
+endif
+
 " }}}
 
 
@@ -65,15 +69,17 @@ execute 'setlocal dictionary+=' . shellescape(expand('<sfile>:p:h:h')) . '/dict/
 setlocal iskeyword+=:,+,-
 setlocal complete+=k
 
-" Replace common ascii emoticons with supported emoji
-iabbrev <buffer> :-) :smile:
-iabbrev <buffer> :-D :laughing:
-iabbrev <buffer> :-( :disappointed:
+if g:markdown_enable_input_abbreviations
+  " Replace common ascii emoticons with supported emoji
+  iabbrev <buffer> :-) :smile:
+  iabbrev <buffer> :-D :laughing:
+  iabbrev <buffer> :-( :disappointed:
 
-" Replace common punctuation
-iabbrev <buffer> ... …
-iabbrev <buffer> << «
-iabbrev <buffer> >> »
+  " Replace common punctuation
+  iabbrev <buffer> ... …
+  iabbrev <buffer> << «
+  iabbrev <buffer> >> »
+endif
 
 " Folding
 if g:markdown_enable_folding
