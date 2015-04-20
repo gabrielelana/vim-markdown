@@ -366,9 +366,9 @@ for s:level in range(1, 16)
     \ .   '/'
     \ .     '\n\%(\n\n\)\@='
     \ .     '\|'
-    \ .     '\n\%(\n' . (s:indented_as_container) . '\S\)\@='
+    \ .     '\n\%(' . (s:indented_as_container) . '\%([-*+]\|\d\+\.\)\s\+\)\@='
     \ .     '\|'
-    \ .     '\n\%(' . (s:indented_as_container) . '\%([-*+]\|\d\+\.\)\s\+\S\)\@='
+    \ .     '\n\%(\n' . (s:indented_as_container) . '\S\)\@='
     \ .   '/'
 
   " fenced code blocks could have leading spaces after the base level indentation
