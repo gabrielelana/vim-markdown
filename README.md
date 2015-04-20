@@ -75,12 +75,12 @@ If you like this plugin, then consider to:
 I would use this section until I have a proper documentation
 
 ### Configuration
-* `let g:markdown_include_jekyll_support = 0` to enable/disable support for Jekyll files (default: 1)
-* `let g:markdown_enable_folding = 1` to enable/disable the fold expression `markdown#FoldLevelOfLine` to fold markdown files, this is disabled by default because it's a huge performance hit even when folding is disabled with `nofoldenable` option (default: 0)
-* `let g:markdown_enable_mappings = 0` to enable/disable default mappings (default: `1`)
-  * `let g:markdown_enable_insert_mode_mappings = 0` to enable/disable insert mode mappings (default: `1`)
-  * `let g:markdown_enable_insert_mode_leader_mappings = 1` to enable/disable insert mode leader mappings (default: `0`)
-* `let g:markdown_enable_spell_checking = 0` to enable/disable spell checking (default: `1`)
+* `let g:markdown_include_jekyll_support = 0` to disable support for Jekyll files (enabled by default with: `1`)
+* `let g:markdown_enable_folding = 1` to enable the fold expression `markdown#FoldLevelOfLine` to fold markdown files, this is disabled by default because it's a huge performance hit even when folding is disabled with `nofoldenable` option (disabled by default with: `0`)
+* `let g:markdown_enable_mappings = 0` to disable default mappings (enabled by default with: `1`)
+  * `let g:markdown_enable_insert_mode_mappings = 0` to disable insert mode mappings (enabled by default with: `1`)
+  * `let g:markdown_enable_insert_mode_leader_mappings = 1` to enable insert mode leader mappings (disabled by default with: `0`)
+* `let g:markdown_enable_spell_checking = 0` to disable spell checking (enabled by default with: `1`)
 * `let g:markdown_enable_input_abbreviations = 0` to disable abbreviations for punctuations and emoticons (enabled by default with: `1`)
 
 ### Default Mappings (normal and visual mode)
