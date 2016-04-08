@@ -55,7 +55,7 @@ endif
 
 setlocal textwidth=0
 setlocal ts=2 sw=2 expandtab smarttab
-setlocal comments=f:*,f:-,f:+,n:> commentstring=>\ %s
+setlocal comments=f:*,f:-,f:+,n:>,se:``` commentstring=>\ %s
 setlocal formatoptions+=tcrqon formatoptions-=wa
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*[+-\\*]\\s\\+
 
