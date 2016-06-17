@@ -15,7 +15,12 @@ if getline(1) =~ '^---\s*$'
   syn region markdownJekyllLiquidBlockTag matchgroup=markdownJekyllDelimiter contains=@NoSpell
     \ start="{%\s*\z(comment\|raw\|highlight\)[^%]*%}" end="{%\s*\%(no\|end\)\z1\s*%}"
 
-  silent spell! nocomment endcomment nohighlight endhighlight noraw endraw
+  silent spell! nocomment
+  silent spell! endcomment
+  silent spell! nohighlight
+  silent spell! endhighlight
+  silent spell! noraw
+  silent spell! endraw
 
   hi def link markdownJekyllFrontMatter         NonText
   hi def link markdownJekyllLiquidTag           NonText
