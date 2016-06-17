@@ -55,9 +55,11 @@ endif
 
 setlocal textwidth=0
 setlocal ts=2 sw=2 expandtab smarttab
-setlocal comments=f:*,f:-,f:+,n:>,se:``` commentstring=>\ %s
-setlocal formatoptions+=tcrqon formatoptions-=wa
+setlocal comments=b:*,b:-,b:+,n:>,se:``` commentstring=>\ %s
+setlocal formatoptions=tron
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*[+-\\*]\\s\\+
+setlocal nolisp
+setlocal autoindent
 
 " Enable spelling and completion based on dictionary words
 if &spelllang !~# '^\s*$' && g:markdown_enable_spell_checking

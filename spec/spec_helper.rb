@@ -15,8 +15,6 @@ Vimrunner::RSpec.configure do |config|
     vim = Vimrunner.start
     vim.prepend_runtimepath(plugin_path)
     vim.command "let g:markdown_include_jekyll_support = 1"
-    vim.command "runtime ftdetect/markdown.vim"
-    vim.command "runtime ftplugin/markdown.vim"
     vim.command "set nospell"
     vim.command "set nofoldenable"
     vim
