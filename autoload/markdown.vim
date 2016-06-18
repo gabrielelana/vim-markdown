@@ -87,11 +87,18 @@ function! markdown#EditBlock() range abort
     echo 'Sorry, you cannot edit a code block inside a temporary buffer'
     return
   endif
-  " Github fenced code blocks like ```ruby or ```{ruby, <WHATEVER>}
+  " Github fenced code blocks like ```ruby
   let code_block = s:LocateFencedCodeBlock(a:firstline,
-    \ '^\s*`\{3,}\%({\(\w\+\),[^}]\+}\|\(\w\+\)\)\%(\s.*$\|$\)',
+    \ '^\s*`\{3,}\(\w\+\)\%(\s.*$\|$\)',
     \ '^\s*`\{3,}\s*$'
     \ )
+  if code_block['from'] == 0 || code_block['to'] == 0
+    " Github fenced code blocks with metadata like ```{ruby, <WHATEVER>}
+    let code_block = s:LocateFencedCodeBlock(a:firstline,
+      \ '^\s*`\{3,}{\(\w\+\),[^}]\+}\%(\s.*$\|$\)',
+      \ '^\s*`\{3,}\s*$'
+      \ )
+  endif
   if code_block['from'] == 0 || code_block['to'] == 0
     " Github fenced code blocks alternate style like ~~~ruby
     let code_block = s:LocateFencedCodeBlock(a:firstline,
