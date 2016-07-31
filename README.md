@@ -15,7 +15,7 @@ A complete environment to create Markdown files with a syntax highlight that doe
   * At last, on an empty line, with `<Leader>e` asks for a file type and then opens a temporary buffer with that file type
   * You see that when you leave the temporary buffer the content syncs back to the main file
   ![EditCodeBlock](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_edit_code_block.gif)
-* Folding for: headers, code blocks, html blocks and lists
+* Folding for: headers, code blocks and html blocks
 * Format tables automatically (require [`Tabular`](https://github.com/godlygeek/tabular) plugin)
 * Automatically detects Jekyll files and adds support for Liquid template engine
 * This is a work in progress, more goodies and improvements are coming (see [TODO](#TODO)), stay tuned
