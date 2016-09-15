@@ -15,6 +15,16 @@ if !exists('g:markdown_flavor')
   let g:markdown_flavor = 'github'
 endif
 
+if exists('g:markdown_enable_conceal') && g:markdown_enable_conceal
+    let b:markdown_concealends = 'concealends'
+    let b:markdown_conceal = 'conceal'
+    set conceallevel=2
+    set concealcursor=
+else
+    let b:markdown_concealends = ''
+    let b:markdown_conceal = ''
+endif
+
 syn spell toplevel
 syn sync fromstart
 syn case ignore
@@ -28,32 +38,40 @@ syn cluster markdownInline contains=
   \ markdownEmailLinkInText,markdownLinkContainer,markdownXmlComment,
   \ markdownXmlElement,markdownXmlEmptyElement,markdownXmlEntities
 
-syn region markdownItalic matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*"
-  \ contains=@markdownInline
-syn region markdownItalic matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_"
-  \ contains=@markdownInline
+execute 'syn region markdownItalic matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|_\|^\)\@<=\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
+execute 'syn region markdownItalic matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|\*\|^\)\@<=_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
 
-syn region markdownBold matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*"
-  \ contains=@markdownInline
-syn region markdownBold matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|\*\*\|^\)\@<=__\%(\s\|_\|$\)\@!" end="\%(\s\|__\)\@<!__"
-  \ contains=@markdownInline
+execute 'syn region markdownBold matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|__\|^\)\@<=\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\*\)\@<!\*\*" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
+execute 'syn region markdownBold matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|\*\*\|^\)\@<=__\%(\s\|_\|$\)\@!" end="\%(\s\|__\)\@<!__" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
 
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|_\|^\)\@<=\*\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*\*\*"
-  \ contains=@markdownInline
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|\*\|^\)\@<=___\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!___"
-  \ contains=@markdownInline
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*"
-  \ contains=@markdownInline
-syn region markdownBoldItalic matchgroup=markdownInlineDelimiter
-  \ start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__"
-  \ contains=@markdownInline
+execute 'syn region markdownBoldItalic matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|_\|^\)\@<=\*\*\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*\*\*" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
+execute 'syn region markdownBoldItalic matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|\*\|^\)\@<=___\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!___" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
+execute 'syn region markdownBoldItalic matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|_\|^\)\@<=\*\*_\%(\s\|_\|$\)\@!" end="\%(\s\|_\)\@<!_\*\*" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
+execute 'syn region markdownBoldItalic matchgroup=markdownInlineDelimiter '
+  \ . 'start="\%(\s\|\*\|^\)\@<=__\*\%(\s\|\*\|$\)\@!" end="\%(\s\|\*\)\@<!\*__" '
+  \ . 'contains=@markdownInline '
+  \ . b:markdown_concealends
 
 syn match markdownStrike /\%(\\\)\@<!\~\~\%(\S\)\@=\_.\{-}\%(\S\)\@<=\~\~/ contains=markdownStrikeDelimiter,@markdownInline
 syn match markdownStrikeDelimiter /\~\~/ contained
@@ -67,8 +85,8 @@ syn match markdownStrikeDelimiter /\~\~/ contained
 "       # this is not a fenced code block but it's a code block
 "       def ruby;
 "       ```
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`/ end=/`/ keepend contains=@NoSpell
-syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`\z(`\+\)/ end=/`\z1/ keepend contains=@NoSpell
+execute 'syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`/ end=/`/ keepend contains=@NoSpell ' . b:markdown_concealends
+execute 'syn region markdownInlineCode matchgroup=markdownCodeDelimiter start=/\%(`\)\@<!`\z(`\+\)/ end=/`\z1/ keepend contains=@NoSpell ' . b:markdown_concealends
 
 " case insensitive
 " preceded by something that is not a word
@@ -218,7 +236,8 @@ execute 'syn match markdownLinkUrlContainer contained '
   \ . 'contains=markdownLinkUrl,markdownLinkTitleSingleQuoted,markdownLinkTitleDoubleQuoted '
   \ . '/'
   \ . b:markdown_syntax_round_brackets_block
-  \ . '/'
+  \ . '/ '
+  \ . b:markdown_conceal
 
 execute 'syn match markdownLinkUrl contained '
   \ . 'contains=@NoSpell '
@@ -242,11 +261,13 @@ execute 'syn match markdownLinkUrl contained '
   \ . '\%(\s\+["'']\|)\|\n\)\@='
   \ . '/'
 
-syn region markdownLinkTitleSingleQuoted start=/\s*'/ skip=/\\'/ end=/'\_s*/ display
-  \ keepend contained contains=@markdownInline
+execute 'syn region markdownLinkTitleSingleQuoted start=/\s*''/ skip=/\\''/ end=/''\_s*/ display '
+  \ . 'keepend contained contains=@markdownInline '
+  \ . b:markdown_conceal
 
-syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ display
-  \ keepend contained contains=@markdownInline
+execute 'syn region markdownLinkTitleDoubleQuoted start=/\s*"/ skip=/\\"/ end=/"\_s*/ display '
+  \ . 'keepend contained contains=@markdownInline '
+  \ . b:markdown_conceal
 
 syn match markdownXmlComment /\c<\!--\_.\{-}-->/ contains=@NoSpell
 syn match markdownXmlElement /\c<\([-A-Z0-9_$?!:,.]\+\)[^>]\{-}>\_.\{-}<\/\1>/ contains=@NoSpell
