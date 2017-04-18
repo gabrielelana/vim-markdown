@@ -3,26 +3,26 @@ A complete environment to create Markdown files with a syntax highlight that doe
 
 ## Features
 * Strong support for the Markdown flavor implemented by Github: what you see in Vim is what you get on Github
-* Complete syntax implementation: supports proper nesting of all elements in list items, this is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
+* Complete syntax implementation: supports proper nesting of all elements in list items. This is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
   * A simple example rendered with this plugin. Headers and the fenced code block in list items are correctly highlighted
     ![VimMarkdownRendering](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering.png)
   * The same example rendered with the most popular Markdown plugins for Vim
     ![VimMarkdownRenderingComparison1](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering_comparison_1.png)
     ![VimMarkdownRenderingComparison2](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering_comparison_2.png)
-* Code blocks and pieces of Markdown of the current file could be edited in a separate buffer and synchronized back when you finished
-  * Inside a ruby fenced code block with `<Leader>e` opens a temporary buffer with the right file type
-  * Then select a range in visual mode and with `<Leader>e` opens a temporary buffer with file type `markdown` I call it *Focus Mode* because you can edit a portion of a Markdown file in isolation
-  * At last, on an empty line, with `<Leader>e` asks for a file type and then opens a temporary buffer with that file type
-  * You see that when you leave the temporary buffer the content syncs back to the main file
+* Code blocks and pieces of Markdown in the current file can be edited in a separate buffer and synchronized back when you finish
+  * Inside a Ruby fenced code block, `<Leader>e` opens a temporary buffer with the right file type
+  * Select a range in visual mode and `<Leader>e` opens a temporary buffer with file type `markdown`. I call it *Focus Mode* because you can edit a portion of a Markdown file in isolation
+  * Finally, on an empty line, `<Leader>e` asks for a file type and then opens a temporary buffer with that file type
+  * When you leave the temporary buffer the content syncs back to the main file
   ![EditCodeBlock](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_edit_code_block.gif)
 * Folding for: headers, code blocks and html blocks
-* Format tables automatically (require [`Tabular`](https://github.com/godlygeek/tabular) plugin)
-* Automatically detects Jekyll files and adds support for Liquid template engine
-* This is a work in progress, more goodies and improvements are coming (see [TODO](#TODO)), stay tuned
+* Format tables automatically (requires [`Tabular`](https://github.com/godlygeek/tabular) plugin)
+* Automatically detects Jekyll files and adds support for the Liquid template engine
+* This is a work in progress. More goodies and improvements are coming (see [TODO](#TODO)). Stay tuned.
 
 
 ## Why?
-I wanted a strong support for the Markdown flavor implemented by Github, I wanted a syntax highlight that would mirror the result I would find later on Github, I wanted a syntax highlight that would not break easily, I wanted a syntax highlight that I could rely on (aka rapid feedback), I wanted something more that a mere syntax highlight. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) unfortunately it's so loosely defined that there are *flavors* of Markdown that are subtly incompatible from each other, the [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
+I wanted strong support for the Markdown flavor implemented by Github. I wanted syntax highlighting that would mirror the result I would find later on Github. I wanted syntax highlighting that would not break easily. I wanted syntax highlighting that I could rely on (aka rapid feedback). I wanted something more than mere syntax highlighting. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax), unfortunately, is so loosely defined that there are *flavors* of Markdown that are subtly incompatible with each other. The [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
 
 
 ## Installation
@@ -55,7 +55,7 @@ If you use [Pathogen](https://github.com/tpope/vim-pathogen), execute the follow
     $ cd ~/.vim/bundle
     $ git clone https://github.com/gabrielelana/vim-markdown.git
 
-If you are not using any package manager, download the [tarball](https://github.com/gabrielelana/vim-markdown/archive/master.tar.gz) and do this:
+If you are not using a package manager, download the [tarball](https://github.com/gabrielelana/vim-markdown/archive/master.tar.gz) and do this:
 
     $ cp vim-markdown-master.tar.gz ~/.vim
     $ cd ~/.vim
@@ -64,7 +64,7 @@ If you are not using any package manager, download the [tarball](https://github.
 
 
 ## Self-Promotion
-If you like this plugin, then consider to:
+If you like this plugin, you are welcome to:
 * Star the repository on [GitHub](https://github.com/gabrielelana/vim-markdown)
 * Follow me on
   * [Twitter](http://twitter.com/gabrielelana)
@@ -72,17 +72,17 @@ If you like this plugin, then consider to:
 
 
 ## Documentation
-I would use this section until I have a proper documentation
+This section will contain preliminary documentation until full documentation is written.
 
 ### Configuration
 * `let g:markdown_include_jekyll_support = 0` to disable support for Jekyll files (enabled by default with: `1`)
-* `let g:markdown_enable_folding = 1` to enable the fold expression `markdown#FoldLevelOfLine` to fold markdown files, this is disabled by default because it's a huge performance hit even when folding is disabled with `nofoldenable` option (disabled by default with: `0`)
+* `let g:markdown_enable_folding = 1` to enable the fold expression `markdown#FoldLevelOfLine` to fold markdown files. This is disabled by default because it's a huge performance hit even when folding is disabled with the `nofoldenable` option (disabled by default with: `0`)
 * `let g:markdown_enable_mappings = 0` to disable default mappings (enabled by default with: `1`)
   * `let g:markdown_enable_insert_mode_mappings = 0` to disable insert mode mappings (enabled by default with: `1`)
   * `let g:markdown_enable_insert_mode_leader_mappings = 1` to enable insert mode leader mappings (disabled by default with: `0`)
 * `let g:markdown_enable_spell_checking = 0` to disable spell checking (enabled by default with: `1`)
-* `let g:markdown_enable_input_abbreviations = 0` to disable abbreviations for punctuations and emoticons (enabled by default with: `1`)
-* `let g:markdown_enable_conceal = 1` to enable conceal for italic, bold, inline-code and link (disabled by default with: `0`)
+* `let g:markdown_enable_input_abbreviations = 0` to disable abbreviations for punctuation and emoticons (enabled by default with: `1`)
+* `let g:markdown_enable_conceal = 1` to enable conceal for italic, bold, inline-code and link text (disabled by default with: `0`)
 
 ### Default Mappings (normal and visual mode)
 _mappings are local to markdown buffers_
@@ -106,9 +106,9 @@ _mappings are local to markdown buffers_
 
 ### While Editing in Insert Mode
 * `|` in a table triggers the format command
-* `<Tab>`/`<S-Tab>` on a list item it will indent/unindent the item
-* `<Tab>`/`<S-Tab>` on a blockquote it will increase/decrease the quote level
-* `<Enter>` on a list item with no text in it (freshly created) it will delete everything till the column 0
+* `<Tab>`/`<S-Tab>` on a list indents/unindents the item
+* `<Tab>`/`<S-Tab>` on a blockquote increases/decreases the quote level
+* `<Enter>` on a list item with no text in it (freshly created) deletes everything up to column 0
 
 
 ## Development
@@ -118,15 +118,13 @@ _mappings are local to markdown buffers_
 * [Markdown Github Quick Preview](http://github-markdown-preview.heroku.com/)
 
 ### Syntax Specs
-Testing syntax highlight could be tricky, here I use the golden master patter to at least avoid regressions, this is how it works: in `./rspec/features` you will find a bunch of `*.md` files, one for each syntactic element supported, for each of those files there's an html file, this file is created with the `:TOhtml` command and it's the reference (aka golden master) of the syntax highlight of the original file. Running `rspec` you are comparing the current syntax highlight of all the feature's file with the reference syntax highlight. If looking at some of the feature's file you see something wrong you can fix it and after regenerate the golden master files with `GENERATE_GOLDEN_MASTER=1 rspec`
+Testing syntax highlighting can be tricky. Here I use the golden master pattern to at least avoid regressions. This is how it works: in `./rspec/features` you will find a bunch of `*.md` files, one for each syntactic element supported. For each of those files there's an HTML file. This file is created with the `:TOhtml` command and it's the reference (aka golden master) of the syntax highlight of the original file. Running `rspec` compares the current syntax highlighting of all the feature's files with the reference syntax highlighting. If you see something wrong when looking at some of the feature's files, you can fix it and then regenerate the golden master files with `GENERATE_GOLDEN_MASTER=1 rspec`
 
 
 ## Known Bugs
 * `formatlistpat` doesn't work for ordered lists
 * `formatoptions` thinks that `*` in horizontal rules are list items
 
-
-<a name="TODO" />
 ## TODO
 * Kramdown Syntax
   * Block Inline Attributes
@@ -139,16 +137,16 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
   * Abbreviations
   * End of Block Marker
 * Code Blocks
-  * Edit jekyll front matter code block
-  * Explain in this file why I chose to avoid to highlight nested block elements
+  * Edit Jekyll front matter code block
+  * Explain in this file why I chose to avoid to highlighting nested block elements
 * Emoji (GFM)
-  * Start completion when hitting `:` in insert mode only if preceded by empty spaces or is the beginning of the line
+  * Start completion when hitting `:` in insert mode only if preceded by empty spaces or at the beginning of the line
   * Remove duplication between syntax keywords and dictionary completion
   * More `iabbr`
 * Lists
-  * `i_<BS>` on a list item with no text in it (freshly created) it will delete everything till the column 0
-  * `<C-K>` on a list item it will swap it with the item above (if it exists)
-  * `<C-J>` on a list item it will swap it with the item below (if it exists)
+  * `i_<BS>` on a list item with no text in it (freshly created) will delete everything till the column 0
+  * `<C-K>` on a list item will swap it with the item above (if it exists)
+  * `<C-J>` on a list item will swap it with the item below (if it exists)
   * `>` and `<` should properly indent/unindent list items
   * `i_<C-D>` and `i_<C-T>` should properly indent/unindent list items and quote lines
 * Define custom text objects for:
@@ -160,7 +158,7 @@ Testing syntax highlight could be tricky, here I use the golden master patter to
   * Other inline elements
 * Folding
   * Fold HTML blocks
-  * Always consider the first non space character of the line when check for syntax group
+  * Always consider the first non-space character of the line when checking for syntax group
   * Always use `synstack` to check the syntax group of a position
   * Write specs for the whole thing
   * Support `foldtext` option
