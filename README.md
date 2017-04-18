@@ -2,7 +2,7 @@
 A complete environment to create Markdown files with a syntax highlight that doesn't suck!
 
 ## Features
-* Strong support for the Markdown flavor implemented by Github: what you see in Vim is what you get on Github
+* Strong support for the Markdown flavor implemented by GitHub: what you see in Vim is what you get on GitHub
 * Complete syntax implementation: supports proper nesting of all elements in list items. This is the only plugin that is able to do that (and I believe it since it took me a *while* to make it right)
   * A simple example rendered with this plugin. Headers and the fenced code block in list items are correctly highlighted
     ![VimMarkdownRendering](https://github.com/gabrielelana/vim-markdown/raw/master/images/vim_markdown_rendering.png)
@@ -22,7 +22,7 @@ A complete environment to create Markdown files with a syntax highlight that doe
 
 
 ## Why?
-I wanted strong support for the Markdown flavor implemented by Github. I wanted syntax highlighting that would mirror the result I would find later on Github. I wanted syntax highlighting that would not break easily. I wanted syntax highlighting that I could rely on (aka rapid feedback). I wanted something more than mere syntax highlighting. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax), unfortunately, is so loosely defined that there are *flavors* of Markdown that are subtly incompatible with each other. The [Markdown supported by Github](https://help.github.com/articles/github-flavored-markdown) is one of them.
+I wanted strong support for the Markdown flavor implemented by GitHub. I wanted syntax highlighting that would mirror the result I would find later on GitHub. I wanted syntax highlighting that would not break easily. I wanted syntax highlighting that I could rely on (aka rapid feedback). I wanted something more than mere syntax highlighting. The [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax), unfortunately, is so loosely defined that there are *flavors* of Markdown that are subtly incompatible with each other. The [Markdown supported by GitHub](https://help.github.com/articles/github-flavored-markdown) is one of them.
 
 
 ## Installation
@@ -113,9 +113,9 @@ _mappings are local to markdown buffers_
 
 ## Development
 ### Resources
-* [Markdown Github Syntax](https://help.github.com/articles/github-flavored-markdown)
-* [Markdown Github API](http://developer.github.com/v3/markdown)
-* [Markdown Github Quick Preview](http://github-markdown-preview.heroku.com/)
+* [Markdown GitHub Syntax](https://help.github.com/articles/github-flavored-markdown)
+* [Markdown GitHub API](http://developer.github.com/v3/markdown)
+* [Markdown GitHub Quick Preview](http://github-markdown-preview.heroku.com/)
 
 ### Syntax Specs
 Testing syntax highlighting can be tricky. Here I use the golden master pattern to at least avoid regressions. This is how it works: in `./rspec/features` you will find a bunch of `*.md` files, one for each syntactic element supported. For each of those files there's an HTML file. This file is created with the `:TOhtml` command and it's the reference (aka golden master) of the syntax highlight of the original file. Running `rspec` compares the current syntax highlighting of all the feature's files with the reference syntax highlighting. If you see something wrong when looking at some of the feature's files, you can fix it and then regenerate the golden master files with `GENERATE_GOLDEN_MASTER=1 rspec`
