@@ -42,9 +42,9 @@ If you use [vim-plug](https://github.com/junegunn/vim-plug), add the following t
 
     Plug 'gabrielelana/vim-markdown'
 
-And then from vim execute:
+And then execute the following command in your shell:
 
-    :PlugInstall
+    $ vim +PlugInstall
 
 If you use [NeoBundle](https://github.com/Shougo/neobundle.vim), add the following line to your `~/.vimrc`:
 
