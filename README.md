@@ -38,6 +38,14 @@ You can update to the latest version with the following command in your shell:
 
     $ vim +PluginUpdate
 
+If you use [vim-plug](https://github.com/junegunn/vim-plug), add the following to your plugin section:
+
+    Plug 'gabrielelana/vim-markdown'
+
+And then from vim execute:
+
+    :PlugInstall
+
 If you use [NeoBundle](https://github.com/Shougo/neobundle.vim), add the following line to your `~/.vimrc`:
 
     NeoBundle 'gabrielelana/vim-markdown'
