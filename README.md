@@ -30,6 +30,10 @@ If you use [Vundle](https://github.com/gmarik/vundle), add the following line to
 
     Bundle 'gabrielelana/vim-markdown'
 
+OR
+
+    Plugin 'gabrielelana/vim-markdown'
+
 And then execute the following command in your shell:
 
     $ vim +'PluginInstall! vim-markdown' +qall
